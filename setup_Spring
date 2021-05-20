@@ -1,0 +1,19 @@
+Options choisies pour créer le projet avec Spring Initializr
+
+Gradle Project - Java
+Spring Boot 2.4.5
+
+Package name : fr.epsi.mspr
+Packaging : JAR
+Version Java : 11
+
+Dépendances:
+  - Spring Boot DevTools
+  - Lombok
+  - Spring Web
+  - Thymeleaf
+  - Spring Data JPA
+  - H2 Database
+  - MariaDB Driver
+  - MySQL Driver
+  - Java Mail Sender
