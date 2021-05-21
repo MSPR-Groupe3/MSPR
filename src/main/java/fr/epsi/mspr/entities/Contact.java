@@ -9,14 +9,20 @@ import java.util.Set;
 
 @Data @AllArgsConstructor @RequiredArgsConstructor
 @Entity
+@Table
 public class Contact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column
     private String firstName;
+    @Column
     private String lastName;
+    @Column
     private String phoneNumber;
+    @Column
     private String email;
 
     @ManyToOne

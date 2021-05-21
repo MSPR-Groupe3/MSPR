@@ -9,11 +9,14 @@ import java.util.Set;
 
 @Data @AllArgsConstructor @RequiredArgsConstructor
 @Entity
+@Table
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "category")

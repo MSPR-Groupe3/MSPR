@@ -8,6 +8,7 @@ import javax.persistence.*;
 
 @Data @AllArgsConstructor @RequiredArgsConstructor
 @Entity
+@Table
 public class ProductInPurchase {
 
     @EmbeddedId
@@ -23,6 +24,8 @@ public class ProductInPurchase {
     @JoinColumn(name = "purchase_id")
     private Purchase purchase;
 
+    @Column(nullable = false)
     private int quantity;
+    @Column(nullable = false)
     private float price;
 }

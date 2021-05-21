@@ -9,17 +9,26 @@ import java.util.Set;
 
 @Data @AllArgsConstructor @RequiredArgsConstructor
 @Entity
+@Table
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(nullable = false)
     private String name;
+    @Column(unique = true)
     private String reference;
+    @Column
     private String description;
+    @Column
     private float unitPriceBeforeTax;
+    @Column
     private float taxRate;
+    @Column
     private int quantityAvailable;
+    @Column(nullable = false)
     private boolean isSellable;
 
     @ManyToOne

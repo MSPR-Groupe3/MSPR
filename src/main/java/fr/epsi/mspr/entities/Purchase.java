@@ -11,13 +11,18 @@ import javax.persistence.*;
 
 @Data @AllArgsConstructor @RequiredArgsConstructor
 @Entity
+@Table
 public class Purchase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(unique = true)
     private String reference;
+    @Column(nullable = false)
     private LocalDateTime dateOfOrder;
+    @Column
     private String comment;
 
     @ManyToOne
