@@ -32,4 +32,8 @@ public class Purchase {
     @OneToMany(mappedBy = "purchase")
     private Set<ProductInPurchase> purchaseLines;
 
+    @ManyToOne
+    @JoinColumn(name = "seller_id")
+    private User seller;
+
 }
