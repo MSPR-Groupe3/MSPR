@@ -1,6 +1,15 @@
 $(document).ready(function(){
+    let open = true
+
     $(".hamburger .fas").click(function(){
-        $(".wrapper").addClass("active");
+        if (open){
+            $(".wrapper").addClass("active");
+            open = false;
+        } else {
+            $(".wrapper").removeClass("active");
+            open = true;
+        }
+
     });
 
     $(".close").click(function(){
