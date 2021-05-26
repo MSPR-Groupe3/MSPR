@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Cinzel|Crimson+Text|Lora|Montserrat&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">  
+    <script src="https://kit.fontawesome.com/118aaba51a.js" crossorigin="anonymous"></script>
+    <title>ACME Corp - Clients</title>
+</head>
+<body>
+    
+<div class="wrapper">
+
+    <div class="sidebar">
+
+        <div class="sidebar_inner">
+            
+            <div class="profile_info">
+                <a href="index.html"><div class="profile_img">
+                   <img src="./logos/acme_corp.png" alt="logo pic"> 
+                </a></div>
+            </div>
+
+            <ul class="sidebar_menu active">
+                <li>
+                    <a href="clients.html" class="active">
+                        <img src="./icons/customer.png" alt="icone clients">
+                        <div class="title">Clients</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="produits.html" class="active">
+                        <img src="./icons/product.png" alt="icone clients">
+                        <div class="title">Produits</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="commandes.html" class="active">
+                        <img src="./icons/cube.png" alt="icone clients">
+                        <div class="title">Commandes</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="stats.html" class="active">
+                        <img src="./icons/statistics.png" alt="icone clients">
+                        <div class="title">Statistiques</div>
+                    </a>
+                </li>
+            </ul>
+            <!--end of sidebar content-->
+        </div>
+    </div>
+
+<!--Main container-->
+    <div class="main-container">
+
+
+        <!-- TOP NAVBAR -->
+        <div class="top_navbar">
+
+            <div class="hamburger">
+                <div class="hamburger_inner">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="close"><i class="fas fa-times"></i></div>
+            </div>
+            
+             <h4 class="subtitle"><a href="index.html">l'Atypique Comptoir du Meurtre et de l'Espionnage</a></h4>
+           
+
+            <!-- RIGHT SIDE sign up/in-->
+            <ul class="right_bar">
+                <li><a href="connexion.html"><img src="./icons/user.png" alt="user icon"></a></li>             
+            </ul>
+        </div>
+
+<div class="container">    
+                <div class="row first-row">
+                    <div class="cat-header">
+                        <h4><strong> Mes clients</strong></h4>
+                    </div>  
+                </div>
+<hr>
+<br>    
+
+
+<div class="row first-row">
+    <div class="item">
+        <h4><strong>Ajouter un client</strong></h4>
+      <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur 
+        adipisicing elit. Soluta quisquam, voluptatem accusantium vel eius sapiente, fuga quo doloremque, 
+        assumenda voluptas natus ea voluptatibus voluptatum quaerat placeat quis adipisci error in?<br></p> 
+     <button class="art-btn"><strong><a href="clients.html" >Voir mes clients</a></strong></button>
+    </div>
+
+</div>
+    </div>
+
+<footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12 segment-one md-mb-30 sm-mb-30">
+                        <h3 class="foot-h3">l'Atypique Comptoir du Meurtre et de l'Espionnage</h3>
+                        <p class="foot-p">Nos solutions à tous vos problèmes</p>
+                    </div>
+        
+                    <div class="col-md-3 col-sm-6 col-xs-12 segment-two md-mb-30 sm-mb-30">
+                        <h2 class="foot-h2">Liens utiles</h2>
+                       <ul>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="documents/cgv_cgu.pdf" target="_blank">CGU</a></li>
+                       </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class=" foot-p footer-bottom-text">Copyright Micka Green 2021 &copy;. All rights reserved.</p>
+</footer>      
+        </div>
+    </div>
+    
+<script>
+        $(document).ready(function(){
+            $(".hamburger .fas").click(function(){
+                $(".wrapper").addClass("active");
+            });
+            $(".close").click(function(){
+                $(".wrapper").removeClass("active");
+            });
+        });      
+</script>
+</body>
+</html>
