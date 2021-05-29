@@ -95,64 +95,78 @@
         <div class="container">
 
             <div class="row">
-                <h4>Info du contact</h4>
+                <h4>Info de la commande</h4>
             </div>
 
             <hr>
 
             <div class="row">
 
-                <form th:object="${client}" id="client_submit" method="post" action="">
+                <form th:object="${purchase}" id="client_submit" method="post" action="">
                     <table class="table-input">
                         <tr>
-                            <td class="text-left">Firstname : </td>
-                            <td class="text-right"> <input class="input-info" id="first_name" type="text" th:field="*{getFirstname()}"/> </td>
+                            <td class="text-left">Référence : </td>
+                            <td class="text-right"> <p class="input-info" id="reference" type="text" th:field="*{getReference()}"/> </td>
                         </tr>
                         <tr>
-                            <td class="text-left">Last name : </td>
-                            <td class="text-right"> <input class="input-info" id="last_name" type="text" th:field="*{getLastname()}"/> </td>
+                            <td class="text-left">Date : </td>
+                            <td class="text-right"> <input class="input-info" id="last_name" type="date" th:field="*{getDateOfOrder()}"/> </td>
                         </tr>
-                        <tr>
-                            <td class="text-left">Phone : </td>
-                            <td class="text-right"> <input type="tel" class="input-info" id="phone" type="text" th:field="*{getPhoneNumber()}"/> </td>
-                        </tr>
-                        <tr>
-                            <td class="text-left">Email : </td>
-                            <td class="text-right"> <input type="email" class="input-info" id="email" type="text" th:field="*{getEmail()}"/> </td>
-                        </tr>
-                        <tr th:object="${organizations}" >
-                            <td class="text-left">Organization : </td>
+                        <tr th:object="${clients}" >
+                            <td class="text-left">Client : </td>
                             <td class="text-right">
-                                <select th:field="*{client.getOrganization().getCompanyName()}"> <!-- note Coco : petit doute sur le th:field -->
+                                <select th:field="${purchase.getContact().getFullName()}"> <!-- note Coco : petit doute sur le th:field -->
                                     <option
-                                            th:each="organization : ${organizations}"
-                                            th:value="${organization.getId()}"
-                                            th:text="${organization.getCompanyName()}"
+                                            th:each="client : ${clients}"
+                                            th:value="${client.getId()}"
+                                            th:text="${client.getFullName()}"
                                     >
                                     </option>
                                 </select>
-                                <!--
-                                <input type="text" class="input-info" list="drop-down-items" id="company"/>
-                                <datalist id="drop-down-items">
-                                    <option value="FBI">
-                                    <option value="CIA">
-                                    <option value="MI6">
-                                </datalist>
-                                -->
                             </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Liste des produits : </td>
                         </tr>
                     </table>
 
-                    <hr>
-
-                    <div> <!-- centrer les boutons -->
-                        <input class="art-btn" type="submit" value="Save" />
-                        <input class="art-btn" type="submit" value="Delete" />
-                    </div>
-
-
                 </form>
 
+                <table class="table-input" style="width: 500px">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Référence</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="purchaseLine: ${purchase.getPurchaseLines}"
+                    >
+                        <td th:text="${purchaseLine.getProduct().getName()}" />
+                        <td th:text="${purchaseLine.getProduct().getReference()}" />
+                        <td><input class="input-info" id="price" type="number" step="0.01" th:text="${purchaseLine.getProduct().getPrice()}"/></td>
+                        <td><input class="input-info" id="quantity" type="number" th:text="${purchaseLine.getProduct().getQuantity()}"/></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="separator-bar"></div>
+            <div class="separator-bar"></div>
+
+            <div class="row">
+                <button class="art-btn" type="submit" form="client_submit" formaction="">Ajouter un produit</button>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <button class="art-btn" type="submit" form="client_submit" formaction="">Supprimer la commande</button>
+                <div class="separator-bar"></div>
+                <div class="separator-bar"></div>
+                <button class="art-btn" type="submit" form="client_submit" formaction="">Sauvegarder la commande</button>
             </div>
 
             <!--
