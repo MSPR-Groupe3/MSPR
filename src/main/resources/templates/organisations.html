@@ -127,7 +127,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr onclick="window.location='organisations_info.html';" th:each="organization: ${organizations}">
+                    <tr th:onclick="'javascript:rowClicked(${organization.getId()});'"
+                        th:each="organization: ${organizations}"
+                    >
                         <td th:text="${organization.getCompanyName()}" />
                         <td th:text="${organization.getCityName()}" />
                         <td th:text="${organization.getCountry()}" />
@@ -195,5 +197,12 @@
         });
     });
 </script>
+
+<script>
+    function rowClicked(value) {
+        location.href = "/organizations_info?param=" + value;
+    }
+</script>
+
 </body>
 </html>

@@ -127,10 +127,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr onclick="window.location='clients_info.html';" th:each="client: ${clients}">
+                        <tr th:onclick="'javascript:rowClicked(${client.getId()});'"
+                            th:each="client: ${clients}"
+                        >
                             <td th:text="${client.getFirstname()}" />
                             <td th:text="${client.getLasttname()}" />
-                            <td th:text="${client.organization.getCompanyName()}" />
+                            <td th:text="${client.getOrganization().getCompanyName()}" />
                         </tr>
 
                     </tbody>
@@ -196,5 +198,12 @@
         });
     });
 </script>
+
+<script>
+    function rowClicked(value) {
+        location.href = "/clients_info?param=" + value;
+    }
+</script>
+
 </body>
 </html>
