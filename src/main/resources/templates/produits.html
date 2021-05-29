@@ -10,7 +10,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
           crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/118aaba51a.js" crossorigin="anonymous"></script>
-    <title>ACME Corp - Produits</title>
+    <title>ACME Corp - Clients</title>
 </head>
 <body>
 
@@ -28,7 +28,6 @@
                 </a>
             </div>
 
-
             <ul class="sidebar_menu active">
                 <li>
                     <a href="clients.html" class="active">
@@ -36,7 +35,12 @@
                         <div class="title">Clients</div>
                     </a>
                 </li>
-
+                <li>
+                    <a href="organisations.html" class="active">
+                        <img src="../static/icons/organisation.png" alt="icone clients">
+                        <div class="title">Organisations</div>
+                    </a>
+                </li>
                 <li>
                     <a href="produits.html" class="active">
                         <img src="../static/icons/product.png" alt="icone clients">
@@ -57,12 +61,10 @@
                         <div class="title">Statistiques</div>
                     </a>
                 </li>
-
             </ul>
             <!--end of sidebar content-->
         </div>
     </div>
-
 
     <!--Main container-->
     <div class="main-container">
@@ -81,8 +83,7 @@
             <h4 class="subtitle"><a href="index.html">l'Atypique Comptoir du Meurtre et de l'Espionnage</a></h4>
 
 
-            <!-- RIGHT SIDE sign up/in and search-->
-
+            <!-- RIGHT SIDE sign up/in-->
             <ul class="right_bar">
                 <li><a href="connexion.html"><i class="fas fa-user fa-2x"></i></a></li>
                 <!--li><a href="connexion.html"><img src="../static/icons/user.png" alt="user icon"></a></li-->
@@ -90,60 +91,95 @@
         </div>
 
         <div class="container">
-
-            <div class="row first-row">
+            <div class="row">
                 <div class="cat-header">
-                    <h4><strong>Produits</strong></h4>
+                    <h4><strong>Liste des produits</strong></h4>
                 </div>
             </div>
-            <hr>
+
+            <div class="separator-bar"></div>
+
+            <div class="row">
+                <button class="art-btn">
+                    <strong>
+                        <a href="clients_info.html">Ajouter un produit</a>
+                    </strong>
+                </button>
+            </div>
+
+            <div class="separator-bar"></div>
+            <div class="separator-bar"></div>
+
+
+            <div class="row">
+                <input class="search-bar" type="text" placeholder="Rechercher un produit">
+                <div class="separator-bar"></div>
+                <select class="dropdown" id="category">
+                    <option value="Tout">Tout</option>
+                    <option value="Nettoyage">Nettoyage</option>
+                    <option value="Logiciels">Logiciels</option>
+                    <option value="Matériel">Matériel</option>
+                </select>
+            </div>
+
+            <div class="separator-bar"></div>
+            <div class="separator-bar"></div>
+
+            <div class="row">
+                <table class="table-list">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prix</th>
+                        <th>Stock</th>
+                        <th>Catégorie</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr onclick="window.location='produits_info.html';">
+                        <th>Magali</th>
+                        <th>10000$</th>
+                        <th>1</th>
+                        <th>Nettoyage</th>
+                    </tr>
+                    <tr onclick="window.location='produits_info.html';">
+                        <th>Spyware</th>
+                        <th>87.31$</th>
+                        <th>23</th>
+                        <th>Logiciels</th>
+                    </tr>
+                    <tr onclick="window.location='produits_info.html';">
+                        <th>Kit de perçage</th>
+                        <th>100$</th>
+                        <th>10</th>
+                        <th>Matériel</th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
             <br>
-            <div class="row second-row">
-                <div class="sub-cat-card">
-                    <h4><strong>Nettoyage</strong></h4>
-                    <div class="pic-analyse">
-                        <img src="../static/icons/knife.png" alt="knife" class="mini_img">
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium unde repellat,
-                        recusandae voluptatem, sunt tempore excepturi rem id ex doloremque sit voluptates,
-                        a autem asperiores eveniet dolor ea commodi dolores.
+
+            <!--
+            <div class="row">
+                <div class="item">
+                    <h4><strong>Ajouter un client</strong></h4>
+                    <p>
+                        Cliquer sur le bouton pour ajouter un client
+                        <br>
                     </p>
-                    <button class="art-btn"><strong><a href="prod_nettoyage.html">Catalogue Nettoyage</a></strong>
+                    <button class="art-btn">
+                        <strong>
+                            <a href="clients_info.html">Ajouter un client</a>
+                        </strong>
                     </button>
                 </div>
-
-                <div class="sub-cat-card">
-                    <h4><strong>Logiciels</strong></h4>
-                    <div class="pic-analyse">
-                        <img src="../static/icons/terminal.png" alt="logiciel" class="mini_img">
-                    </div>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium unde repellat,
-                        recusandae voluptatem, sunt tempore excepturi rem id ex doloremque sit voluptates,
-                        a autem asperiores eveniet dolor ea commodi dolores.
-                    </p>
-                    <button class="art-btn"><strong><a href="prod_logiciel.html">Catalogue Logiciels</a></strong>
-                    </button>
-                </div>
-                <div class="sub-cat-card">
-                    <h4><strong>Matériel</strong></h4>
-                    <div class="pic-analyse">
-                        <img src="../static/icons/tools.png" alt="tools" class="mini_img">
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium unde repellat,
-                        recusandae voluptatem, sunt tempore excepturi rem id ex doloremque sit voluptates,
-                        a autem asperiores eveniet dolor ea commodi dolores.</p>
-                    <button class="art-btn"><strong><a href="prod_materiel.html">Catalogue Matériel</a> </strong>
-                    </button>
-
-                </div>
-
             </div>
+            -->
 
         </div>
 
         <footer>
-
             <div class="footer-top">
                 <div class="container">
                     <div class="row">
@@ -159,15 +195,11 @@
                                 <li><a href="documents/cgv_cgu.pdf" target="_blank">CGU</a></li>
                             </ul>
                         </div>
-
-
                     </div>
                 </div>
             </div>
             <p class=" foot-p footer-bottom-text">Copyright Micka Green 2021 &copy;. All rights reserved.</p>
         </footer>
-
-
     </div>
 </div>
 
@@ -183,6 +215,28 @@
             }
             open = !open;
         });
+
+
+        $("#category").change(function(){
+            let category = $("#category").val()
+            console.log(category)
+            switch (category){
+                case "Nettoyage":
+                    $(".main-container").removeClass("background-logiciel background-materiel").addClass("background-nettoyage");
+                    break;
+                case "Logiciels":
+                    $(".main-container").removeClass("background-nettoyage background-materiel").addClass("background-logiciel");
+                    break;
+                case "Matériel":
+                    $(".main-container").removeClass("background-nettoyage background-logiciel").addClass("background-materiel");
+                    break;
+                default:
+                    $(".main-container").removeClass("background-nettoyage background-logiciel background-materiel")
+                    break;
+            }
+        });
+
+
     });
 </script>
 </body>

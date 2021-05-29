@@ -35,7 +35,12 @@
                         <div class="title">Clients</div>
                     </a>
                 </li>
-
+                <li>
+                    <a href="organisations.html" class="active">
+                        <img src="../static/icons/organisation.png" alt="icone clients">
+                        <div class="title">Organisations</div>
+                    </a>
+                </li>
                 <li>
                     <a href="produits.html" class="active">
                         <img src="../static/icons/product.png" alt="icone clients">
@@ -88,12 +93,32 @@
         <div class="container">
             <div class="row">
                 <div class="cat-header">
-                    <h4><strong> Mes clients</strong></h4>
+                    <h4><strong>Liste des clients</strong></h4>
                 </div>
             </div>
 
+            <div class="separator-bar"></div>
+
             <div class="row">
-                <table>
+                <button class="art-btn">
+                    <strong>
+                        <a href="clients_info.html">Ajouter un client</a>
+                    </strong>
+                </button>
+            </div>
+
+            <div class="separator-bar"></div>
+            <div class="separator-bar"></div>
+
+            <div class="row">
+                <input class="search-bar" type="text" placeholder="Rechercher un client par nom ou par organisation">
+            </div>
+
+            <div class="separator-bar"></div>
+            <div class="separator-bar"></div>
+
+            <div class="row">
+                <table class="table-list">
                     <thead>
                         <tr>
                             <th>Nom</th>
@@ -102,12 +127,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr onclick="window.location='#';">
+                        <tr onclick="window.location='clients_info.html';">
                             <th>John</th>
                             <th>Doe</th>
                             <th>Epsi</th>
                         </tr>
-                        <tr onclick="window.location='#';">
+                        <tr onclick="window.location='clients_info.html';">
                             <th>Foo</th>
                             <th>Bar</th>
                             <th>Epsi</th>
@@ -116,24 +141,25 @@
                 </table>
             </div>
 
-
-            <hr>
             <br>
 
-
+            <!--
             <div class="row">
                 <div class="item">
                     <h4><strong>Ajouter un client</strong></h4>
-                    <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet
-                        consectetur
-                        adipisicing elit. Soluta quisquam, voluptatem accusantium vel eius sapiente, fuga quo
-                        doloremque,
-                        assumenda voluptas natus ea voluptatibus voluptatum quaerat placeat quis adipisci error in?<br>
+                    <p>
+                        Cliquer sur le bouton pour ajouter un client
+                        <br>
                     </p>
-                    <button class="art-btn"><strong><a href="clients.html">Voir mes clients</a></strong></button>
+                    <button class="art-btn">
+                        <strong>
+                            <a href="clients_info.html">Ajouter un client</a>
+                        </strong>
+                    </button>
                 </div>
-
             </div>
+            -->
+
         </div>
 
         <footer>

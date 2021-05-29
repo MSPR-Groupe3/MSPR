@@ -37,11 +37,10 @@ body {
     display: block;
     text-align: center;
     width: 700px;
-    background-color: rgba(255, 200, 0, 0.7);
+    background-color: rgb(255, 200, 0);
     border-radius: 5px;
-    padding: 15px;
+    padding-top: 10px;
     border-bottom: 1px solid black;
-    margin: 20px;
 }
 
 .sub-cat-card {
@@ -70,8 +69,12 @@ body {
     margin-top: 10px;
     border-radius: 5px;
     background-color: #f6cf22;
-    border-style: none;
+    border: 2px solid rgba(0, 0, 0, 0);
     line-height: 25px;
+}
+
+.art-btn:hover {
+    border: 2px solid red;
 }
 
 a:hover {
@@ -166,7 +169,48 @@ a:hover {
     transition: all 0.3s ease;
     background-color: whitesmoke;
     width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
+
+.main-container.background-nettoyage::before{
+    content: "";
+    background: url("./images/cleaner.png");
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    filter: blur(30px);
+}
+
+.main-container.background-logiciel::before{
+    content: "";
+    background: url("./images/logiciel.png");
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    filter: blur(30px);
+}
+
+.main-container.background-materiel::before{
+    content: "";
+    background: url("./images/espion.png");
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    filter: blur(30px);
+}
+
 
 .sidebar_inner img {
     width: 200px;
@@ -182,17 +226,20 @@ a:hover {
     text-align: center;
     text-transform: uppercase;
     transition: 0.4s ease;
+    text-decoration: none;
 }
 
 .sidebar_menu li a .icon {
     font-size: 25px;
     margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 .sidebar_menu li a img {
     height: 30px;
     width: 30px;
     margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 .sidebar_menu li a .title {
@@ -215,6 +262,7 @@ a:hover {
     background: #d44228;
     color: #fff;
     padding-left: 10px;
+    text-decoration: none;
 }
 
 .sidebar_menu li a:hover:before,
@@ -235,6 +283,7 @@ a:hover {
     left: 200px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
+    z-index: 1;
 }
 
 .main-container .top_navbar .hamburger {
@@ -271,11 +320,15 @@ a:hover {
 .main-container .container {
     padding: 30px;
     margin-top: 60px;
+    position: relative;
 }
+
+
 
 .main-container .container .row {
     display: flex;
     justify-content: center;
+    position: relative;
 }
 
 /* Catalogue products */
@@ -396,19 +449,18 @@ a:hover {
 
 .main-container .container .item .art-btn {
     padding: 0 7px 0 7px;
-    margin-top: 10px;
     border-radius: 5px;
     background-color: #f6cf22;
-    border-style: none;
+    border: 2px solid rgba(0, 0, 0, 0);
     line-height: 25px;
     width: 235px;
 }
 
 .main-container .container .item .art-btn:hover {
-    border: 2px solid #c65039;
     cursor: pointer;
-    line-height: 21px;
-    width: 231px;
+    border: 2px solid red;
+    line-height: 25px;
+    width: 235px;
 }
 
 .main-container .container .mini_img {
@@ -425,57 +477,119 @@ a:hover {
     cursor: pointer;
 }
 
-/* TABLE */
-thead,
-tfoot {
-    background-color: black;
-    color: #fff;
-}
+/* TABLE : list of object (customers, companies, products, purchases */
 
-tbody {
-    background-color: #e4f0f5;
-}
-
-caption {
-    padding: 10px;
-    caption-side: bottom;
-}
-
-table {
+.table-list {
     border-collapse: collapse;
     border: 2px solid rgb(200, 200, 200);
     letter-spacing: 1px;
-    font-family: sans-serif;
     font-size: .8rem;
     table-layout: fixed;
     width: 70%;
 }
 
-td,
-th {
-    border: 1px solid rgb(190, 190, 190);
+.table-list thead, tfoot {
+    background-color: black;
+    color: #fff;
+}
+
+.table-list tbody {
+    background-color: rgb(255, 210, 210);
+}
+
+
+.table-list td, th {
+    border: 1px solid rgb(134, 134, 134);
     padding: 5px 10px;
 }
 
-td {
+.table-list td {
     text-align: center;
 }
 
-tbody tr:hover {
+.table-list tbody tr:hover {
     cursor: pointer;
-    background-color: #cde8f5
+    background-color: rgb(255, 115, 115);
+}
+
+/* END OF TABLE list of object*/
+
+
+/* TABLE for FORM*/
+
+.table-input{
+    width: 100%;
+}
+
+.text-left{
+    text-align: right;
+    padding: 5px 20px 5px 0;
+}
+
+.text-right{
+    text-align: left;
+    padding: 5px 5px;
+    height: 70px;
+}
+
+.input-info{
+    border: 0;
+    background-color: rgba(0, 0, 0, 0);
+    width: 300px;
+}
+
+.input-info:focus, .input-info-changed{
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    padding : 5px;
+    outline: none;
 }
 
 
-/* END OF */
+/*SEARCH BAR */
+.search-bar{
+    width: 500px;
+    padding: 5px 20px;
+    color: #8b8b8b;
+    border : 2px solid rgba(0, 0, 0, 0.3);
+}
+
+.search-bar:focus{
+    border-color: red;
+    color: black;
+    outline: none;
+    font-weight: bold;
+}
+
+.dropdown{
+    width: 200px;
+    padding: 5px 20px;
+    color: #8B8B8B;
+    border : 2px solid rgba(0, 0, 0, 0.3);
+}
+
+.dropdown:focus{
+    border-color: red;
+    color: black;
+    outline: none;
+    font-weight: bold;
+}
+
+/*END SEARCH BAR */
+
+
+
+.separator-bar {
+    width: 10px;
+    height: 10px;
+}
+
 
 
 /*  FOOTER  */
 
 footer {
-    width: 100%;
-    margin-bottom: 0;
-    padding: 0;
+    margin-top: auto;
+    position: relative;
 }
 
 .foot-p {
@@ -547,6 +661,7 @@ footer {
 
 .segment-two ul li a:hover {
     color: goldenrod;
+    text-decoration: none;
 }
 
 /* Copyright : */
@@ -578,12 +693,12 @@ footer {
 
     .wrapper .main-container .top_navbar .hamburger,
     .wrapper .close {
-        display: block;
+        display: flex;
     }
 
     .wrapper.active .sidebar .sidebar_inner {
         left: 0;
-        z-index: 1;
+        z-index: 5;
     }
 }
 
@@ -596,7 +711,11 @@ footer {
 
 @media screen and (max-width: 550px) {
     .subtitle {
-        display: none;
+        display: flex;
+    }
+
+    .main-container .right_bar {
+        display: flex;
     }
 
     .grape_index {
