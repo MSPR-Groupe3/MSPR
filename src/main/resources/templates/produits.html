@@ -112,14 +112,18 @@
 
 
             <div class="row">
+
                 <input class="search-bar" type="text" placeholder="Rechercher un produit">
+
                 <div class="separator-bar"></div>
-                <select class="dropdown" id="category">
+
+                <select class="dropdown" id="category"> <!-- liste des catégories -->
                     <option value="Tout">Tout</option>
                     <option value="Nettoyage">Nettoyage</option>
                     <option value="Logiciels">Logiciels</option>
                     <option value="Matériel">Matériel</option>
                 </select>
+
             </div>
 
             <div class="separator-bar"></div>
@@ -127,33 +131,25 @@
 
             <div class="row">
                 <table class="table-list">
+
                     <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Prix</th>
-                        <th>Stock</th>
-                        <th>Catégorie</th>
-                    </tr>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prix (H.T)</th>
+                            <th>Stock</th>
+                            <th>Catégorie</th>
+                        </tr>
                     </thead>
+
                     <tbody>
-                    <tr onclick="window.location='produits_info.html';">
-                        <th>Magali</th>
-                        <th>10000$</th>
-                        <th>1</th>
-                        <th>Nettoyage</th>
-                    </tr>
-                    <tr onclick="window.location='produits_info.html';">
-                        <th>Spyware</th>
-                        <th>87.31$</th>
-                        <th>23</th>
-                        <th>Logiciels</th>
-                    </tr>
-                    <tr onclick="window.location='produits_info.html';">
-                        <th>Kit de perçage</th>
-                        <th>100$</th>
-                        <th>10</th>
-                        <th>Matériel</th>
-                    </tr>
+                        <tr th:onclick="'javascript:rowClicked(${produit.getId()});'"
+                            th:each="produit: ${produits}"
+                        >
+                            <td th:text="${produit.getName()}" />
+                            <td th:text="${organization.getUnitPriceBeforeTax()}" />
+                            <td th:text="${organization.getQuantityAvailable()}" />
+                            <td th:text="${organization.getCategory().getName()}" />
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -238,6 +234,12 @@
 
 
     });
+</script>
+
+<script>
+    function rowClicked(value) {
+        location.href = "/produits_info?param=" + value;
+    }
 </script>
 </body>
 </html>
