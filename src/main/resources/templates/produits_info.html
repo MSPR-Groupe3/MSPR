@@ -102,48 +102,68 @@
 
       <div class="row">
 
-        <form id="client_submit" method="post" action="">
+        <form th:object="${produit}" id="client_submit" method="post" action="">
           <table class="table-input">
             <tr>
               <td class="text-left">Nom : </td>
-              <td class="text-right"><input class="input-info" id="name"></td>
+              <td class="text-right"><input class="input-info" id="name" type="text" th:field="*{getName()}" /></td>
             </tr>
             <tr>
               <td class="text-left">Prix (HT) : </td>
-              <td class="text-right"><input class="input-info" id="price" type="number"></td>
+              <td class="text-right"><input class="input-info" id="price" type="number" type="text" th:field="*{getUnitPriceBeforeTax()}" /></td>
             </tr>
             <tr>
               <td class="text-left">Taxe : </td>
-              <td class="text-right"><input class="input-info" id="tax" type="number" ></td>
+              <td class="text-right"><input class="input-info" id="tax" type="number" type="text" th:field="*{getTaxRate()}" /></td>
             </tr>
             <tr>
               <td class="text-left">Quantité en stock : </td>
-              <td class="text-right"><input class="input-info" id="stock" type="number" ></td>
+              <td class="text-right"><input class="input-info" id="stock" type="number"  type="text" th:field="*{getQuantityAvailable()}" /></td>
             </tr>
             <tr>
               <td class="text-left">Disponible : </td>
-              <td class="text-right"><input class="input-info" id="email" type="checkbox" ></td>
+              <td class="text-right"><input class="input-info" id="email" type="checkbox" type="text" th:field="*{getIsSellable()}" /></td>
             </tr>
 
-            <tr>
+            <tr th:object="${categories}" >
               <td class="text-left">Catégorie : </td>
               <td class="text-right">
+                <select th:field="*{produit.getCategory().getName()}"> <!-- note Coco : petit doute sur le th:field -->
+                  <option
+                          th:each="category : ${categories}"
+                          th:value="${category.getId()}"
+                          th:text="${category.getName()}"
+                  >
+                  </option>
+                </select>
+                <!--
                 <input type="text" class="input-info" list="drop-down-items" id="categories"/>
                 <datalist id="drop-down-items">
                   <option th:each="category : ${categories}" value="category.getName()">
                 </datalist>
+                -->
               </td>
             </tr>
           </table>
+
+          <hr>
+
+          <div> <!-- centrer les boutons -->
+            <input class="art-btn" type="submit" value="Save" />
+            <input class="art-btn" type="submit" value="Delete" />
+          </div>
+
         </form>
 
       </div>
 
+      <!--
       <hr>
 
       <div class="row">
         <button class="art-btn" type="submit" form="client_submit" formaction="">Sauvegarder</button>
       </div>
+      -->
 
     </div>
 
