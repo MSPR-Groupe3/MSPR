@@ -120,21 +120,23 @@
             <div class="row">
                 <table class="table-list">
                     <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Ville</th>
-                        <th>Pays</th>
-                    </tr>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Ville</th>
+                            <th>Pays</th>
+                        </tr>
                     </thead>
+
                     <tbody>
-                    <tr th:onclick="'javascript:rowClicked(${organization.getId()});'"
-                        th:each="organization: ${organizations}"
-                    >
-                        <td th:text="${organization.getCompanyName()}" />
-                        <td th:text="${organization.getCityName()}" />
-                        <td th:text="${organization.getCountry()}" />
-                    </tr>
+                        <tr th:onclick="'javascript:rowClicked(${organization.getId()});'"
+                            th:each="organization: ${organizations}"
+                        >
+                            <td th:text="${organization.getCompanyName()}" />
+                            <td th:text="${organization.getCityName()}" />
+                            <td th:text="${organization.getCountry()}" />
+                        </tr>
                     </tbody>
+
                 </table>
             </div>
 
