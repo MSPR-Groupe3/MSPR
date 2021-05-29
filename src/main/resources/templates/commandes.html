@@ -10,7 +10,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
           crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/118aaba51a.js" crossorigin="anonymous"></script>
-    <title>ACME Corp - Commandes</title>
+    <title>ACME Corp - Clients</title>
 </head>
 <body>
 
@@ -28,7 +28,6 @@
                 </a>
             </div>
 
-
             <ul class="sidebar_menu active">
                 <li>
                     <a href="clients.html" class="active">
@@ -36,14 +35,12 @@
                         <div class="title">Clients</div>
                     </a>
                 </li>
-
                 <li>
                     <a href="organisations.html" class="active">
                         <img src="../static/icons/organisation.png" alt="icone clients">
                         <div class="title">Organisations</div>
                     </a>
                 </li>
-
                 <li>
                     <a href="produits.html" class="active">
                         <img src="../static/icons/product.png" alt="icone clients">
@@ -64,12 +61,10 @@
                         <div class="title">Statistiques</div>
                     </a>
                 </li>
-
             </ul>
             <!--end of sidebar content-->
         </div>
     </div>
-
 
     <!--Main container-->
     <div class="main-container">
@@ -88,8 +83,7 @@
             <h4 class="subtitle"><a href="index.html">l'Atypique Comptoir du Meurtre et de l'Espionnage</a></h4>
 
 
-            <!-- RIGHT SIDE sign up/in and search-->
-
+            <!-- RIGHT SIDE sign up/in-->
             <ul class="right_bar">
                 <li><a href="connexion.html"><i class="fas fa-user fa-2x"></i></a></li>
                 <!--li><a href="connexion.html"><img src="../static/icons/user.png" alt="user icon"></a></li-->
@@ -97,32 +91,83 @@
         </div>
 
         <div class="container">
-
-            <div class="row first-row">
+            <div class="row">
                 <div class="cat-header">
-                    <h4><strong>Commandes</strong></h4>
+                    <h4><strong>Liste des commandes</strong></h4>
                 </div>
             </div>
-            <hr>
+
+            <div class="separator-bar"></div>
+
+            <div class="row">
+                <button class="art-btn">
+                    <strong>
+                        <a href="clients_info.html">Ajouter une commande</a>
+                    </strong>
+                </button>
+            </div>
+
+            <div class="separator-bar"></div>
+            <div class="separator-bar"></div>
+
+
+            <div class="row">
+                <input class="search-bar" type="text" placeholder="Rechercher une commande">
+                <div class="separator-bar"></div>
+                <select class="dropdown" id="category">
+                    <option value="Tout">Tout</option>
+                    <option th:each="organization: ${organizations}" th:value="${organisation.getId()}" th:text="${organisation.getName()}"></option>
+                </select>
+            </div>
+
+            <div class="separator-bar"></div>
+            <div class="separator-bar"></div>
+
+            <div class="row">
+                <table class="table-list">
+                    <thead>
+                    <tr>
+                        <th>Référence</th>
+                        <th>Client</th>
+                        <th>Organisation</th>
+                        <th>Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="commande: ${commandes}"
+                            th:onclick="'javascript:rowClicked(${commande.getId()});'"
+                        >
+                            <td th:text="${commande.getReference()}" />
+                            <td th:text="${commande.getContact().getName()}" />
+                            <td th:text="${commande.getOrganization().getCompanyName()}" />
+                            <td th:text="${commande.getDateOfOrder()}" />
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
             <br>
 
-            <div class="row first-row">
+            <!--
+            <div class="row">
                 <div class="item">
                     <h4><strong>Ajouter un client</strong></h4>
-                    <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet
-                        consectetur
-                        adipisicing elit. Soluta quisquam, voluptatem accusantium vel eius sapiente, fuga quo
-                        doloremque,
-                        assumenda voluptas natus ea voluptatibus voluptatum quaerat placeat quis adipisci error in?<br>
+                    <p>
+                        Cliquer sur le bouton pour ajouter un client
+                        <br>
                     </p>
-                    <button class="art-btn"><strong><a href="clients.html">Voir les commandes</a></strong></button>
+                    <button class="art-btn">
+                        <strong>
+                            <a href="clients_info.html">Ajouter un client</a>
+                        </strong>
+                    </button>
                 </div>
-
             </div>
+            -->
+
         </div>
 
         <footer>
-
             <div class="footer-top">
                 <div class="container">
                     <div class="row">
@@ -138,15 +183,11 @@
                                 <li><a href="documents/cgv_cgu.pdf" target="_blank">CGU</a></li>
                             </ul>
                         </div>
-
-
                     </div>
                 </div>
             </div>
             <p class=" foot-p footer-bottom-text">Copyright Micka Green 2021 &copy;. All rights reserved.</p>
         </footer>
-
-
     </div>
 </div>
 
@@ -164,5 +205,12 @@
         });
     });
 </script>
+
+<script>
+    function rowClicked(value) {
+        location.href = "/commandes_info?param=" + value;
+    }
+</script>
+
 </body>
 </html>
