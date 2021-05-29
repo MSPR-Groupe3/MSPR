@@ -127,16 +127,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr onclick="window.location='clients_info.html';">
-                            <th>John</th>
-                            <th>Doe</th>
-                            <th>Epsi</th>
+                        <tr onclick="window.location='clients_info.html';" th:each="client: ${clients}">
+                            <td th:text="${client.getFirstname()}" />
+                            <td th:text="${client.getLasttname()}" />
+                            <td th:text="${client.organization.getCompanyName()}" />
                         </tr>
-                        <tr onclick="window.location='clients_info.html';">
-                            <th>Foo</th>
-                            <th>Bar</th>
-                            <th>Epsi</th>
-                        </tr>
+
                     </tbody>
                 </table>
             </div>
