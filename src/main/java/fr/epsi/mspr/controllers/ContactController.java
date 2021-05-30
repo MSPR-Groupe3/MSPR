@@ -19,7 +19,7 @@ public class ContactController {
     @GetMapping("/clients")
     public String createContact(Model model) {
 
-        Contact contact = this.ContactRepository.findById(1L).get();
+        Contact contact = this.repo.findById(1L).get();
         model.addAttribute("Contact", contact);
         return "clients"; }
 
@@ -27,7 +27,7 @@ public class ContactController {
     // CREATE A CLIENT
     @PostMapping("/clients")
     public String saveContact(@ModelAttribute Contact contact, Model model) {
-        this.ContactRepository.save(contact);
+        this.repo.save(contact);
         model.addAttribute("contact", contact);
         return "clients";
     }
@@ -35,7 +35,7 @@ public class ContactController {
     // EDIT A CLIENT
     @PostMapping("/clients")
     public String updateContact(@ModelAttribute Contact contact, Model model){
-        this.ContactRepository.save(contact);
+        this.repo.save(contact);
         model.addAttribute("contact", contact);
     return "clients";
     }
