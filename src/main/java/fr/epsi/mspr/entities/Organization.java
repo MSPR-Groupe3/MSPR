@@ -16,23 +16,23 @@ public class Organization {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false)
+    @Column(name = "companyName", nullable = false)
     private String companyName;
-    @Column(nullable = false)
+    @Column(name = "streetName1", nullable = false)
     private String streetName1;
-    @Column
+    @Column(name = "streetName2")
     private String streetName2;
-    @Column
+    @Column(name = "streetName3")
     private String streetName3;
-    @Column(nullable = false)
+    @Column(name = "cityName", nullable = false)
     private String cityName;
-    @Column(nullable = false)
+    @Column(name = "postalCode", nullable = false)
     private String postalCode;
-    @Column(nullable = false)
+    @Column(name = "country", nullable = false)
     private String country;
-    @Column
+    @Column(name = "phoneNumber")
     private String phoneNumber;
-    @Column
+    @Column(name = "email")
     private String email;
 
     @ManyToOne
