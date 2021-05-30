@@ -31,6 +31,13 @@ public class ContactController {
         model.addAttribute("contact", contact);
         return "clients";
     }
+    // SHOW ALL CLIENTS
+    @GetMapping("/clients")
+    public String showContactList(Model model){
+        model.addAttribute("contact", repo.findAll());
+        return "clients";
+    }
+
 
     // EDIT A CLIENT
     @PostMapping("/clients")
@@ -42,7 +49,8 @@ public class ContactController {
 
     // DELETE A CLIENT
     @PostMapping("/clients")
-    public String deleteContact(@PathVariable int id, Contact contact) {
+    public String deleteContact(@PathVariable("id") int id, Model model) {
+
         return "clients";
     }
 }
