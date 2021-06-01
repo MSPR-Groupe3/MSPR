@@ -54,6 +54,11 @@ CREATE TABLE IF NOT EXISTS `purchase` (
     REFERENCES `contact`(`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE IF NOT EXISTS `category` (
+    `id` bigint(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) UNIQUE
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE IF NOT EXISTS `product` (
     `id` bigint(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `name` varchar(255),
@@ -80,8 +85,4 @@ CREATE TABLE IF NOT EXISTS `product_in_purchase` (
     REFERENCES `product`(`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `category` (
-    `id` bigint(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    `name` varchar(255) UNIQUE
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
