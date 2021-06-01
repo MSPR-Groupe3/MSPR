@@ -79,6 +79,7 @@
                 <div class="hamburger_inner">
                     <i class="fas fa-bars"></i>
                 </div>
+                <!--div class="close"><i class="fas fa-times"></i></div-->
             </div>
 
             <h4 class="subtitle"><a href="index.html">l'Atypique Comptoir du Meurtre et de l'Espionnage</a></h4>
@@ -87,6 +88,7 @@
             <!-- RIGHT SIDE sign up/in-->
             <ul class="right_bar">
                 <li><a href="connexion.html"><i class="fas fa-user fa-2x"></i></a></li>
+                <!--li><a href="connexion.html"><img src="../static/icons/user.png" alt="user icon"></a></li-->
             </ul>
         </div>
 
@@ -113,7 +115,7 @@
                         <tr th:object="${clients}" >
                             <td class="text-left">Client : </td>
                             <td class="text-right">
-                                <select class="dropdown" th:field="${purchase.getContact().getFullName()}"> <!-- note Coco : petit doute sur le th:field -->
+                                <select th:field="${purchase.getContact().getFullName()}"> <!-- note Coco : petit doute sur le th:field -->
                                     <option
                                             th:each="client : ${clients}"
                                             th:value="${client.getId()}"
@@ -144,8 +146,8 @@
                     >
                         <td th:text="${purchaseLine.getProduct().getName()}" />
                         <td th:text="${purchaseLine.getProduct().getReference()}" />
-                        <td><input class="input-info" id="price" type="number" min="0" step="0.01" th:text="${purchaseLine.getPrice()}"/></td>
-                        <td><input class="input-info" id="quantity" type="number" min="0" th:text="${purchaseLine.getQuantity()}"/></td>
+                        <td><input class="input-info" id="price" type="number" step="0.01" th:text="${purchaseLine.getProduct().getPrice()}"/></td>
+                        <td><input class="input-info" id="quantity" type="number" th:text="${purchaseLine.getProduct().getQuantity()}"/></td>
                     </tr>
                     </tbody>
                 </table>
@@ -161,11 +163,19 @@
             <hr>
 
             <div class="row">
-                <button class="art-btn" type="submit" form="client_submit" formaction="">Supprimer</button>
+                <button class="art-btn" type="submit" form="client_submit" formaction="">Supprimer la commande</button>
                 <div class="separator-bar"></div>
                 <div class="separator-bar"></div>
+                <button class="art-btn" type="submit" form="client_submit" formaction="">Sauvegarder la commande</button>
+            </div>
+
+            <!--
+            <hr>
+
+            <div class="row">
                 <button class="art-btn" type="submit" form="client_submit" formaction="">Sauvegarder</button>
             </div>
+            -->
 
         </div>
 
@@ -206,8 +216,25 @@
             open = !open;
         });
 
+        $("#first_name").change(function(){
+            $("#first_name").addClass("input-info-changed");
+        });
 
+        $("#last_name").change(function(){
+            $("#last_name").addClass("input-info-changed");
+        });
 
+        $("#phone").change(function(){
+            $("#phone").addClass("input-info-changed");
+        });
+
+        $("#email").change(function(){
+            $("#email").addClass("input-info-changed");
+        });
+
+        $("#company").change(function(){
+            $("#company").addClass("input-info-changed");
+        });
     });
 </script>
 </body>
