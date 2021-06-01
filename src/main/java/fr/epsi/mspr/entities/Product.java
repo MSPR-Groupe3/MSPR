@@ -16,19 +16,19 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "NAME", nullable = false)
     private String name;
-    @Column(name = "reference", unique = true)
+    @Column(name = "REFERENCE", unique = true)
     private String reference;
-    @Column(name = "description")
+    @Column(name = "DESCRIPTION")
     private String description;
-    @Column(name = "unitPriceBeforeTax")
+    @Column(name = "UNITPRICEBEFORETAX")
     private float unitPriceBeforeTax;
-    @Column(name = "taxRate")
+    @Column(name = "TAXRATE")
     private float taxRate;
-    @Column(name = "quantityAvailable")
+    @Column(name = "QUANTITYAVAILABLE")
     private int quantityAvailable;
-    @Column(name = "isSellable", nullable = false)
+    @Column(name = "ISSELLABLE", nullable = false)
     private boolean isSellable;
 
     @ManyToOne

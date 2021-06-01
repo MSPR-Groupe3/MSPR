@@ -10,7 +10,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
           crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/118aaba51a.js" crossorigin="anonymous"></script>
-    <title>ACME Corp - Produits</title>
+    <title>ACME Corp - Clients</title>
 </head>
 <body>
 
@@ -27,7 +27,6 @@
                     </div>
                 </a>
             </div>
-
 
             <ul class="sidebar_menu active">
                 <li>
@@ -63,17 +62,15 @@
                         <img src="../static/icons/statistics.png" alt="icone clients">
                         <div class="title">Statistiques</div>
                     </a>
-
                 </li>
-
             </ul>
             <!--end of sidebar content-->
         </div>
     </div>
 
-
     <!--Main container-->
     <div class="main-container">
+
 
         <!-- TOP NAVBAR -->
         <div class="top_navbar">
@@ -87,8 +84,8 @@
 
             <h4 class="subtitle"><a href="index.html">l'Atypique Comptoir du Meurtre et de l'Espionnage</a></h4>
 
-            <!-- RIGHT SIDE sign up/in and search-->
 
+            <!-- RIGHT SIDE sign up/in-->
             <ul class="right_bar">
                 <li><a href="connexion.html"><i class="fas fa-user fa-2x"></i></a></li>
                 <!--li><a href="connexion.html"><img src="../static/icons/user.png" alt="user icon"></a></li-->
@@ -97,63 +94,78 @@
 
         <div class="container">
 
-            <div class="row first-row">
-                <div class="cat-header">
-                    <h4><strong>Matériel</strong></h4>
-                </div>
+            <div class="row">
+                <h4>Info du contact</h4>
             </div>
+
             <hr>
-            <br>
+
+            <div class="row">
+
+                <form th:object="${client}" id="client_submit" method="post" action="">
+                    <table class="table-input">
+                        <tr>
+                            <td class="text-left">Firstname : </td>
+                            <td class="text-right"> <input class="input-info" id="first_name" type="text" th:field="*{getFirstname()}"/> </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Last name : </td>
+                            <td class="text-right"> <input class="input-info" id="last_name" type="text" th:field="*{getLastname()}"/> </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Phone : </td>
+                            <td class="text-right"> <input type="tel" class="input-info" id="phone" type="text" th:field="*{getPhoneNumber()}"/> </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Email : </td>
+                            <td class="text-right"> <input type="email" class="input-info" id="email" type="text" th:field="*{getEmail()}"/> </td>
+                        </tr>
+                        <tr th:object="${organizations}" >
+                            <td class="text-left">Organization : </td>
+                            <td class="text-right">
+                                <select th:field="*{client.getOrganization().getCompanyName()}"> <!-- note Coco : petit doute sur le th:field -->
+                                    <option
+                                            th:each="organization : ${organizations}"
+                                            th:value="${organization.getId()}"
+                                            th:text="${organization.getCompanyName()}"
+                                    >
+                                    </option>
+                                </select>
+                                <!--
+                                <input type="text" class="input-info" list="drop-down-items" id="company"/>
+                                <datalist id="drop-down-items">
+                                    <option value="FBI">
+                                    <option value="CIA">
+                                    <option value="MI6">
+                                </datalist>
+                                -->
+                            </td>
+                        </tr>
+                    </table>
+
+                    <hr>
+
+                    <div> <!-- centrer les boutons -->
+                        <input class="art-btn" type="submit" value="Save" />
+                        <input class="art-btn" type="submit" value="Delete" />
+                    </div>
 
 
-            <div class="row first-row">
-
-                <img src="../static/images/espion.png" alt="nettoyage">
+                </form>
 
             </div>
-            <br> <br>
-            <div class="collist">
-                <div class="prod-card">
-                    <h4><strong>Mouchards GPS</strong></h4>
-                    <img src="../static/images/gps.png" alt="killer pic" class="prodmat_img">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem architecto amet vitae.
-                        Natus itaque qui voluptatum? Praesentium quod tenetur illo deserunt, sed eligendi
-                        sit blanditiis aut nulla, fugiat velit. Maiores?
-                    </p>
-                    <div class="prod-btn-list">
-                        <button class="prod-btn-mat"><strong><a href="mouchards.html">Détail</a></strong></button>
-                    </div>
-                </div>
 
-                <div class="prod-card">
-                    <h4><strong>Micros</strong></h4>
-                    <img src="../static/images/micro.png" alt="killer pic" class="prodmat_img">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis totam magnam voluptates vel
-                        quaerat quis iure beatae nostrum et libero aspernatur voluptatem culpa hic,
-                        debitis voluptate minus quas repellat cupiditate.
-                    </p>
-                    <div class="prod-btn-list">
-                        <button class="prod-btn-mat"><strong><a href="micros.html">Détail</a> </strong></button>
-                    </div>
-                </div>
-                <div class="prod-card">
-                    <h4><strong>Caméras</strong></h4>
-                    <img src="../static/images/camera.png" alt="killer pic" class="prodmat_img">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis totam magnam voluptates vel
-                        quaerat quis iure beatae nostrum et libero aspernatur voluptatem culpa hic,
-                        debitis voluptate minus quas repellat cupiditate.
-                    </p>
-                    <div class="prod-btn-list">
-                        <button class="prod-btn-mat"><strong><a href="cameras.html">Détail</a> </strong></button>
-                    </div>
-                </div>
+            <!--
+            <hr>
 
+            <div class="row">
+                <button class="art-btn" type="submit" form="client_submit" formaction="">Sauvegarder</button>
             </div>
+            -->
 
         </div>
 
         <footer>
-
             <div class="footer-top">
                 <div class="container">
                     <div class="row">
@@ -169,15 +181,11 @@
                                 <li><a href="documents/cgv_cgu.pdf" target="_blank">CGU</a></li>
                             </ul>
                         </div>
-
-
                     </div>
                 </div>
             </div>
             <p class=" foot-p footer-bottom-text">Copyright Micka Green 2021 &copy;. All rights reserved.</p>
         </footer>
-
-
     </div>
 </div>
 
@@ -192,6 +200,26 @@
                 $(".wrapper").removeClass("active");
             }
             open = !open;
+        });
+
+        $("#first_name").change(function(){
+            $("#first_name").addClass("input-info-changed");
+        });
+
+        $("#last_name").change(function(){
+            $("#last_name").addClass("input-info-changed");
+        });
+
+        $("#phone").change(function(){
+            $("#phone").addClass("input-info-changed");
+        });
+
+        $("#email").change(function(){
+            $("#email").addClass("input-info-changed");
+        });
+
+        $("#company").change(function(){
+            $("#company").addClass("input-info-changed");
         });
     });
 </script>

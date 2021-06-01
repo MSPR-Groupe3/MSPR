@@ -10,7 +10,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
           crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/118aaba51a.js" crossorigin="anonymous"></script>
-    <title>ACME Corp - Produits</title>
+    <title>ACME Corp - Clients</title>
 </head>
 <body>
 
@@ -28,7 +28,6 @@
                 </a>
             </div>
 
-
             <ul class="sidebar_menu active">
                 <li>
                     <a href="clients.html" class="active">
@@ -36,14 +35,12 @@
                         <div class="title">Clients</div>
                     </a>
                 </li>
-
                 <li>
                     <a href="organisations.html" class="active">
                         <img src="../static/icons/organisation.png" alt="icone clients">
                         <div class="title">Organisations</div>
                     </a>
                 </li>
-
                 <li>
                     <a href="produits.html" class="active">
                         <img src="../static/icons/product.png" alt="icone clients">
@@ -63,17 +60,15 @@
                         <img src="../static/icons/statistics.png" alt="icone clients">
                         <div class="title">Statistiques</div>
                     </a>
-
                 </li>
-
             </ul>
             <!--end of sidebar content-->
         </div>
     </div>
 
-
     <!--Main container-->
     <div class="main-container">
+
 
         <!-- TOP NAVBAR -->
         <div class="top_navbar">
@@ -87,8 +82,8 @@
 
             <h4 class="subtitle"><a href="index.html">l'Atypique Comptoir du Meurtre et de l'Espionnage</a></h4>
 
-            <!-- RIGHT SIDE sign up/in and search-->
 
+            <!-- RIGHT SIDE sign up/in-->
             <ul class="right_bar">
                 <li><a href="connexion.html"><i class="fas fa-user fa-2x"></i></a></li>
                 <!--li><a href="connexion.html"><img src="../static/icons/user.png" alt="user icon"></a></li-->
@@ -96,64 +91,77 @@
         </div>
 
         <div class="container">
-
-            <div class="row first-row">
+            <div class="row">
                 <div class="cat-header">
-                    <h4><strong>Matériel</strong></h4>
+                    <h4><strong>Liste des organisations</strong></h4>
                 </div>
             </div>
-            <hr>
+
+            <div class="separator-bar"></div>
+
+            <div class="row">
+                <button class="art-btn">
+                    <strong>
+                        <a href="organisations_info.html">Ajouter une organisation</a>
+                    </strong>
+                </button>
+            </div>
+
+            <div class="separator-bar"></div>
+            <div class="separator-bar"></div>
+
+            <div class="row">
+                <input class="search-bar" type="text" placeholder="Rechercher une organisation">
+            </div>
+
+            <div class="separator-bar"></div>
+            <div class="separator-bar"></div>
+
+            <div class="row">
+                <table class="table-list">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Ville</th>
+                            <th>Pays</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr th:onclick="'javascript:rowClicked(${organization.getId()});'"
+                            th:each="organization: ${organizations}"
+                        >
+                            <td th:text="${organization.getCompanyName()}" />
+                            <td th:text="${organization.getCityName()}" />
+                            <td th:text="${organization.getCountry()}" />
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
             <br>
 
-
-            <div class="row first-row">
-
-                <img src="../static/images/espion.png" alt="nettoyage">
-
+            <!--
+            <div class="row">
+                <div class="item">
+                    <h4><strong>Ajouter un client</strong></h4>
+                    <p>
+                        Cliquer sur le bouton pour ajouter un client
+                        <br>
+                    </p>
+                    <button class="art-btn">
+                        <strong>
+                            <a href="clients_info.html">Ajouter un client</a>
+                        </strong>
+                    </button>
+                </div>
             </div>
-            <br> <br>
-            <div class="collist">
-                <div class="prod-card">
-                    <h4><strong>Mouchards GPS</strong></h4>
-                    <img src="../static/images/gps.png" alt="killer pic" class="prodmat_img">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem architecto amet vitae.
-                        Natus itaque qui voluptatum? Praesentium quod tenetur illo deserunt, sed eligendi
-                        sit blanditiis aut nulla, fugiat velit. Maiores?
-                    </p>
-                    <div class="prod-btn-list">
-                        <button class="prod-btn-mat"><strong><a href="mouchards.html">Détail</a></strong></button>
-                    </div>
-                </div>
-
-                <div class="prod-card">
-                    <h4><strong>Micros</strong></h4>
-                    <img src="../static/images/micro.png" alt="killer pic" class="prodmat_img">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis totam magnam voluptates vel
-                        quaerat quis iure beatae nostrum et libero aspernatur voluptatem culpa hic,
-                        debitis voluptate minus quas repellat cupiditate.
-                    </p>
-                    <div class="prod-btn-list">
-                        <button class="prod-btn-mat"><strong><a href="micros.html">Détail</a> </strong></button>
-                    </div>
-                </div>
-                <div class="prod-card">
-                    <h4><strong>Caméras</strong></h4>
-                    <img src="../static/images/camera.png" alt="killer pic" class="prodmat_img">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis totam magnam voluptates vel
-                        quaerat quis iure beatae nostrum et libero aspernatur voluptatem culpa hic,
-                        debitis voluptate minus quas repellat cupiditate.
-                    </p>
-                    <div class="prod-btn-list">
-                        <button class="prod-btn-mat"><strong><a href="cameras.html">Détail</a> </strong></button>
-                    </div>
-                </div>
-
-            </div>
+            -->
 
         </div>
 
         <footer>
-
             <div class="footer-top">
                 <div class="container">
                     <div class="row">
@@ -169,15 +177,11 @@
                                 <li><a href="documents/cgv_cgu.pdf" target="_blank">CGU</a></li>
                             </ul>
                         </div>
-
-
                     </div>
                 </div>
             </div>
             <p class=" foot-p footer-bottom-text">Copyright Micka Green 2021 &copy;. All rights reserved.</p>
         </footer>
-
-
     </div>
 </div>
 
@@ -195,5 +199,12 @@
         });
     });
 </script>
+
+<script>
+    function rowClicked(value) {
+        location.href = "/organizations_info?param=" + value;
+    }
+</script>
+
 </body>
 </html>

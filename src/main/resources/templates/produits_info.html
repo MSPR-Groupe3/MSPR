@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/style.css">
+  <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Cinzel|Crimson+Text|Lora|Montserrat&display=swap"
+        rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/118aaba51a.js" crossorigin="anonymous"></script>
+  <title>ACME Corp - Clients</title>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <div class="sidebar">
+
+    <div class="sidebar_inner">
+
+      <div class="profile_info">
+        <a href="index.html">
+          <div class="profile_img">
+            <img src="../static/logos/acme_corp.png" alt="logo pic">
+          </div>
+        </a>
+      </div>
+
+      <ul class="sidebar_menu active">
+        <li>
+          <a href="clients.html" class="active">
+            <img src="../static/icons/customer.png" alt="icone clients">
+            <div class="title">Clients</div>
+          </a>
+        </li>
+
+        <li>
+          <a href="organisations.html" class="active">
+            <img src="../static/icons/organisation.png" alt="icone clients">
+            <div class="title">Organisations</div>
+          </a>
+        </li>
+
+        <li>
+          <a href="produits.html" class="active">
+            <img src="../static/icons/product.png" alt="icone clients">
+            <div class="title">Produits</div>
+          </a>
+        </li>
+
+        <li>
+          <a href="commandes.html" class="active">
+            <img src="../static/icons/cube.png" alt="icone clients">
+            <div class="title">Commandes</div>
+          </a>
+        </li>
+
+        <li>
+          <a href="stats.html" class="active">
+            <img src="../static/icons/statistics.png" alt="icone clients">
+            <div class="title">Statistiques</div>
+          </a>
+        </li>
+      </ul>
+      <!--end of sidebar content-->
+    </div>
+  </div>
+
+  <!--Main container-->
+  <div class="main-container">
+
+
+    <!-- TOP NAVBAR -->
+    <div class="top_navbar">
+
+      <div class="hamburger">
+        <div class="hamburger_inner">
+          <i class="fas fa-bars"></i>
+        </div>
+        <!--div class="close"><i class="fas fa-times"></i></div-->
+      </div>
+
+      <h4 class="subtitle"><a href="index.html">l'Atypique Comptoir du Meurtre et de l'Espionnage</a></h4>
+
+
+      <!-- RIGHT SIDE sign up/in-->
+      <ul class="right_bar">
+        <li><a href="connexion.html"><i class="fas fa-user fa-2x"></i></a></li>
+        <!--li><a href="connexion.html"><img src="../static/icons/user.png" alt="user icon"></a></li-->
+      </ul>
+    </div>
+
+    <div class="container">
+
+      <div class="row">
+        <h4>Info du produit</h4>
+      </div>
+
+      <hr>
+
+      <div class="row">
+
+        <form th:object="${produit}" id="client_submit" method="post" action="">
+          <table class="table-input">
+            <tr>
+              <td class="text-left">Nom : </td>
+              <td class="text-right"><input class="input-info" id="name" type="text" th:field="*{getName()}" /></td>
+            </tr>
+            <tr>
+              <td class="text-left">Prix (HT) : </td>
+              <td class="text-right"><input class="input-info" id="price" type="number" type="text" th:field="*{getUnitPriceBeforeTax()}" /></td>
+            </tr>
+            <tr>
+              <td class="text-left">Taxe : </td>
+              <td class="text-right"><input class="input-info" id="tax" type="number" type="text" th:field="*{getTaxRate()}" /></td>
+            </tr>
+            <tr>
+              <td class="text-left">Quantité en stock : </td>
+              <td class="text-right"><input class="input-info" id="stock" type="number"  type="text" th:field="*{getQuantityAvailable()}" /></td>
+            </tr>
+            <tr>
+              <td class="text-left">Disponible : </td>
+              <td class="text-right"><input class="input-info" id="email" type="checkbox" type="text" th:field="*{getIsSellable()}" /></td>
+            </tr>
+
+            <tr th:object="${categories}" >
+              <td class="text-left">Catégorie : </td>
+              <td class="text-right">
+                <select th:field="*{produit.getCategory().getName()}"> <!-- note Coco : petit doute sur le th:field -->
+                  <option
+                          th:each="category : ${categories}"
+                          th:value="${category.getId()}"
+                          th:text="${category.getName()}"
+                  >
+                  </option>
+                </select>
+                <!--
+                <input type="text" class="input-info" list="drop-down-items" id="categories"/>
+                <datalist id="drop-down-items">
+                  <option th:each="category : ${categories}" value="category.getName()">
+                </datalist>
+                -->
+              </td>
+            </tr>
+          </table>
+
+          <hr>
+
+          <div> <!-- centrer les boutons -->
+            <input class="art-btn" type="submit" value="Save" />
+            <input class="art-btn" type="submit" value="Delete" />
+          </div>
+
+        </form>
+
+      </div>
+
+      <!--
+      <hr>
+
+      <div class="row">
+        <button class="art-btn" type="submit" form="client_submit" formaction="">Sauvegarder</button>
+      </div>
+      -->
+
+    </div>
+
+    <footer>
+      <div class="footer-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12 segment-one md-mb-30 sm-mb-30">
+              <h3 class="foot-h3">l'Atypique Comptoir du Meurtre et de l'Espionnage</h3>
+              <p class="foot-p">Nos solutions à tous vos problèmes</p>
+            </div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12 segment-two md-mb-30 sm-mb-30">
+              <h2 class="foot-h2">Liens utiles</h2>
+              <ul>
+                <li><a href="#">Documentation</a></li>
+                <li><a href="documents/cgv_cgu.pdf" target="_blank">CGU</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class=" foot-p footer-bottom-text">Copyright Micka Green 2021 &copy;. All rights reserved.</p>
+    </footer>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    let open = true
+
+    $(".hamburger .fas").click(function () {
+      if (open) {
+        $(".wrapper").addClass("active");
+      } else {
+        $(".wrapper").removeClass("active");
+      }
+      open = !open;
+    });
+
+    $("#first_name").change(function(){
+      $("#first_name").addClass("input-info-changed");
+    });
+
+    $("#last_name").change(function(){
+      $("#last_name").addClass("input-info-changed");
+    });
+
+    $("#phone").change(function(){
+      $("#phone").addClass("input-info-changed");
+    });
+
+    $("#email").change(function(){
+      $("#email").addClass("input-info-changed");
+    });
+
+    $("#company").change(function(){
+      $("#company").addClass("input-info-changed");
+    });
+  });
+</script>
+</body>
+</html>

@@ -3,62 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../static/style.css">
     <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Cinzel|Crimson+Text|Lora|Montserrat&display=swap" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">  
+    <link href="https://fonts.googleapis.com/css?family=Cinzel|Crimson+Text|Lora|Montserrat&display=swap"
+          rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+          crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/118aaba51a.js" crossorigin="anonymous"></script>
     <title>ACME Corp - Inscription</title>
 </head>
 <body>
-    
+
 <div class="wrapper">
 
     <div class="sidebar">
 
         <div class="sidebar_inner">
-            
+
             <div class="profile_info">
-                <a href="index.php"><div class="profile_img">
-                   <img src="./logos/acme_corp.png" alt="logo pic"> 
-                </a></div>
+                <a href="index.php">
+                    <div class="profile_img">
+                        <img src="../static/logos/acme_corp.png" alt="logo pic">
+                    </div>
+                </a>
             </div>
 
             <ul class="sidebar_menu active">
                 <li>
                     <a href="clients.html" class="active">
-                        <img src="./icons/customer.png" alt="icone clients">
+                        <img src="../static/icons/customer.png" alt="icone clients">
                         <div class="title">Clients</div>
                     </a>
                 </li>
 
                 <li>
+                    <a href="organisations.html" class="active">
+                        <img src="../static/icons/organisation.png" alt="icone clients">
+                        <div class="title">Organisations</div>
+                    </a>
+                </li>
+
+                <li>
                     <a href="produits.html" class="active">
-                        <img src="./icons/product.png" alt="icone clients">
+                        <img src="../static/icons/product.png" alt="icone clients">
                         <div class="title">Produits</div>
                     </a>
                 </li>
 
                 <li>
                     <a href="commandes.html" class="active">
-                        <img src="./icons/cube.png" alt="icone clients">
+                        <img src="../static/icons/cube.png" alt="icone clients">
                         <div class="title">Commandes</div>
                     </a>
                 </li>
 
                 <li>
                     <a href="stats.html" class="active">
-                        <img src="./icons/statistics.png" alt="icone clients">
+                        <img src="../static/icons/statistics.png" alt="icone clients">
                         <div class="title">Statistiques</div>
                     </a>
                 </li>
             </ul>
-        <!--end of sidebar content-->
+            <!--end of sidebar content-->
         </div>
     </div>
 
 
-<!--Main container-->
+    <!--Main container-->
     <div class="main-container">
 
         <!-- TOP NAVBAR -->
@@ -68,109 +79,118 @@
                 <div class="hamburger_inner">
                     <i class="fas fa-bars"></i>
                 </div>
-                <div class="close"><i class="fas fa-times"></i></div>
+                <!--div class="close"><i class="fas fa-times"></i></div-->
             </div>
-            
+
             <h4 class="subtitle"><a href="index.html">l'Atypique Comptoir du Meurtre et de l'Espionnage</a></h4>
-           
+
 
             <!-- RIGHT SIDE sign up/in-->
 
             <ul class="right_bar">
-               <li><i class="fas fa-search"></i></li> 
-                 
+                <li><i class="fas fa-search"></i></li>
+
             </ul>
         </div>
-        
-<div class="container">
-                
-                <div class="row first-row">
-                    <div class="cat-header">
-                        <h4><strong>Connectez-vous !</strong></h4>
-                      <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur 
-                        adipisicing elit. Soluta quisquam, voluptatem accusantium vel eius sapiente, fuga quo doloremque, 
-                        assumenda voluptas natus ea voluptatibus voluptatum quaerat placeat quis adipisci error in?<br></p> 
-                    </div>
-                </div>
-<hr>
 
-                <div class="row second-row">
-                    <div class="sub-cat-card">
-                    <h5><strong>Je créé mon compte</strong></h5>
-                   
-<form method="POST" action="">
-                            <label for="pseudo">Pseudo</label>
-                            <br>
-                            <input type="text" class="input-form" placeholder="Votre pseudo" id="pseudo" name="pseudo">
-                            <br>
-
-                            <label for="mail">Mail</label>
-                            <br>
-                            <input type="email" class="input-form" placeholder="Votre mail" id="mail" name="mail">
-                            <br>
-
-                            <label for="mail2">Confirmation mail</label>
-                            <br>
-                            <input type="email" class="input-form" placeholder="Confirmez votre mail" id="mail2" name="mail2">
-                            <br>
-
-                            <label for="mdp">Mot de passe</label>
-                            <br>
-                            <input type="password" class="input-form" placeholder="Votre mot de passe" id="mdp" name="mdp">
-                            <br>
-
-                            <label for="mdp2">Confirmation mot de passe</label>
-                            <br>
-                            <input type="password" class="input-form" placeholder="Confirmez votre mot de passe" id="mdp2" name="mdp2">
-                            <br>
-           
-
-                            <br>
-                          <input type="submit" name="forminscription" value="Je m'inscris" class="art-btn"></strong> 
-                            <br> 
-
-                            <button class="art-btn"><strong><a href="connexion.html">J'ai déjà un compte</a></strong></button>
-                        
-</form>
-                    </div>
-                </div>                
-</div>
-
-<footer>
-    <div class="footer-top">
         <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-6 col-xs-12 segment-one md-mb-30 sm-mb-30">
-                    <h3 class="foot-h3">l'Atypique Comptoir du Meurtre et de l'Espionnage</h3>
-                    <p class="foot-p">Nos solutions à tous vos problèmes</p>
+
+            <div class="row first-row">
+                <div class="cat-header">
+                    <h4><strong>Connectez-vous !</strong></h4>
+                    <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet
+                        consectetur
+                        adipisicing elit. Soluta quisquam, voluptatem accusantium vel eius sapiente, fuga quo
+                        doloremque,
+                        assumenda voluptas natus ea voluptatibus voluptatum quaerat placeat quis adipisci error in?<br>
+                    </p>
                 </div>
-    
-                <div class="col-md-3 col-sm-6 col-xs-12 segment-two md-mb-30 sm-mb-30">
-                    <h2 class="foot-h2">Liens utiles</h2>
-                   <ul>
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="documents/cgv_cgu.pdf" target="_blank">CGU</a></li>
-                   </ul>
+            </div>
+            <hr>
+
+            <div class="row second-row">
+                <div class="sub-cat-card">
+                    <h5><strong>Je créé mon compte</strong></h5>
+
+                    <form method="POST" action="">
+                        <label for="pseudo">Pseudo</label>
+                        <br>
+                        <input type="text" class="input-form" placeholder="Votre pseudo" id="pseudo" name="pseudo">
+                        <br>
+
+                        <label for="mail">Mail</label>
+                        <br>
+                        <input type="email" class="input-form" placeholder="Votre mail" id="mail" name="mail">
+                        <br>
+
+                        <label for="mail2">Confirmation mail</label>
+                        <br>
+                        <input type="email" class="input-form" placeholder="Confirmez votre mail" id="mail2"
+                               name="mail2">
+                        <br>
+
+                        <label for="mdp">Mot de passe</label>
+                        <br>
+                        <input type="password" class="input-form" placeholder="Votre mot de passe" id="mdp" name="mdp">
+                        <br>
+
+                        <label for="mdp2">Confirmation mot de passe</label>
+                        <br>
+                        <input type="password" class="input-form" placeholder="Confirmez votre mot de passe" id="mdp2"
+                               name="mdp2">
+                        <br>
+
+
+                        <br>
+                        <input type="submit" name="forminscription" value="Je m'inscris" class="art-btn"></strong>
+                        <br>
+
+                        <button class="art-btn"><strong><a href="connexion.html">J'ai déjà un compte</a></strong>
+                        </button>
+
+                    </form>
                 </div>
-    
             </div>
         </div>
-    </div>
-    <p class=" foot-p footer-bottom-text">Copyright Micka Green 2021 &copy;. All rights reserved.</p>
-</footer>
-    
-    
+
+        <footer>
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12 segment-one md-mb-30 sm-mb-30">
+                            <h3 class="foot-h3">l'Atypique Comptoir du Meurtre et de l'Espionnage</h3>
+                            <p class="foot-p">Nos solutions à tous vos problèmes</p>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6 col-xs-12 segment-two md-mb-30 sm-mb-30">
+                            <h2 class="foot-h2">Liens utiles</h2>
+                            <ul>
+                                <li><a href="#">Documentation</a></li>
+                                <li><a href="documents/cgv_cgu.pdf" target="_blank">CGU</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <p class=" foot-p footer-bottom-text">Copyright Micka Green 2021 &copy;. All rights reserved.</p>
+        </footer>
+
+
     </div>
 </div>
 
 <script>
-    $(document).ready(function(){
-        $(".hamburger .fas").click(function(){
-            $(".wrapper").addClass("active");
-        });
-    
-        $(".close").click(function(){
-            $(".wrapper").removeClass("active");
+    $(document).ready(function () {
+        let open = true
+
+        $(".hamburger .fas").click(function () {
+            if (open) {
+                $(".wrapper").addClass("active");
+            } else {
+                $(".wrapper").removeClass("active");
+            }
+            open = !open;
         });
     });
 </script>

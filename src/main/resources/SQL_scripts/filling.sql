@@ -7,8 +7,6 @@ INSERT INTO `user` (`firstName`, `lastName`, `loginEmail`, `passwd`, `role`) VAL
 ("Corentin","Villiermet","coco@wanadoo.fr","$2y$10$ZPbU3HJ5gQ3/HFh1xWXBYuybb6ZEXulAzm9Cww/5cK88WdNiBFdom", "seller"),
 ("Mickaël","Gaillard","micky@lycoos.com","$2y$10$7UILhfy1byfq8rSdnnXkuOxfB.29Y/yKtHgc5DH9D4M3iy5Ccr41K", "admin");
 
-
-
 INSERT INTO `contact` (`firstName`, `lastName`, `phoneNumber`, `email`) VALUES
 ("Ernst","Stavro Blofeld","01-01-01-76-50","blofeld_ernst@spectre.com"),
 ("Julius","No","01-01-02-67-54","no_julius@spectre.com"),
