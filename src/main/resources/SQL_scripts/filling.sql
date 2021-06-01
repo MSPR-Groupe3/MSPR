@@ -1,13 +1,13 @@
 USE mspr;
 
-INSERT INTO `user` (`first_name`, `last_name`, `login_email`, `passwd`, `role`) VALUES
+INSERT INTO `user` (`firstname`, `lastname`, `loginemail`, `passwd`, `role`) VALUES
 ('Maud','Becam','maudus@aol.fr', '$2y$10$aZ4dOMDeVBZdMEEtbrE1UeB.uGgNbVMOgkF4blMaFssdUm5zPgTBS', 'seller'),
 ('Mickaëlle','Green','mi-k@skyblog.fr','$2y$10$PlfSGdi0KNPTd56.C2Mkk.Am4dLDdtrE0MFyt/Pm8ZE9ANQRsqJgm', 'seller'),
 ('Phi','Tran','filoo@msn.com','$2y$10$BfMtK5f53pEBLk7h0qTDe.MY.tjijMFB4ZWLMv0MdUsv.x3SNwhny', 'seller'),
 ('Corentin','Villiermet','coco@wanadoo.fr','$2y$10$ZPbU3HJ5gQ3/HFh1xWXBYuybb6ZEXulAzm9Cww/5cK88WdNiBFdom', 'seller'),
 ('Mickaël','Gaillard','micky@lycoos.com','$2y$10$7UILhfy1byfq8rSdnnXkuOxfB.29Y/yKtHgc5DH9D4M3iy5Ccr41K', 'admin');
 
-INSERT INTO `contact` (`first_name`, `last_name`, `phone_number`, `email`) VALUES
+INSERT INTO `contact` (`firstname`, `lastname`, `phonenumber`, `email`) VALUES
 ('Ernst','Stavro Blofeld','01-01-01-76-50','blofeld_ernst@spectre.com'),
 ('Julius','No','01-01-02-67-54','no_julius@spectre.com'),
 ('Giovanni','Sakaki','+265 6 87 55 76 99','g.sakaki@team-rocket.net'),

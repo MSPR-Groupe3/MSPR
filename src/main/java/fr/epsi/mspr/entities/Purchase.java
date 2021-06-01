@@ -20,7 +20,7 @@ public class Purchase {
 
     @Column(name = "REFERENCE", unique = true)
     private String reference;
-    @Column(name = "DATEOFORDER", nullable = false)
+    @Column(name = "date_of_order", nullable = false)
     private LocalDateTime dateOfOrder;
     @Column(name = "COMMENT")
     private String comment;
