@@ -36,7 +36,7 @@ public class Organization {
     private String email;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_user"))
     private User user;
 
     @OneToMany(mappedBy = "organization")

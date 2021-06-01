@@ -24,7 +24,10 @@ CREATE TABLE IF NOT EXISTS `organization` (
     `postal_code` varchar(255),
     `country` varchar(255),
     `phone_number` varchar(255),
-    `email` varchar(255)
+    `email` varchar(255),
+    `user_id` bigint(20),
+    CONSTRAINT fk_user FOREIGN KEY (`user_id`)
+    REFERENCES `user`(`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `contact` (
@@ -42,7 +45,13 @@ CREATE TABLE IF NOT EXISTS `purchase` (
     `id` bigint(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `reference` varchar(255) UNIQUE,
     `date_of_order` datetime,
-    `comment` varchar(255)
+    `comment` varchar(255),
+    `seller_id` bigint(20),
+    `contact_id` bigint(20),
+    CONSTRAINT fk_seller FOREIGN KEY (`seller_id`)
+    REFERENCES `user`(`id`),
+    CONSTRAINT fk_contact FOREIGN KEY (`contact_id`)
+    REFERENCES `contact`(`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `product` (
@@ -53,7 +62,10 @@ CREATE TABLE IF NOT EXISTS `product` (
     `unit_price_before_tax` float,
     `tax_rate` float,
     `quantity_available` int,
-    `is_sellable` boolean
+    `is_sellable` boolean,
+    `category_id` bigint(20),
+    CONSTRAINT fk_category FOREIGN KEY (`category_id`)
+    REFERENCES `category`(`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `product_in_purchase` (
