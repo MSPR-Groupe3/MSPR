@@ -106,18 +106,24 @@
                 <div class="sub-cat-card">
                     <h5><strong>J'accède à mon compte</strong></h5>
 
-                    <form method="POST" action="">
+                    <form method="POST" th:action="@{/login}">
 
                         <label for="mail">Courriel</label>
                         <br>
-                        <input type="email" class="input-form" placeholder="Votre mail" id="mail" name="mail">
+                        <input type="email" class="input-form" placeholder="Votre mail" id="mail" name="username">
                         <br>
 
 
                         <label for="mdp">Mot de passe</label>
                         <br>
-                        <input type="password" class="input-form" placeholder="Votre mot de passe" id="mdp" name="mdp">
+                        <input type="password" class="input-form" placeholder="Votre mot de passe" id="mdp" name="password">
                         <br>
+
+                        <div th:if="${param.error}">
+                            <br>
+                            Invalid username and/or password.
+                            <br>
+                        </div>
 
                         <br>
                         <input type="submit" name="login" value="Se connecter" class="art-btn"></strong>
