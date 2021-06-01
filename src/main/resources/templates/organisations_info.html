@@ -95,14 +95,14 @@
         <div class="container">
 
             <div class="row">
-                <h4>Info du client</h4>
+                <h4>Info de l'organisation</h4>
             </div>
 
             <hr>
 
             <div class="row">
 
-                <form th:object="${organization}" id="client_submit" method="post" action="">
+                <form th:object="${organization}" id="organization_submit" method="post" action="">
                     <table class="table-input">
                         <tr>
                             <td class="text-left">Nom : </td>
@@ -113,11 +113,11 @@
                             <td class="text-right"><input class="input-info" id="streetAdress1" type="text" th:field="*{getStreetName1()}"/></td>
                         </tr>
                         <tr>
-                            <td class="text-left">Complément d'adresse : <br>(lieu-dit, grotte, volcan, etc...) </td>
+                            <td class="text-left">Complément d'adresse : <br>(Bâtiment, Entrée, ...) </td>
                             <td class="text-right"><input class="input-info" id="streetAdress2" type="text" th:field="*{getStreetName2()}"/></td>
                         </tr>
                         <tr>
-                            <td class="text-left">Complément d'adresse : <br>(étage, entrée secrète, etc...) </td>
+                            <td class="text-left">Complément d'adresse : <br>(Appartement, Etage, ...) </td>
                             <td class="text-right"><input class="input-info" id="streetAdress3" type="text" th:field="*{getStreetName3()}"/></td>
                         </tr>
                         <tr>
@@ -134,7 +134,7 @@
                         </tr>
                         <tr>
                             <td class="text-left">Phone : </td>
-                            <td class="text-right"><input class="input-info" id="phoneNumber" type="tel" type="text" th:field="*{getPhoneNumber()}"/></td>
+                            <td class="text-right"><input class="input-info" id="phoneNumber" type="tel" th:field="*{getPhoneNumber()}"/></td>
                         </tr>
                         <tr>
                             <td class="text-left">Email : </td>
@@ -149,7 +149,10 @@
             <hr>
 
             <div class="row">
-                <button class="art-btn" type="submit" form="client_submit" formaction="">Sauvegarder</button>
+                <button class="art-btn" type="submit" form="organization_submit" formaction="">Supprimer</button>
+                <div class="separator-bar"></div>
+                <div class="separator-bar"></div>
+                <button class="art-btn" type="submit" form="organization_submit" formaction="">Sauvegarder</button>
             </div>
 
         </div>

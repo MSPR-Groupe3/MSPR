@@ -117,7 +117,7 @@
 
                 <div class="separator-bar"></div>
 
-                <select class="dropdown" id="category"> <!-- liste des catégories -->
+                <select class="search-dropdown" id="categories"> <!-- liste des catégories -->
                     <option value="Tout">Tout</option>
                     <option value="Nettoyage">Nettoyage</option>
                     <option value="Logiciels">Logiciels</option>
@@ -156,22 +156,6 @@
 
             <br>
 
-            <!--
-            <div class="row">
-                <div class="item">
-                    <h4><strong>Ajouter un client</strong></h4>
-                    <p>
-                        Cliquer sur le bouton pour ajouter un client
-                        <br>
-                    </p>
-                    <button class="art-btn">
-                        <strong>
-                            <a href="clients_info.html">Ajouter un client</a>
-                        </strong>
-                    </button>
-                </div>
-            </div>
-            -->
 
         </div>
 
@@ -213,8 +197,8 @@
         });
 
 
-        $("#category").change(function(){
-            let category = $("#category").val()
+        $("#categories").change(function(){
+            let category = $("#categories").val()
             console.log(category)
             switch (category){
                 case "Nettoyage":
