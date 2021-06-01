@@ -101,67 +101,42 @@
             <hr>
 
             <div class="row">
-
                 <form th:object="${client}" id="client_submit" method="post" action="">
-                    <table class="table-input">
-                        <tr>
-                            <td class="text-left">Firstname : </td>
-                            <td class="text-right"> <input class="input-info" id="first_name" type="text" th:field="*{getFirstname()}"/> </td>
-                        </tr>
-                        <tr>
-                            <td class="text-left">Last name : </td>
-                            <td class="text-right"> <input class="input-info" id="last_name" type="text" th:field="*{getLastname()}"/> </td>
-                        </tr>
-                        <tr>
-                            <td class="text-left">Phone : </td>
-                            <td class="text-right"> <input type="tel" class="input-info" id="phone" type="text" th:field="*{getPhoneNumber()}"/> </td>
-                        </tr>
-                        <tr>
-                            <td class="text-left">Email : </td>
-                            <td class="text-right"> <input type="email" class="input-info" id="email" type="text" th:field="*{getEmail()}"/> </td>
-                        </tr>
-                        <tr th:object="${organizations}" >
-                            <td class="text-left">Organization : </td>
-                            <td class="text-right">
-                                <select th:field="*{client.getOrganization().getCompanyName()}"> <!-- note Coco : petit doute sur le th:field -->
-                                    <option
-                                            th:each="organization : ${organizations}"
-                                            th:value="${organization.getId()}"
-                                            th:text="${organization.getCompanyName()}"
-                                    >
-                                    </option>
-                                </select>
-                                <!--
-                                <input type="text" class="input-info" list="drop-down-items" id="company"/>
-                                <datalist id="drop-down-items">
-                                    <option value="FBI">
-                                    <option value="CIA">
-                                    <option value="MI6">
-                                </datalist>
-                                -->
-                            </td>
-                        </tr>
-                    </table>
-
-                    <hr>
-
-                    <div> <!-- centrer les boutons -->
-                        <input class="art-btn" type="submit" value="Save" />
-                        <input class="art-btn" type="submit" value="Delete" />
-                    </div>
-
-
+                        <table class="table-input">
+                            <tr>
+                                <td class="text-left">Firstname : </td>
+                                <td class="text-right"> <input class="input-info" id="first_name" type="text" th:field="*{getFirstname()}"/> </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Last name : </td>
+                                <td class="text-right"> <input class="input-info" id="last_name" type="text" th:field="*{getLastname()}"/> </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Phone : </td>
+                                <td class="text-right"> <input type="tel" class="input-info" id="phone" type="text" th:field="*{getPhoneNumber()}"/> </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Email : </td>
+                                <td class="text-right"> <input type="email" class="input-info" id="email" type="text" th:field="*{getEmail()}"/> </td>
+                            </tr>
+                            <tr th:object="${organizations}" >
+                                <td class="text-left">Organization : </td>
+                                <td class="text-right">
+                                    <select class="dropdown" th:field="*{client.getOrganization().getCompanyName()}"> <!-- note Coco : petit doute sur le th:field -->
+                                        <option
+                                                th:each="organization : ${organizations}"
+                                                th:value="${organization.getId()}"
+                                                th:text="${organization.getCompanyName()}"
+                                        >
+                                        </option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
                 </form>
-
             </div>
 
-            <!--
             <hr>
-
-            <div class="row">
-                <button class="art-btn" type="submit" form="client_submit" formaction="">Sauvegarder</button>
-            </div>
-            -->
 
         </div>
 

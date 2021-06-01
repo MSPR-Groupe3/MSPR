@@ -10,6 +10,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
           crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/118aaba51a.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>ACME Corp - Statistiques</title>
 </head>
 <body>
@@ -79,7 +80,6 @@
                 <div class="hamburger_inner">
                     <i class="fas fa-bars"></i>
                 </div>
-                <!--div class="close"><i class="fas fa-times"></i></div-->
             </div>
 
             <h4 class="subtitle"><a href="index.html">l'Atypique Comptoir du Meurtre et de l'Espionnage</a></h4>
@@ -88,7 +88,6 @@
             <!-- RIGHT SIDE sign up/in-->
             <ul class="right_bar">
                 <li><a href="connexion.html"><i class="fas fa-user fa-2x"></i></a></li>
-                <!--li><a href="connexion.html"><img src="../static/icons/user.png" alt="user icon"></a></li-->
             </ul>
         </div>
 
@@ -98,8 +97,92 @@
                     <h4><strong>Statistiques</strong></h4>
                 </div>
             </div>
+
             <hr>
-            <br>
+
+            <div class="row">
+                <div>
+                    <canvas id="myChart" width="400" height="400"></canvas>
+                    <script>
+                        var ctx = document.getElementById('myChart');
+                        var myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin'],
+                                datasets: [{
+                                    label: '# of Votes',
+                                    data: [12, 19, 3, 5, 2, 3],
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                </div>
+
+                <div>
+                    <canvas id="myChart2" width="400" height="400"></canvas>
+                    <script>
+                        // <block:setup:1>
+                        const labels = [
+                            'January',
+                            'February',
+                            'March',
+                            'April',
+                            'May',
+                            'June',
+                        ];
+                        const data = {
+                            labels: labels,
+                            datasets: [{
+                                label: 'My First dataset',
+                                backgroundColor: 'rgb(255, 99, 132)',
+                                borderColor: 'rgb(255, 99, 132)',
+                                data: [0, 10, 5, 2, 20, 30, 45],
+                            }]
+                        };
+                        // </block:setup>
+
+                        // <block:config:0>
+                        const config = {
+                            type: 'line',
+                            data,
+                        };
+                        // </block:config>
+
+
+                        var myChart2 = new Chart(
+                            document.getElementById('myChart2'),
+                            config
+                        );
+                    </script>
+                </div>
+
+            </div>
+
+            <hr>
 
         </div>
 
@@ -141,5 +224,8 @@
         });
     });
 </script>
+
+
+
 </body>
 </html>

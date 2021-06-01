@@ -114,7 +114,7 @@
             <div class="row">
                 <input class="search-bar" type="text" placeholder="Rechercher une commande">
                 <div class="separator-bar"></div>
-                <select class="dropdown" id="category">
+                <select class="search-dropdown" id="organisations">
                     <option value="Tout">Tout</option>
                     <option th:each="organization: ${organizations}" th:value="${organisation.getId()}" th:text="${organisation.getName()}"></option>
                 </select>
@@ -147,23 +147,6 @@
             </div>
 
             <br>
-
-            <!--
-            <div class="row">
-                <div class="item">
-                    <h4><strong>Ajouter un client</strong></h4>
-                    <p>
-                        Cliquer sur le bouton pour ajouter un client
-                        <br>
-                    </p>
-                    <button class="art-btn">
-                        <strong>
-                            <a href="clients_info.html">Ajouter un client</a>
-                        </strong>
-                    </button>
-                </div>
-            </div>
-            -->
 
         </div>
 
