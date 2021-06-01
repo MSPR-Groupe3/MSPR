@@ -19,12 +19,21 @@ public class ProductController {
 
     private ProductRepository productRepo;
 
+    // SHOW ALL PRODUCTS
     @GetMapping("/indexProducts")
     public String showProductList(Model model){
         model.addAttribute("products", productRepo.findAll());
         return "produits";
     }
 
+    // SHOW PRODUCTS BY CATEGORY
+    @GetMapping("/CategoryProducts")
+    public String showCategoryProductsList(Model model, int category_id){
+        model.addAttribute("productsByCategory", productRepo.findByCategoryId(category_id));
+        return "produits";
+    }
+
+    // CREATE
     @PostMapping("/addProduct")
     public String addProduct(@Valid Product product, BindingResult result, Model model) {
         if (result.hasErrors()) {
@@ -35,6 +44,7 @@ public class ProductController {
         return "redirect:/indexProducts";
     }
 
+    // UPDATE
     @GetMapping("/edit/{id}")
     public String updateProduct(@PathVariable("id") long id, Model model) {
         Product product= productRepo.findById(id)
@@ -42,5 +52,14 @@ public class ProductController {
 
         model.addAttribute("product", product);
         return "update-product";
+    }
+
+    // DELETE
+    @GetMapping("/deleteProduct/{id}")
+    public String deleteProduct(@PathVariable("id") long id, Model model) {
+        Product product = productRepo.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        productRepo.delete(product);
+        return "produits";
     }
 }
