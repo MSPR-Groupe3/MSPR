@@ -10,7 +10,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
           crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/118aaba51a.js" crossorigin="anonymous"></script>
-    <title>ACME Corp - Connexion</title>
+    <title>ACME Corp - Inscription</title>
 </head>
 <body>
 
@@ -21,7 +21,7 @@
         <div class="sidebar_inner">
 
             <div class="profile_info">
-                <a href="index.html">
+                <a href="index.php">
                     <div class="profile_img">
                         <img src="../static/logos/acme_corp.png" alt="logo pic">
                     </div>
@@ -63,7 +63,6 @@
                         <div class="title">Statistiques</div>
                     </a>
                 </li>
-
             </ul>
             <!--end of sidebar content-->
         </div>
@@ -72,7 +71,6 @@
 
     <!--Main container-->
     <div class="main-container">
-
 
         <!-- TOP NAVBAR -->
         <div class="top_navbar">
@@ -87,27 +85,19 @@
             <h4 class="subtitle"><a href="index.html">l'Atypique Comptoir du Meurtre et de l'Espionnage</a></h4>
 
 
-            <!-- RIGHT SIDE sign up/in and search-->
+            <!-- RIGHT SIDE sign up/in-->
 
             <ul class="right_bar">
-                <li><a href="connexion.html"><i class="fas fa-user fa-2x"></i></a></li>
-                <!--li><a href="connexion.html"><img src="../static/icons/user.png" alt="user icon"></a></li-->
+                <li><i class="fas fa-search"></i></li>
+
             </ul>
         </div>
-
 
         <div class="container">
 
             <div class="row first-row">
                 <div class="cat-header">
-                    <h4><strong>Accédez à votre compte</strong></h4>
-                    <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet
-                        consectetur
-                        adipisicing elit. Soluta quisquam, voluptatem accusantium vel eius sapiente, fuga quo
-                        doloremque,
-                        assumenda voluptas natus ea voluptatibus voluptatum quaerat placeat quis adipisci error in?<br>
-                    </p>
-
+                    <h4><strong>Connectez-vous !</strong></h4>
                 </div>
             </div>
             <hr>
@@ -115,28 +105,30 @@
             <div class="row second-row">
                 <div class="sub-cat-card">
                     <h5><strong>J'accède à mon compte</strong></h5>
-                    <form action="" method="POST">
 
-                        <h5>Adresse Email</h5>
-                        <input type="email" name="mailconnect" placeholder="Mail">
+                    <form method="POST" action="">
 
-                        <h5>Mot de passe</h5>
-                        <input type="password" name="mdpconnect" placeholder="Mot de passe">
-
+                        <label for="mail">Courriel</label>
                         <br>
-                        <input type="submit" name="formconnexion" class="art-btn" value="Se connecter">
+                        <input type="email" class="input-form" placeholder="Votre mail" id="mail" name="mail">
                         <br>
 
-                        <button class="art-btn"><strong><a href="inscription.html">Je créé mon compte</a> </strong>
-                        </button>
+
+                        <label for="mdp">Mot de passe</label>
+                        <br>
+                        <input type="password" class="input-form" placeholder="Votre mot de passe" id="mdp" name="mdp">
+                        <br>
+
+                        <br>
+                        <input type="submit" name="login" value="Se connecter" class="art-btn"></strong>
+                        <br>
+
                     </form>
                 </div>
-
             </div>
         </div>
 
         <footer>
-
             <div class="footer-top">
                 <div class="container">
                     <div class="row">
@@ -153,12 +145,12 @@
                             </ul>
                         </div>
 
-
                     </div>
                 </div>
             </div>
             <p class=" foot-p footer-bottom-text">Copyright Micka Green 2021 &copy;. All rights reserved.</p>
         </footer>
+
 
     </div>
 </div>
