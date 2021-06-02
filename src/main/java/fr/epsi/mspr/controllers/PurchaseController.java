@@ -1,5 +1,6 @@
 package fr.epsi.mspr.controllers;
 
+import fr.epsi.mspr.entities.Product;
 import fr.epsi.mspr.entities.Purchase;
 import fr.epsi.mspr.repositories.PurchaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,30 +19,38 @@ public class PurchaseController {
     @Autowired
     private PurchaseRepository purchaseRepo;
 
+    @GetMapping("/creerCommande")
+    public String createPurchase(Model model) {
+
+        Purchase purchase= this.purchaseRepo.findById(1L).get();
+        model.addAttribute("purchase", purchase);
+        return "commandes_info";
+    }
+
     // CREATE
-    @PostMapping("/addpurchase")
-    public String addPurchase(@Valid Purchase purchase, BindingResult result, Model model) {
+    @PostMapping("/sauverCommande")
+    public String addProduct(@Valid Purchase purchase, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "mycommandes";
+            return "redirect:/creerCommande";
         }
 
         purchaseRepo.save(purchase);
-        return "mycommandes";
+        return "redirect:/listerCommandes";
     }
 
     // READ ALL
-    @GetMapping("/purchases")
+    @GetMapping("/listerCommandes")
     public String showPurchaseList(Model model) {
         model.addAttribute("purchases", purchaseRepo.findAll());
-        return "mycommandes";
+        return "commandes";
     }
 
     // READ ONE
-    @GetMapping("/purchase{id}")
+    @GetMapping("/detailsCommande")
     public String showPurchase(@PathVariable("id") long id, Model model) {
         Purchase purchase = purchaseRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid purchase Id:" + id));
         purchaseRepo.delete(purchase);
-        return "mycommandes";
+        return "commandes_info";
     }
 }
