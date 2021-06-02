@@ -7,9 +7,9 @@ SET time_zone = '+00:00';
 
 CREATE TABLE IF NOT EXISTS `user` (
     `id` bigint(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    `first_name` varchar(255),
-    `last_name` varchar(255),
-    `login_email` varchar(255) UNIQUE,
+    `firstname` varchar(255),
+    `lastname` varchar(255),
+    `loginemail` varchar(255),
     `passwd` varchar(255),
     `role` varchar(255)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -32,8 +32,8 @@ CREATE TABLE IF NOT EXISTS `organization` (
 
 CREATE TABLE IF NOT EXISTS `contact` (
     `id` bigint(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    `first_name` varchar(255),
-    `last_name` varchar(255),
+    `firstname` varchar(255),
+    `lastname` varchar(255),
     `phone_number` varchar(255),
     `email` varchar(255),
     `organization_id` bigint(20),
@@ -84,5 +84,3 @@ CREATE TABLE IF NOT EXISTS `product_in_purchase` (
     CONSTRAINT fk_product FOREIGN KEY (`product_id`)
     REFERENCES `product`(`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
