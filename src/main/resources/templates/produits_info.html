@@ -30,28 +30,28 @@
 
       <ul class="sidebar_menu active">
         <li>
-          <a href="clients.html" class="active">
+          <a href="/listerClients" class="active">
             <img src="../static/icons/customer.png" alt="icone clients">
             <div class="title">Clients</div>
           </a>
         </li>
 
         <li>
-          <a href="organisations.html" class="active">
+          <a href="/listerOrganisations" class="active">
             <img src="../static/icons/organisation.png" alt="icone clients">
             <div class="title">Organisations</div>
           </a>
         </li>
 
         <li>
-          <a href="produits.html" class="active">
+          <a href="/listerProduits" class="active">
             <img src="../static/icons/product.png" alt="icone clients">
             <div class="title">Produits</div>
           </a>
         </li>
 
         <li>
-          <a href="commandes.html" class="active">
+          <a href="/listerCommandes" class="active">
             <img src="../static/icons/cube.png" alt="icone clients">
             <div class="title">Commandes</div>
           </a>
@@ -82,7 +82,7 @@
         <!--div class="close"><i class="fas fa-times"></i></div-->
       </div>
 
-      <h4 class="subtitle"><a href="index.html">l'Atypique Comptoir du Meurtre et de l'Espionnage</a></h4>
+      <h4 class="subtitle"><a href="/">l'Atypique Comptoir du Meurtre et de l'Espionnage</a></h4>
 
 
       <!-- RIGHT SIDE sign up/in-->
@@ -102,33 +102,36 @@
 
       <div class="row">
 
-        <form th:object="${produit}" id="client_submit" method="post" action="">
+        <form th:object="${product}" id="client_submit" method="post" action="/sauverProduit">
           <table class="table-input">
             <tr>
               <td class="text-left">Nom : </td>
-              <td class="text-right"><input class="input-info" id="name" type="text" th:field="*{getName()}" /></td>
+              <td class="text-right"><input class="input-info" id="name" type="text" th:field="*{name}" /></td>
             </tr>
             <tr>
               <td class="text-left">Prix (HT) : </td>
-              <td class="text-right"><input class="input-info" id="price" type="number" type="text" th:field="*{getUnitPriceBeforeTax()}" /></td>
+              <td class="text-right"><input class="input-info" id="price" type="number" th:field="*{unitPriceBeforeTax}" /></td>
             </tr>
             <tr>
               <td class="text-left">Taxe : </td>
-              <td class="text-right"><input class="input-info" id="tax" type="number" type="text" th:field="*{getTaxRate()}" /></td>
+              <td class="text-right"><input class="input-info" id="tax" type="number" th:field="*{taxRate}" /></td>
             </tr>
             <tr>
               <td class="text-left">Quantité en stock : </td>
-              <td class="text-right"><input class="input-info" id="stock" type="number"  type="text" th:field="*{getQuantityAvailable()}" /></td>
+              <td class="text-right"><input class="input-info" id="stock" type="number" th:field="*{quantityAvailable}" /></td>
             </tr>
+            <!--
             <tr>
               <td class="text-left">Disponible : </td>
-              <td class="text-right"><input class="input-info" id="email" type="checkbox" type="text" th:field="*{getIsSellable()}" /></td>
+              <td class="text-right"><input class="input-info" id="email" type="checkbox" th:field="*{isSellable}" /></td>
             </tr>
+            -->
 
+            <!--
             <tr th:object="${categories}" >
               <td class="text-left">Catégorie : </td>
               <td class="text-right">
-                <select th:field="*{produit.getCategory().getName()}"> <!-- note Coco : petit doute sur le th:field -->
+                <select th:field="*{produit.getCategory().getName()}">
                   <option
                           th:each="category : ${categories}"
                           th:value="${category.getId()}"
@@ -136,6 +139,8 @@
                   >
                   </option>
                 </select>
+                -->
+
                 <!--
                 <input type="text" class="input-info" list="drop-down-items" id="categories"/>
                 <datalist id="drop-down-items">
