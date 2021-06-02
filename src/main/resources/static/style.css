@@ -511,6 +511,73 @@ a:hover {
     background-color: rgb(255, 115, 115);
 }
 
+/*--------------------*/
+
+.table_order_product {
+    width: 700px;
+    border-collapse: collapse;
+    letter-spacing: 1px;
+    font-size: .8rem;
+    /*table-layout: fixed;*/
+}
+
+.table_order_product thead {
+    background-color: black;
+    color: #fff;
+}
+
+.table_order_product .product_detail {
+    border: 1px solid rgb(134, 134, 134);
+    padding: 15px 10px;
+    background-color: rgb(231, 231, 231);
+}
+
+.table_order_product .delete_button{
+    padding: 15px 10px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table_order_product .delete_button .delete-btn{
+    border: none;
+    outline: none;
+}
+.table_order_product .delete_button .delete-btn:hover{
+    color: red;
+
+}
+
+.dropdown_product_list{
+    appearance: auto;
+    border: 0;
+    background-color: rgba(0, 0, 0, 0);
+    width: 400px;
+    padding: 5px;
+
+    /* for Firefox */
+    -moz-appearance: none;
+    /* for Chrome */
+    -webkit-appearance: none;
+}
+
+.input-info_product_list{
+    border: 1px solid rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    width: 100px;
+    padding : 5px;
+    outline: none;
+}
+
+.input-info_product_list:focus{
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    padding : 5px;
+    outline: none;
+}
+
+
 /* END OF TABLE list of object*/
 
 
@@ -523,7 +590,7 @@ a:hover {
 
 .text-left{
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     align-items: center;
     padding: 0 50px 0 0px;
     height: 60px;
@@ -622,8 +689,6 @@ input[type=number] {
     -webkit-appearance: none;
 }
 
-
-
 /*SEARCH BAR */
 .search-bar{
     width: 500px;
@@ -654,10 +719,8 @@ input[type=number] {
     font-weight: bold;
 }
 
+
 /*END SEARCH BAR */
-
-
-
 .separator-bar {
     width: 10px;
     height: 10px;
