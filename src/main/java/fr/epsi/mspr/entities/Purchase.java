@@ -16,13 +16,13 @@ public class Purchase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    @Column(name = "REFERENCE", unique = true)
+    @Column(name = "reference", unique = true)
     private String reference;
-    @Column(name = "DATEOFORDER", nullable = false)
+    @Column(name = "date_of_order", nullable = false)
     private LocalDateTime dateOfOrder;
-    @Column(name = "COMMENT")
+    @Column(name = "comment")
     private String comment;
 
     @ManyToOne

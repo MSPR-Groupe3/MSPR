@@ -14,19 +14,19 @@ public class Contact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    @Column(name = "FIRSTNAME")
+    @Column(name = "firstname")
     private String firstName;
-    @Column(name = "LASTNAME")
+    @Column(name = "lastname")
     private String lastName;
-    @Column(name = "PHONENUMBER")
+    @Column(name = "phone_number")
     private String phoneNumber;
-    @Column(name = "EMAIL")
+    @Column(name = "email")
     private String email;
 
     @ManyToOne
-    @JoinColumn(name = "organization_id", foreignKey=@ForeignKey(name = "fk_organization"))
+    @JoinColumn(name = "organization_id")
     private Organization organization;
 
     @OneToMany(mappedBy = "contact")

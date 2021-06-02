@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/style.css">
+    <link rel="icon" type="image/png" href="../static/icons/fav.png" />
     <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Cinzel|Crimson+Text|Lora|Montserrat&display=swap"
           rel="stylesheet">
@@ -102,7 +103,7 @@
             <div class="row">
                 <button class="art-btn">
                     <strong>
-                        <a href="produits_info.html">Ajouter un produit</a>
+                        <a href="/creerProduit">Ajouter un produit</a>
                     </strong>
                 </button>
             </div>
@@ -143,12 +144,12 @@
 
                     <tbody>
                         <tr th:onclick="'javascript:rowClicked(${produit.getId()});'"
-                            th:each="produit: ${produits}"
+                            th:each="product: ${products}"
                         >
-                            <td th:text="${produit.getName()}" />
-                            <td th:text="${organization.getUnitPriceBeforeTax()}" />
-                            <td th:text="${organization.getQuantityAvailable()}" />
-                            <td th:text="${organization.getCategory().getName()}" />
+                            <td th:text="${product.getName()}" />
+                            <td th:text="${product.getUnitPriceBeforeTax()}" />
+                            <td th:text="${product.getQuantityAvailable()}" />
+                            <td th:text="${product.getCategory().getName()}" />
                         </tr>
                     </tbody>
                 </table>
