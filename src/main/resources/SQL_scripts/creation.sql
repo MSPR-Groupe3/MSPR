@@ -7,9 +7,9 @@ SET time_zone = '+00:00';
 
 CREATE TABLE IF NOT EXISTS `user` (
     `id` bigint(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    `first_name` varchar(255),
-    `last_name` varchar(255),
-    `login_email` varchar(255),
+    `firstname` varchar(255),
+    `lastname` varchar(255),
+    `loginemail` varchar(255),
     `passwd` varchar(255),
     `role` varchar(255)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -24,14 +24,17 @@ CREATE TABLE IF NOT EXISTS `organization` (
     `postal_code` varchar(255),
     `country` varchar(255),
     `phone_number` varchar(255),
-    `email` varchar(255)
+    `email` varchar(255),
+    `user_id` bigint(20),
+    CONSTRAINT fk_user FOREIGN KEY (`user_id`)
+    REFERENCES `user`(`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `contact` (
     `id` bigint(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    `first_name` varchar(255),
-    `last_name` varchar(255),
-    `phone_number` varchar(255),
+    `firstname` varchar(255),
+    `lastname` varchar(255),
+    `phonenumber` varchar(255),
     `email` varchar(255),
     `organization_id` bigint(20),
     CONSTRAINT fk_organization FOREIGN KEY (`organization_id`)
@@ -42,7 +45,18 @@ CREATE TABLE IF NOT EXISTS `purchase` (
     `id` bigint(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `reference` varchar(255) UNIQUE,
     `date_of_order` datetime,
-    `comment` varchar(255)
+    `comment` varchar(255),
+    `seller_id` bigint(20),
+    `contact_id` bigint(20),
+    CONSTRAINT fk_seller FOREIGN KEY (`seller_id`)
+    REFERENCES `user`(`id`),
+    CONSTRAINT fk_contact FOREIGN KEY (`contact_id`)
+    REFERENCES `contact`(`id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `category` (
+    `id` bigint(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) UNIQUE
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `product` (
@@ -53,7 +67,10 @@ CREATE TABLE IF NOT EXISTS `product` (
     `unit_price_before_tax` float,
     `tax_rate` float,
     `quantity_available` int,
-    `is_sellable` boolean
+    `is_sellable` boolean,
+    `category_id` bigint(20),
+    CONSTRAINT fk_category FOREIGN KEY (`category_id`)
+    REFERENCES `category`(`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `product_in_purchase` (
@@ -67,9 +84,3 @@ CREATE TABLE IF NOT EXISTS `product_in_purchase` (
     CONSTRAINT fk_product FOREIGN KEY (`product_id`)
     REFERENCES `product`(`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE IF NOT EXISTS `category` (
-    `id` bigint(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    `name` varchar(255) UNIQUE
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
