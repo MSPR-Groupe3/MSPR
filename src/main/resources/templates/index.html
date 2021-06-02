@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" th:href="@{/style.css}">
     <link rel="icon" type="image/png" href="../static/icons/fav.png" />
     <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Cinzel|Crimson+Text|Lora|Montserrat&display=swap"
@@ -21,7 +21,7 @@
             <div class="profile_info">
                 <a href="index.html">
                     <div class="profile_img">
-                        <img src="../static/logos/acme_corp.png" alt="logo pic">
+                        <img th:src="@{/logos/acme_corp.png}" alt="logo pic">
                     </div>
                 </a>
             </div>
