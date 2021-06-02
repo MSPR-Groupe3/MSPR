@@ -14,13 +14,13 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    @Column(name = "NAME", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "REFERENCE", unique = true)
+    @Column(name = "reference", unique = true)
     private String reference;
-    @Column(name = "DESCRIPTION")
+    @Column(name = "description")
     private String description;
     @Column(name = "unit_price_before_tax")
     private float unitPriceBeforeTax;

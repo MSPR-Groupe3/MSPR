@@ -84,5 +84,3 @@ CREATE TABLE IF NOT EXISTS `product_in_purchase` (
     CONSTRAINT fk_product FOREIGN KEY (`product_id`)
     REFERENCES `product`(`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
