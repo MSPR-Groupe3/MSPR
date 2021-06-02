@@ -24,8 +24,8 @@ public class ProductInPurchase {
     @JoinColumn(name = "purchase_id")
     private Purchase purchase;
 
-    @Column(name = "QUANTITY", nullable = false)
+    @Column(name = "quantity", nullable = false)
     private int quantity;
-    @Column(name = "PRICE", nullable = false)
+    @Column(name = "price", nullable = false)
     private float price;
 }

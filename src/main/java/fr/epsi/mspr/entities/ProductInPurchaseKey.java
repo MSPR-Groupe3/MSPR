@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Embeddable
 public class ProductInPurchaseKey implements Serializable {
 
-    private int productId;
-    private int purchaseId;
+    private Long productId;
+    private Long purchaseId;
 
 }

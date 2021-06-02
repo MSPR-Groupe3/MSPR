@@ -14,21 +14,21 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    @Column(name = "NAME", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "REFERENCE", unique = true)
+    @Column(name = "reference", unique = true)
     private String reference;
-    @Column(name = "DESCRIPTION")
+    @Column(name = "description")
     private String description;
-    @Column(name = "UNITPRICEBEFORETAX")
+    @Column(name = "unit_price_before_tax")
     private float unitPriceBeforeTax;
-    @Column(name = "TAXRATE")
+    @Column(name = "tax_rate")
     private float taxRate;
-    @Column(name = "QUANTITYAVAILABLE")
+    @Column(name = "quantity_available")
     private int quantityAvailable;
-    @Column(name = "ISSELLABLE", nullable = false)
+    @Column(name = "is_sellable", nullable = false)
     private boolean isSellable;
 
     @ManyToOne

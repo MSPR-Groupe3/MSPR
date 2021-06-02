@@ -14,17 +14,17 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    @Column(name = "FIRSTNAME")
+    @Column(name = "firstname")
     private String firstName;
-    @Column(name = "LASTNAME")
+    @Column(name = "lastname")
     private String lastName;
-    @Column(name = "LOGINEMAIL", nullable = false)
+    @Column(name = "loginemail", nullable = false)
     private String loginEmail;
-    @Column(name = "PASSWORD", nullable = false)
+    @Column(name = "passwd", nullable = false)
     private String password;
-    @Column(name = "ROLE")
+    @Column(name = "role")
     private String role;
 
     @OneToMany(mappedBy = "user")
