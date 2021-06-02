@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `user` (
     `id` bigint(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `first_name` varchar(255),
     `last_name` varchar(255),
-    `login_email` varchar(255),
+    `login_email` varchar(255) UNIQUE,
     `passwd` varchar(255),
     `role` varchar(255)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
