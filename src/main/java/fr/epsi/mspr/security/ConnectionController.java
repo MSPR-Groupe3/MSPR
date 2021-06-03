@@ -42,16 +42,9 @@ public class ConnectionController {
 
                 if(user.getPassword() == lesutilisateurs.get(i).getLoginEmail() ) {
 
-                    return "index";
+                    return "index";  // que faire après ?! pour signifier au système l'authetification réussi ?
 
-                } else {
-                    System.out.println("Mauvais mot de passe");
-                    return "connexion";
                 }
-
-            } else {
-                System.out.println("Aucun utilisateur trouvé");
-                return "connexion";
             }
         }
 
