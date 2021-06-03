@@ -2,6 +2,7 @@ package fr.epsi.mspr.controllers;
 
 import fr.epsi.mspr.entities.Contact;
 import fr.epsi.mspr.repositories.ContactRepository;
+import fr.epsi.mspr.repositories.OrganizationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,27 +15,31 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ContactController {
 
     @Autowired
-    private ContactRepository repo;
+    private ContactRepository contactRepo;
+
+    @Autowired
+    private OrganizationRepository orgaRepo;
 
     @GetMapping("/creerClient")
     public String createContact(Model model) {
 
-        Contact contact = this.repo.findById(1L).get();
-        model.addAttribute("Contact", contact);
+        Contact contact = this.contactRepo.findById(1L).get();
+        model.addAttribute("contact", contact);
+        model.addAttribute("organizations", orgaRepo.findAll());
         return "clients_info"; }
 
 
     // CREATE A CLIENT
     @PostMapping("/sauverClient")
     public String saveContact(@ModelAttribute Contact contact, Model model) {
-        this.repo.save(contact);
+        this.contactRepo.save(contact);
         model.addAttribute("contact", contact);
-        return "clients_info";
+        return "clients";
     }
     // SHOW ALL CLIENTS
     @GetMapping("/listerClients")
     public String showContactList(Model model){
-        model.addAttribute("contact", repo.findAll());
+        model.addAttribute("contacts", contactRepo.findAll());
         return "clients";
     }
 
@@ -42,7 +47,7 @@ public class ContactController {
     // EDIT A CLIENT
     @PostMapping("/modifierClient")
     public String updateContact(@ModelAttribute Contact contact, Model model){
-        this.repo.save(contact);
+        this.contactRepo.save(contact);
         model.addAttribute("contact", contact);
     return "clients_info";
     }

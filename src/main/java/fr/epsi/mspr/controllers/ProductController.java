@@ -2,6 +2,7 @@ package fr.epsi.mspr.controllers;
 
 import fr.epsi.mspr.entities.Contact;
 import fr.epsi.mspr.entities.Product;
+import fr.epsi.mspr.repositories.CategoryRepository;
 import fr.epsi.mspr.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,9 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepo;
 
+    @Autowired
+    private CategoryRepository categoryRepo;
+
     // SHOW ALL PRODUCTS
     @GetMapping("/listerProduits")
     public String showProductList(Model model){
@@ -27,17 +31,18 @@ public class ProductController {
     }
 
     // SHOW PRODUCTS BY CATEGORY
-    /*@GetMapping("/CategoryProducts")
+    @GetMapping("/categorieProduits")
     public String showCategoryProductsList(Model model, int category_id){
         model.addAttribute("productsByCategory", productRepo.findByCategoryId(category_id));
         return "produits";
-    }*/
+    }
 
     @GetMapping("/creerProduit")
     public String createProduct(Model model) {
 
         Product product = this.productRepo.findById(1L).get();
         model.addAttribute("product", product);
+        model.addAttribute("categories", categoryRepo.findAll());
         return "produits_info";
     }
 
@@ -49,7 +54,7 @@ public class ProductController {
         }
 
         productRepo.save(product);
-        return "redirect:/listerProduit";
+        return "produits";
     }
 
     // UPDATE

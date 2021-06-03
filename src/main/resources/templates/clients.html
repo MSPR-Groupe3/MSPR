@@ -106,7 +106,7 @@
             <div class="row">
                 <button class="art-btn">
                     <strong>
-                        <a href="clients_info.html">Ajouter un client</a>
+                        <a href="/creerClient">Ajouter un client</a>
                     </strong>
                 </button>
             </div>
@@ -132,11 +132,11 @@
                     </thead>
                     <tbody>
                         <tr th:onclick="'javascript:rowClicked(${client.getId()});'"
-                            th:each="client: ${clients}"
+                            th:each="contact: ${contacts}"
                         >
-                            <td th:text="${client.getFirstname()}" />
-                            <td th:text="${client.getLasttname()}" />
-                            <td th:text="${client.getOrganization().getCompanyName()}" />
+                            <td th:text="${contact.getFirstName()}" />
+                            <td th:text="${contact.getLastName()}" />
+                            <td th:text="${contact.getOrganization().getCompanyName()}" />
                         </tr>
 
                     </tbody>
