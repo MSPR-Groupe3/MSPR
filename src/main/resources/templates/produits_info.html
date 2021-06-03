@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" th:href="@{/style.css}">
+  <link rel="icon" type="image/png" th:href="@{icons/fav.png}" />
   <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Cinzel|Crimson+Text|Lora|Montserrat&display=swap"
         rel="stylesheet">
@@ -21,45 +22,46 @@
     <div class="sidebar_inner">
 
       <div class="profile_info">
-        <a href="index.html">
+        <a href="/">
           <div class="profile_img">
-            <img src="../static/logos/acme_corp.png" alt="logo pic">
+            <img th:src="@{logos/acme_corp.png}" alt="logo pic">
           </div>
         </a>
       </div>
 
+
       <ul class="sidebar_menu active">
         <li>
           <a href="/listerClients" class="active">
-            <img src="../static/icons/customer.png" alt="icone clients">
+            <img th:src="@{icons/customer.png}" alt="icone clients">
             <div class="title">Clients</div>
           </a>
         </li>
 
         <li>
           <a href="/listerOrganisations" class="active">
-            <img src="../static/icons/organisation.png" alt="icone clients">
+            <img th:src="@{icons/organisation.png}" alt="icone clients">
             <div class="title">Organisations</div>
           </a>
         </li>
 
         <li>
           <a href="/listerProduits" class="active">
-            <img src="../static/icons/product.png" alt="icone clients">
+            <img th:src="@{icons/product.png}" alt="icone clients">
             <div class="title">Produits</div>
           </a>
         </li>
 
         <li>
           <a href="/listerCommandes" class="active">
-            <img src="../static/icons/cube.png" alt="icone clients">
+            <img th:src="@{icons/cube.png}" alt="icone clients">
             <div class="title">Commandes</div>
           </a>
         </li>
 
         <li>
           <a href="stats.html" class="active">
-            <img src="../static/icons/statistics.png" alt="icone clients">
+            <img th:src="@{icons/statistics.png}" alt="icone clients">
             <div class="title">Statistiques</div>
           </a>
         </li>
@@ -79,7 +81,6 @@
         <div class="hamburger_inner">
           <i class="fas fa-bars"></i>
         </div>
-        <!--div class="close"><i class="fas fa-times"></i></div-->
       </div>
 
       <h4 class="subtitle"><a href="/">l'Atypique Comptoir du Meurtre et de l'Espionnage</a></h4>
@@ -88,7 +89,6 @@
       <!-- RIGHT SIDE sign up/in-->
       <ul class="right_bar">
         <li><a href="connexion.html"><i class="fas fa-user fa-2x"></i></a></li>
-        <!--li><a href="connexion.html"><img src="../static/icons/user.png" alt="user icon"></a></li-->
       </ul>
     </div>
 
@@ -171,13 +171,14 @@
 
       </div>
 
-      <!--
       <hr>
 
       <div class="row">
-        <button class="art-btn" type="submit" form="client_submit" formaction="">Sauvegarder</button>
+        <button class="art-btn" type="submit" form="product_submit" formaction="">Supprimer</button>
+        <div class="separator-bar"></div>
+        <div class="separator-bar"></div>
+        <button class="art-btn" type="submit" form="product_submit" formaction="">Sauvegarder</button>
       </div>
-      -->
 
     </div>
 

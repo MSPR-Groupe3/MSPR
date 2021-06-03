@@ -26,14 +26,14 @@ public class Purchase {
     private String comment;
 
     @ManyToOne
-    @JoinColumn(name = "contact_id")
+    @JoinColumn(name = "contact_id", foreignKey = @ForeignKey(name = "fk_contact"))
     private Contact contact;
 
     @OneToMany(mappedBy = "purchase")
     private Set<ProductInPurchase> purchaseLines;
 
     @ManyToOne
-    @JoinColumn(name = "seller_id")
+    @JoinColumn(name = "seller_id", foreignKey = @ForeignKey(name = "fk_seller"))
     private User seller;
 
 }

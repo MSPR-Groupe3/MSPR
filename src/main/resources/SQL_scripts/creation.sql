@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `user` (
     `id` bigint(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `firstname` varchar(255),
     `lastname` varchar(255),
-    `loginemail` varchar(255),
+    `loginemail` varchar(255) UNIQUE,
     `passwd` varchar(255),
     `role` varchar(255)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `contact` (
     `id` bigint(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `firstname` varchar(255),
     `lastname` varchar(255),
-    `phonenumber` varchar(255),
+    `phone_number` varchar(255),
     `email` varchar(255),
     `organization_id` bigint(20),
     CONSTRAINT fk_organization FOREIGN KEY (`organization_id`)

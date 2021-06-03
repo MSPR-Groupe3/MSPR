@@ -32,7 +32,7 @@ public class Product {
     private boolean isSellable;
 
     @ManyToOne
-    @JoinColumn(name="category_id")
+    @JoinColumn(name="category_id", foreignKey = @ForeignKey(name = "fk_category"))
     private Category category;
 
     @OneToMany(mappedBy = "product")

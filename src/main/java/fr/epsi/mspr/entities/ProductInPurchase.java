@@ -16,12 +16,12 @@ public class ProductInPurchase {
 
     @ManyToOne
     @MapsId("productId")
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_product"))
     private Product product;
 
     @ManyToOne
     @MapsId("purchaseId")
-    @JoinColumn(name = "purchase_id")
+    @JoinColumn(name = "purchase_id", foreignKey = @ForeignKey(name = "fk_purchase"))
     private Purchase purchase;
 
     @Column(name = "quantity", nullable = false)
