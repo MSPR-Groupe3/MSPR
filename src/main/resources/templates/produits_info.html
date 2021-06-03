@@ -120,18 +120,28 @@
               <td class="text-left">Quantité en stock : </td>
               <td class="text-right"><input class="input-info" id="stock" type="number" th:field="*{quantityAvailable}" /></td>
             </tr>
-            <!--
+
             <tr>
               <td class="text-left">Disponible : </td>
-              <td class="text-right"><input class="input-info" id="email" type="checkbox" th:field="*{isSellable}" /></td>
+              <td class="text-right"><input class="input-info" id="email" type="checkbox" th:checked="*{isSellable}" /></td>
             </tr>
-            -->
+
+            <tr>
+              <td class="text-left">Catégorie : </td>
+              <td class="text-right">
+                <select th:field="${product.category.id}">
+                  <option th:each="category : ${categories}" th:value="${category.getId()}" th:text="${category.getName()}" >
+                  </option>
+                </select>
+              <td>
+            </tr>
 
             <!--
             <tr th:object="${categories}" >
+
               <td class="text-left">Catégorie : </td>
               <td class="text-right">
-                <select th:field="*{produit.getCategory().getName()}">
+                <select field="Catégories">
                   <option
                           th:each="category : ${categories}"
                           th:value="${category.getId()}"
@@ -139,21 +149,20 @@
                   >
                   </option>
                 </select>
-                -->
 
-                <!--
+
+
                 <input type="text" class="input-info" list="drop-down-items" id="categories"/>
                 <datalist id="drop-down-items">
-                  <option th:each="category : ${categories}" value="category.getName()">
+                  <option th:each="category : ${categories}" th:value="*{category.getName()}">
                 </datalist>
-                -->
+
               </td>
             </tr>
+            -->
           </table>
 
-          <hr>
-
-          <div> <!-- centrer les boutons -->
+          <div>
             <input class="art-btn" type="submit" value="Save" />
             <input class="art-btn" type="submit" value="Delete" />
           </div>
