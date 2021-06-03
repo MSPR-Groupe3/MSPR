@@ -18,14 +18,22 @@ public class User {
 
     @Column(name = "FIRSTNAME")
     private String firstName;
+
     @Column(name = "LASTNAME")
     private String lastName;
+
     @Column(name = "LOGINEMAIL", nullable = false)
     private String loginEmail;
+
     @Column(name = "PASSWORD", nullable = false)
     private String password;
-    @Column(name = "ROLE")
-    private String role;
+
+    @Column(name = "is_active")
+    private Boolean isActive;
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
     @OneToMany(mappedBy = "user")
     private Set<Organization> organizations;
