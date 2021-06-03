@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/style.css">
-    <link rel="icon" type="image/png" href="../static/icons/fav.png" />
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="icon" type="image/png" th:href="@{icons/fav.png}" />
     <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Cinzel|Crimson+Text|Lora|Montserrat&display=swap"
           rel="stylesheet">
@@ -22,9 +22,9 @@
         <div class="sidebar_inner">
 
             <div class="profile_info">
-                <a href="index.html">
+                <a href="/">
                     <div class="profile_img">
-                        <img src="../static/logos/acme_corp.png" alt="logo pic">
+                        <img th:src="@{logos/acme_corp.png}" alt="logo pic">
                     </div>
                 </a>
             </div>
@@ -32,40 +32,39 @@
 
             <ul class="sidebar_menu active">
                 <li>
-                    <a href="clients.html" class="active">
-                        <img src="../static/icons/customer.png" alt="icone clients">
+                    <a href="/listerClients" class="active">
+                        <img th:src="@{icons/customer.png}" alt="icone clients">
                         <div class="title">Clients</div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="organisations.html" class="active">
-                        <img src="../static/icons/organisation.png" alt="icone clients">
+                    <a href="/listerOrganisations" class="active">
+                        <img th:src="@{icons/organisation.png}" alt="icone clients">
                         <div class="title">Organisations</div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="produits.html" class="active">
-                        <img src="../static/icons/product.png" alt="icone clients">
+                    <a href="/listerProduits" class="active">
+                        <img th:src="@{icons/product.png}" alt="icone clients">
                         <div class="title">Produits</div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="commandes.html" class="active">
-                        <img src="../static/icons/cube.png" alt="icone clients">
+                    <a href="/listerCommandes" class="active">
+                        <img th:src="@{icons/cube.png}" alt="icone clients">
                         <div class="title">Commandes</div>
                     </a>
                 </li>
 
                 <li>
                     <a href="stats.html" class="active">
-                        <img src="../static/icons/statistics.png" alt="icone clients">
+                        <img th:src="@{icons/statistics.png}" alt="icone clients">
                         <div class="title">Statistiques</div>
                     </a>
                 </li>
-
             </ul>
             <!--end of sidebar content-->
         </div>
@@ -86,7 +85,7 @@
                 <!--div class="close"><i class="fas fa-times"></i></div-->
             </div>
 
-            <h4 class="subtitle"><a href="index.html">l'Atypique Comptoir du Meurtre et de l'Espionnage</a></h4>
+            <h4 class="subtitle"><a href="/">l'Atypique Comptoir du Meurtre et de l'Espionnage</a></h4>
 
 
             <!-- RIGHT SIDE sign up/in and search-->
@@ -110,14 +109,14 @@
 
             <div class="row first-row">
 
-                <img src="../static/images/logiciel.png" alt="logiciel">
+                <img th:src="@{images/logiciel.png}" alt="logiciel">
 
             </div>
             <br> <br>
             <div class="collist">
                 <div class="prod-card">
                     <h4><strong>Keylogger</strong></h4>
-                    <img src="../static/icons/keyboard.png" alt="killer pic" class="prodic_img">
+                    <img th:src="@{icons/keyboard.png}" alt="killer pic" class="prodic_img">
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio consequatur
                         obcaecati eius dolores earum vero assumenda cumque? Ipsa officiis, odit ullam cumque vero,
                         nobis debitis cum aliquid ad fugiat iusto.<br>Prix : 25 €</p>
@@ -128,7 +127,7 @@
 
                 <div class="prod-card">
                     <h4><strong>Spyware</strong></h4>
-                    <img src="../static/icons/spyware.png" alt="software" class="prodic_img">
+                    <img th:src="@{icons/spyware.png}" alt="software" class="prodic_img">
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio consequatur
                         obcaecati eius dolores earum vero assumenda cumque? Ipsa officiis, odit ullam cumque vero,
                         nobis debitis cum aliquid ad fugiat iusto.<br>Prix : 25 €</p>
@@ -138,7 +137,7 @@
                 </div>
                 <div class="prod-card">
                     <h4><strong>Botnet sofware</strong></h4>
-                    <img src="../static/icons/terminal.png" alt="tools" class="prodic_img">
+                    <img th:src="@{icons/terminal.png}" alt="tools" class="prodic_img">
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio consequatur
                         obcaecati eius dolores earum vero assumenda cumque? Ipsa officiis, odit ullam cumque vero,
                         nobis debitis cum aliquid ad fugiat iusto.

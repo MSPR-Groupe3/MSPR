@@ -41,13 +41,13 @@ public class OrganizationController {
     public String updateOrganization(@ModelAttribute Organization organization, Model model){
         this.repoOrga.save(organization);
         model.addAttribute("organization", organization);
-        return "commandes_info";
+        return "organisations_info";
     }
 
     // DELETE AN ORGANIZATION
     @PostMapping("/supprimerOrganisation")
     public String deleteOrganization(@PathVariable("id") int id, Model model) {
 
-        return "commandes_info";
+        return "organisations_info";
     }
 }
