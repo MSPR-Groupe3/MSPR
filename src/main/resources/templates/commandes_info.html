@@ -117,7 +117,7 @@
                         <tr th:object="${clients}" >
                             <td class="text-left">Client : </td>
                             <td class="text-right">
-                                <select th:field="${purchase.getContact().getFullName()}"> <!-- note Coco : petit doute sur le th:field -->
+                                <select class="dropdown" th:field="${purchase.getContact().getFullName()}"> <!-- note Coco : petit doute sur le th:field -->
                                     <option
                                             th:each="client : ${clients}"
                                             th:value="${client.getId()}"
@@ -133,24 +133,32 @@
                     </table>
 
                 </form>
+            </div>
 
-                <table class="table-input" style="width: 500px">
+            <div class="row">
+                <table class="table_order_product">
                     <thead>
                     <tr>
-                        <th>Nom</th>
-                        <th>Référence</th>
-                        <th>Prix</th>
+                        <th>Produit</th>
                         <th>Quantité</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr th:each="purchaseLine: ${purchase.getPurchaseLines}"
-                    >
-                        <td th:text="${purchaseLine.getProduct().getName()}" />
-                        <td th:text="${purchaseLine.getProduct().getReference()}" />
-                        <td><input class="input-info" id="price" type="number" step="0.01" th:text="${purchaseLine.getProduct().getPrice()}"/></td>
-                        <td><input class="input-info" id="quantity" type="number" th:text="${purchaseLine.getProduct().getQuantity()}"/></td>
-                    </tr>
+                    <tbody id="products_list">
+                        <tr id="product_item"
+                            th:each="product : ${products}"
+                        >
+                            <td class="product_detail" id="product_name">
+                                <select class="dropdown_product_list"> <!-- note Coco : petit doute sur le th:field -->
+                                    <option
+                                            th:value="${product.getId()}"
+                                            th:text="${product.getFullName()}"
+                                    >
+                                    </option>
+                                </select>
+                            </td>
+                            <td class="product_detail"><input class="input-info_product_list" id="product_quantity" type="number" min="0"/></td>
+                            <td class="delete_button"><button id="delete_product_in_commande" class="delete-btn"><i class="fas fa-trash fa-lg"></i></button></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -159,25 +167,18 @@
             <div class="separator-bar"></div>
 
             <div class="row">
-                <button class="art-btn" type="submit" form="client_submit" formaction="">Ajouter un produit</button>
+                <button id="add_products" class="art-btn">Ajouter un produit</button>
             </div>
 
             <hr>
 
             <div class="row">
-                <button class="art-btn" type="submit" form="client_submit" formaction="">Supprimer la commande</button>
+                <button class="art-btn" type="submit" form="client_submit" formaction="">Supprimer</button>
                 <div class="separator-bar"></div>
                 <div class="separator-bar"></div>
-                <button class="art-btn" type="submit" form="client_submit" formaction="">Sauvegarder la commande</button>
-            </div>
-
-            <!--
-            <hr>
-
-            <div class="row">
                 <button class="art-btn" type="submit" form="client_submit" formaction="">Sauvegarder</button>
             </div>
-            -->
+
 
         </div>
 
@@ -218,26 +219,21 @@
             open = !open;
         });
 
-        $("#first_name").change(function(){
-            $("#first_name").addClass("input-info-changed");
+        let item_id = 0;
+        $("#add_products").click(function(){
+            let cloneItem = $("#product_item").clone().prop("id", "product_item" + item_id )
+            cloneItem.appendTo("#products_list");
+            cloneItem.find("button").click(function(){
+                cloneItem.remove()
+            });
+
+            item_id += 1
         });
 
-        $("#last_name").change(function(){
-            $("#last_name").addClass("input-info-changed");
-        });
-
-        $("#phone").change(function(){
-            $("#phone").addClass("input-info-changed");
-        });
-
-        $("#email").change(function(){
-            $("#email").addClass("input-info-changed");
-        });
-
-        $("#company").change(function(){
-            $("#company").addClass("input-info-changed");
-        });
     });
+
+
+
 </script>
 </body>
 </html>
