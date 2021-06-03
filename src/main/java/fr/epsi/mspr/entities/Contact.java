@@ -31,5 +31,4 @@ public class Contact {
 
     @OneToMany(mappedBy = "contact")
     private Set<Purchase> purchases;
-
 }

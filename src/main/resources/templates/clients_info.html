@@ -103,38 +103,38 @@
             <hr>
 
             <div class="row">
-                <form th:object="${client}" id="client_submit" method="post" action="">
+                <form th:object="${contact}" id="client_submit" method="post" action="/sauverClient">
                         <table class="table-input">
                             <tr>
                                 <td class="text-left">Firstname : </td>
-                                <td class="text-right"> <input class="input-info" id="first_name" type="text" th:field="*{getFirstname()}"/> </td>
+                                <td class="text-right"> <input class="input-info" id="first_name" type="text" th:field="*{firstName}"/> </td>
                             </tr>
                             <tr>
                                 <td class="text-left">Last name : </td>
-                                <td class="text-right"> <input class="input-info" id="last_name" type="text" th:field="*{getLastname()}"/> </td>
+                                <td class="text-right"> <input class="input-info" id="last_name" type="text" th:field="*{lastName}"/> </td>
                             </tr>
                             <tr>
                                 <td class="text-left">Phone : </td>
-                                <td class="text-right"> <input type="tel" class="input-info" id="phone" type="text" th:field="*{getPhoneNumber()}"/> </td>
+                                <td class="text-right"> <input class="input-info" id="phone" type="tel" th:field="*{phoneNumber}"/> </td>
                             </tr>
                             <tr>
                                 <td class="text-left">Email : </td>
-                                <td class="text-right"> <input type="email" class="input-info" id="email" type="text" th:field="*{getEmail()}"/> </td>
+                                <td class="text-right"> <input class="input-info" id="email" type="email" th:field="*{email}"/> </td>
                             </tr>
-                            <tr th:object="${organizations}" >
-                                <td class="text-left">Organization : </td>
+                            <tr>
+                                <td class="text-left">Organisation : </td>
                                 <td class="text-right">
-                                    <select class="dropdown" th:field="*{client.getOrganization().getCompanyName()}"> <!-- note Coco : petit doute sur le th:field -->
-                                        <option
-                                                th:each="organization : ${organizations}"
-                                                th:value="${organization.getId()}"
-                                                th:text="${organization.getCompanyName()}"
-                                        >
+                                    <select th:field="${contact.organization.id}">
+                                        <option th:each="organization : ${organizations}" th:value="${organization.getId()}" th:text="${organization.getCompanyName()}" >
                                         </option>
                                     </select>
-                                </td>
+                                <td>
                             </tr>
                         </table>
+                    <div>
+                        <input class="art-btn" type="submit" value="Save" />
+                        <input class="art-btn" type="submit" value="Delete" />
+                    </div>
                 </form>
             </div>
 
