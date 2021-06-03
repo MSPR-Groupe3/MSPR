@@ -118,9 +118,12 @@
             <div class="row">
                 <input class="search-bar" type="text" placeholder="Rechercher une commande">
                 <div class="separator-bar"></div>
-                <select class="search-dropdown" id="organisations">
+                <select
+                        class="search-dropdown" id="organisations"
+                        th:onchange="window.location.href='/listerCommandes/category?id=' + this.value"
+                >
                     <option value="Tout">Tout</option>
-                    <option th:each="organization: ${organizations}" th:value="${organisation.getId()}" th:text="${organisation.getName()}"></option>
+                    <option th:each="organization: ${organizations}" th:value="${organization.getId()}" th:text="${organization.getCompanyName()}"></option>
                 </select>
             </div>
 
@@ -138,13 +141,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="commande: ${commandes}"
+                        <tr th:each="purchase: ${purchases}"
                             th:onclick="'javascript:rowClicked(${commande.getId()});'"
                         >
-                            <td th:text="${commande.getReference()}" />
-                            <td th:text="${commande.getContact().getName()}" />
-                            <td th:text="${commande.getOrganization().getCompanyName()}" />
-                            <td th:text="${commande.getDateOfOrder()}" />
+                            <td th:text="${purchase.getReference()}" />
+                            <td th:text="${purchase.getContact().getFullName()}" />
+                            <td th:text="${purchase.getContact().getOrganization().getCompanyName()}" />
+                            <td th:text="${purchase.getDateOfOrder()}" />
                         </tr>
                     </tbody>
                 </table>
@@ -197,7 +200,12 @@
     function rowClicked(value) {
         location.href = "/commandes_info?param=" + value;
     }
+
+
+    function commandeCategory()
 </script>
+
+
 
 </body>
 </html>
