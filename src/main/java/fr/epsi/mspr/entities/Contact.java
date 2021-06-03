@@ -31,4 +31,10 @@ public class Contact {
 
     @OneToMany(mappedBy = "contact")
     private Set<Purchase> purchases;
+
+    // Methode pour recuperer le nom+prenom + organisation d'un contazvt
+    public String getFullName(){
+        return this.firstName + " " + this.lastName;
+    }
+
 }
