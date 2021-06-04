@@ -103,6 +103,10 @@
             <hr>
 
             <div class="row">
+                <p><span th:text="${biggestPurchase.getReference()}" /> Référence commande la plus élevée</p>
+                <p><span th:text="${biggestProductInPurchase.getPrice()}" />Montant de la commande la plus élevée</p>
+            </div>
+            <div class="row">
                 <div>
                     <canvas id="myChart" width="400" height="400"></canvas>
                     <script>
