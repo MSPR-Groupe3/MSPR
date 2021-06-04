@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/style.css}">
-    <link rel="icon" type="image/png" th:href="@{icons/fav.png}" />
+    <link rel="icon" type="image/png" th:href="@{/icons/fav.png}" />
     <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Cinzel|Crimson+Text|Lora|Montserrat&display=swap"
           rel="stylesheet">
@@ -24,7 +24,7 @@
             <div class="profile_info">
                 <a href="/">
                     <div class="profile_img">
-                        <img th:src="@{logos/acme_corp.png}" alt="logo pic">
+                        <img th:src="@{/logos/acme_corp.png}" alt="logo pic">
                     </div>
                 </a>
             </div>
@@ -33,35 +33,35 @@
             <ul class="sidebar_menu active">
                 <li>
                     <a href="/listerClients" class="active">
-                        <img th:src="@{icons/customer.png}" alt="icone clients">
+                        <img th:src="@{/icons/customer.png}" alt="icone clients">
                         <div class="title">Clients</div>
                     </a>
                 </li>
 
                 <li>
                     <a href="/listerOrganisations" class="active">
-                        <img th:src="@{icons/organisation.png}" alt="icone clients">
+                        <img th:src="@{/icons/organisation.png}" alt="icone clients">
                         <div class="title">Organisations</div>
                     </a>
                 </li>
 
                 <li>
                     <a href="/listerProduits" class="active">
-                        <img th:src="@{icons/product.png}" alt="icone clients">
+                        <img th:src="@{/icons/product.png}" alt="icone clients">
                         <div class="title">Produits</div>
                     </a>
                 </li>
 
                 <li>
                     <a href="/listerCommandes" class="active">
-                        <img th:src="@{icons/cube.png}" alt="icone clients">
+                        <img th:src="@{/icons/cube.png}" alt="icone clients">
                         <div class="title">Commandes</div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="stats.html" class="active">
-                        <img th:src="@{icons/statistics.png}" alt="icone clients">
+                    <a href="/statistiques" class="active">
+                        <img th:src="@{/icons/statistics.png}" alt="icone clients">
                         <div class="title">Statistiques</div>
                     </a>
                 </li>
@@ -107,7 +107,7 @@
 
             <div class="row first-row">
 
-                <img th:src="@{images/microphone.jpg}" alt="micro">
+                <img th:src="@{/images/microphone.jpg}" alt="micro">
 
             </div>
             <br>
@@ -116,7 +116,7 @@
             <div class="collist">
                 <div class="prod-card">
                     <h4><strong>Micro 1</strong></h4>
-                    <img th:src="@{images/micro1.png}" alt="killer pic" class="prodmat_img">
+                    <img th:src="@{/images/micro1.png}" alt="killer pic" class="prodmat_img">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem architecto amet vitae.
                         Natus itaque qui voluptatum? Praesentium quod tenetur illo deserunt, sed eligendi
                         sit blanditiis aut nulla, fugiat velit. Maiores?
@@ -132,7 +132,7 @@
 
                 <div class="prod-card">
                     <h4><strong>Micro 2</strong></h4>
-                    <img th:src="@{images/micro2.PNG}" alt="killer pic" class="prodmat_img">
+                    <img th:src="@{/images/micro2.PNG}" alt="killer pic" class="prodmat_img">
                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis totam magnam voluptates vel
                         quaerat quis iure beatae nostrum et libero aspernatur voluptatem culpa hic,
                         debitis voluptate minus quas repellat cupiditate.
@@ -147,7 +147,7 @@
                 </div>
                 <div class="prod-card">
                     <h4><strong>Micro 3</strong></h4>
-                    <img th:src="@{images/micro3.PNG}" alt="killer pic" class="prodmat_img">
+                    <img th:src="@{/images/micro3.PNG}" alt="killer pic" class="prodmat_img">
                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis totam magnam voluptates vel
                         quaerat quis iure beatae nostrum et libero aspernatur voluptatem culpa hic,
                         debitis voluptate minus quas repellat cupiditate.
