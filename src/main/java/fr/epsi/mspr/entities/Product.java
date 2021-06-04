@@ -1,13 +1,13 @@
 package fr.epsi.mspr.entities;
 
-import lombok.Data;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
 import java.util.Set;
 
-@Data @AllArgsConstructor @RequiredArgsConstructor
+@AllArgsConstructor @RequiredArgsConstructor
+@Getter @Setter
 @Entity
 @Table
 public class Product {

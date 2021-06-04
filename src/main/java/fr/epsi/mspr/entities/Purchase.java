@@ -3,13 +3,12 @@ package fr.epsi.mspr.entities;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-import lombok.Data;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data @AllArgsConstructor @RequiredArgsConstructor
+@AllArgsConstructor @RequiredArgsConstructor
+@Getter @Setter
 @Entity
 @Table
 public class Purchase {
