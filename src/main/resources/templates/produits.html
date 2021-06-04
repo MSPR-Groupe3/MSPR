@@ -116,18 +116,15 @@
 
 
             <div class="row">
-
-                <input class="search-bar" type="text" placeholder="Rechercher un produit">
-
+                <input class="search-bar" type="text" placeholder="Rechercher une catégorie">
                 <div class="separator-bar"></div>
-
-                <select class="search-dropdown" id="categories"> <!-- lister des catégories -->
+                <select
+                        class="search-dropdown" id="categories"
+                        th:onchange="window.location.href='/listerProduits/category?id=' + this.value"
+                >
                     <option value="Tout">Tout</option>
-                    <option value="Nettoyage">Nettoyage</option>
-                    <option value="Logiciels">Logiciels</option>
-                    <option value="Matériel">Matériel</option>
+                    <option th:each="category: ${categories}" th:value="${category.getId()}" th:text="${category.getName()}"></option>
                 </select>
-
             </div>
 
             <div class="separator-bar"></div>
