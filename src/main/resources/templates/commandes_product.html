@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/style.css}">
-    <link rel="icon" type="image/png" th:href="@{icons/fav.png}" />
+    <link rel="icon" type="image/png" th:href="@{icons/fav.png}"/>
     <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Cinzel|Crimson+Text|Lora|Montserrat&display=swap"
           rel="stylesheet">
@@ -24,7 +24,7 @@
             <div class="profile_info">
                 <a href="/">
                     <div class="profile_img">
-                        <img th:src="@{logos/acme_corp.png}" alt="logo pic">
+                        <img th:src="@{/logos/acme_corp.png}" alt="logo pic">
                     </div>
                 </a>
             </div>
@@ -33,35 +33,35 @@
             <ul class="sidebar_menu active">
                 <li>
                     <a href="/listerClients" class="active">
-                        <img th:src="@{icons/customer.png}" alt="icone clients">
+                        <img th:src="@{/icons/customer.png}" alt="icone clients">
                         <div class="title">Clients</div>
                     </a>
                 </li>
 
                 <li>
                     <a href="/listerOrganisations" class="active">
-                        <img th:src="@{icons/organisation.png}" alt="icone clients">
+                        <img th:src="@{/icons/organisation.png}" alt="icone clients">
                         <div class="title">Organisations</div>
                     </a>
                 </li>
 
                 <li>
                     <a href="/listerProduits" class="active">
-                        <img th:src="@{icons/product.png}" alt="icone clients">
+                        <img th:src="@{/icons/product.png}" alt="icone clients">
                         <div class="title">Produits</div>
                     </a>
                 </li>
 
                 <li>
                     <a href="/listerCommandes" class="active">
-                        <img th:src="@{icons/cube.png}" alt="icone clients">
+                        <img th:src="@{/icons/cube.png}" alt="icone clients">
                         <div class="title">Commandes</div>
                     </a>
                 </li>
 
                 <li>
                     <a href="stats.html" class="active">
-                        <img th:src="@{icons/statistics.png}" alt="icone clients">
+                        <img th:src="@{/icons/statistics.png}" alt="icone clients">
                         <div class="title">Statistiques</div>
                     </a>
                 </li>
@@ -81,7 +81,6 @@
                 <div class="hamburger_inner">
                     <i class="fas fa-bars"></i>
                 </div>
-                <!--div class="close"><i class="fas fa-times"></i></div-->
             </div>
 
             <h4 class="subtitle"><a href="index.html">l'Atypique Comptoir du Meurtre et de l'Espionnage</a></h4>
@@ -90,71 +89,64 @@
             <!-- RIGHT SIDE sign up/in-->
             <ul class="right_bar">
                 <li><a href="connexion.html"><i class="fas fa-user fa-2x"></i></a></li>
-                <!--li><a href="connexion.html"><img src="../static/icons/user.png" alt="user icon"></a></li-->
             </ul>
         </div>
 
         <div class="container">
 
             <div class="row">
-                <h4>Info de la commande</h4>
+                <h4>Produit dans la commande</h4>
             </div>
 
             <hr>
 
             <div class="row">
 
-                <form id="client_submit" method="post" th:object="${purchase}">
+                <form id="add_purchase_product" th:object="${purchaseLine}">
 
-                    <div class="row">
-                        <table class="table-input">
-                            <tr>
-                                <td class="text-left">Référence : </td>
-                                <td class="text-right"> <input th:field="*{reference}" class="input-info" type="text" placeholder="Référence de la commande"/> </td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Date : </td>
-                                <td class="text-right"> <input th:field="*{dateOfOrder}" class="input-info" id="date-of-order" type="datetime-local"/> </td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Client : </td>
-                                <td class="text-right">
-                                    <select class="dropdown" th:field="*{contact}">
-                                        <option
-                                                th:each="contactAll : ${contactsAll}"
-                                                th:value="${contactAll.getId()}"
-                                                th:text="${contactAll.getFullName()}"
-                                        >
-                                        </option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+                    <table class="table-input">
+                        <tr>
+                            <td class="text-left">Produit :</td>
+                            <td class="text-right">
+                                <select class="dropdown" th:field="*{product}">
+                                    </option>
+                                    <option
+                                            th:each="productAll : ${productsAll}"
+                                            th:value="${productAll.getId()}"
+                                            th:text="${productAll.getName() + ' -- ' + productAll.getReference() + ' -- ' + productAll.getCategory().getName()}"
+                                    >
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Quantité :</td>
+                            <td class="text-right">
+                                <input th:field="*{quantity}" class="input-info" type="number" step="1" min="0"/>
+                            </td>
+                        </tr>
 
-                    <div class="separator-bar"></div>
-                    <div class="separator-bar"></div>
+                    </table>
 
-                    <div class="row">
+                    <div class="row" th:object="${idPurchase}">
                         <button class="art-btn" type="button"
-                                th:onclick="'window.location.href=\'' + @{/listerCommandes} + '\''"
+                                th:onclick="'window.location.href=\'' + @{/detailsCommande/{id}(id=${idPurchase})} + '\''"
                         >
                             Annuler
                         </button>
 
                         <div class="separator-bar"></div>
-                        <div class="separator-bar"></div>
 
-                        <button class="art-btn" type="submit" form="client_submit" th:formaction="@{/creerCommande}" formmethod="post">Sauvegarder</button>
+                        <button class="art-btn" type="submit" form="add_purchase_product"
+                                formmethod="post"
+                                th:formaction="@{/detailsCommande/{id}/ajouterProduit(id=${idPurchase})}"
+                        >
+                            Sauvegarder
+                        </button>
                     </div>
-
 
                 </form>
             </div>
-
-
-
-
 
         </div>
 
@@ -196,7 +188,6 @@
         });
 
     });
-
 
 
 </script>

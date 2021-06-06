@@ -1,6 +1,9 @@
 * {
     list-style: none;
+    /*
     font-family: 'Cinzel', 'Montserrat', 'Crimson Text', 'Lora', sans-serif;
+     */
+    font-family: Georgia, Verdana, sans-serif
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -658,7 +661,7 @@ input:checked + .slider:before {
 .input-info{
     border: 0;
     background-color: rgba(0, 0, 0, 0);
-    width: 300px;
+    width: 400px;
 }
 
 .input-info:focus, .input-info-changed{
@@ -680,7 +683,7 @@ input[type=number] {
     appearance: auto;
     border: 0;
     background-color: rgba(0, 0, 0, 0);
-    width: 300px;
+    width: 400px;
     padding: 5px;
 
     /* for Firefox */

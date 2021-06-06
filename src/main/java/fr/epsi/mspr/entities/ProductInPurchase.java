@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class ProductInPurchase {
 
     @EmbeddedId
-    ProductInPurchaseKey id;
+    ProductInPurchaseKey id = new ProductInPurchaseKey();
 
     @ManyToOne
     @MapsId("productId")
@@ -34,4 +34,5 @@ public class ProductInPurchase {
     private int quantity;
     @Column(name = "price", nullable = false)
     private float price;
+
 }

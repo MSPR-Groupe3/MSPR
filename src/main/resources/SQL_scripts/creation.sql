@@ -78,7 +78,6 @@ CREATE TABLE IF NOT EXISTS `product_in_purchase` (
     `product_id` bigint(20),
     `quantity` int(20) NOT NULL,
     `price` float NOT NULL,
-    PRIMARY KEY (`quantity`, `price`),
     CONSTRAINT fk_purchase FOREIGN KEY (`purchase_id`)
     REFERENCES `purchase`(`id`),
     CONSTRAINT fk_product FOREIGN KEY (`product_id`)

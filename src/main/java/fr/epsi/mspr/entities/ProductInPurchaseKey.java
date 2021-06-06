@@ -1,13 +1,12 @@
 package fr.epsi.mspr.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Embeddable
