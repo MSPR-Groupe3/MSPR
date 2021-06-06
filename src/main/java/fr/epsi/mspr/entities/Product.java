@@ -1,13 +1,18 @@
 package fr.epsi.mspr.entities;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;
 
-@Data @AllArgsConstructor @RequiredArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor @RequiredArgsConstructor
 @Entity
 @Table
 public class Product {
@@ -33,9 +38,11 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name="category_id", foreignKey = @ForeignKey(name = "fk_category"))
+    @JsonManagedReference
     private Category category;
 
     @OneToMany(mappedBy = "product")
+    @JsonBackReference
     private Set<ProductInPurchase> purchaseLines;
 
 }

@@ -1,13 +1,17 @@
 package fr.epsi.mspr.entities;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;
 
-@Data @AllArgsConstructor @RequiredArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor @RequiredArgsConstructor
 @Entity
 @Table
 public class User {
@@ -28,9 +32,11 @@ public class User {
     private String role;
 
     @OneToMany(mappedBy = "user")
+    @JsonBackReference
     private Set<Organization> organizations;
 
     @OneToMany(mappedBy = "seller")
+    @JsonBackReference
     private Set<Purchase> purchases;
 
 }
