@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class PurchaseController {
@@ -31,22 +32,12 @@ public class PurchaseController {
     private ProductInPurchaseRepository productInPurchaseRepo;
 
 
-    @GetMapping("/creerCommande")
-    public String createPurchase(Model model) {
-        // get all Contact
-        List<Contact> contacts = contactRepo.findAll();
-        model.addAttribute("contacts",contacts);
-
-        return "commandes_create";
-    }
-
-    // CREATE
+    // Sauver Commande existante puis rediriger vers la liste des commandes
     @PostMapping("/sauverCommande/{id}")
-    public String addProduct(@ModelAttribute("purchase") Purchase purchase, @PathVariable Long id, BindingResult result, Model model) {
+    public String savePurchase(@ModelAttribute("purchase") Purchase purchase, @PathVariable Long id, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "redirect:/creerCommande";
         }
-
         // Save purchase
         Purchase purchaseToUpdate = purchaseRepo.getOne(id);
         purchaseToUpdate.setReference(purchase.getReference());
@@ -54,25 +45,35 @@ public class PurchaseController {
         purchaseToUpdate.setContact(purchase.getContact());
         purchaseRepo.save(purchaseToUpdate);
 
-        // Save ProductInPurchase: we delete all the row for the purchase id, and we add new row
-        for(ProductInPurchase pur : purchaseToUpdate.getPurchaseLines()){
-            productInPurchaseRepo.deleteById(pur.getId());
-        }
-
-        for(ProductInPurchase prod : purchase.getPurchaseLines()){
-
-            // il faut ajouter un input pour price
-            Long purchaseId = id;
-            Long productId = prod.getProduct().getId();
-            int quantity = prod.getQuantity();
-            float price = prod.getProduct().getUnitPriceBeforeTax();
-            productInPurchaseRepo.insertProductInPurchase(purchaseId, productId, quantity, price);
-        }
-
-
-
         return "redirect:/listerCommandes";
     }
+
+
+    @GetMapping("/creerCommande")
+    public String createPurchase(Model model) {
+
+        // Create an Purchase instance to bind data
+        Purchase purchase = new Purchase();
+        model.addAttribute("purchase", purchase);
+
+        // get all Contact
+        List<Contact> contactsAll = contactRepo.findAll();
+        model.addAttribute("contactsAll", contactsAll);
+
+        return "commandes_create";
+    }
+    @PostMapping("/creerCommande")
+    public String createPurchase(@ModelAttribute("purchase") Purchase purchase, BindingResult result, Model model){
+        if (result.hasErrors()) {
+            return "redirect:/creerCommande";
+        }
+
+        purchaseRepo.save(purchase);
+        return "redirect:/listerCommandes";
+    }
+
+
+
 
     // READ ALL
     @GetMapping("/listerCommandes")
@@ -109,9 +110,6 @@ public class PurchaseController {
     }
 
 
-
-
-
     // READ ONE
     @GetMapping("/detailsCommande/{id}")
     public String showPurchase(@PathVariable("id") long id, Model model) {
@@ -127,4 +125,38 @@ public class PurchaseController {
 
         return "commandes_info.html";
     }
+
+    // Add product to a commande
+    @GetMapping("/detailsCommande/{id}/ajouterProduit")
+    public String addPurchaseProduct(@PathVariable("id") long id, Model model){
+
+        // Create ProductInPurchase pour binding
+        ProductInPurchase purchaseLine = new ProductInPurchase();
+        model.addAttribute("purchaseLine", purchaseLine);
+
+        // add id (as commande id) as model attribute
+        model.addAttribute("idPurchase", id);
+
+        // get all products in DB
+        model.addAttribute("productsAll", productRepo.findAll());
+
+        return "commandes_product";
+    }
+
+    @PostMapping("/detailsCommande/{id}/ajouterProduit")
+    public String addPurchaseProduct(
+            @PathVariable("id") long id,
+            @ModelAttribute("purchaseLine") ProductInPurchase purchaseLine,
+            BindingResult result,
+            Model model){
+
+        Purchase purchase = purchaseRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid purchase Id:" + id));
+        purchaseLine.setPurchase(purchase);
+
+        productInPurchaseRepo.saveAndFlush(purchaseLine);
+
+        return "redirect:/detailsCommande/" + id;
+    }
+
+
 }

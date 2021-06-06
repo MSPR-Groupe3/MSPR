@@ -143,24 +143,11 @@
                         </tr>
                         </thead>
                         <tbody id="products_list">
-                        <tr id="product_item"
-                            th:each="productLine, productLineStat : *{purchaseLines}"
-                        >
-                            <td class="product_detail" id="product_name">
-                                <select class="dropdown_product_list" th:field="*{purchaseLines[__${productLineStat.index}__].product}">
-                                    <option
-                                            th:each="productAll : ${productsAll}"
-                                            th:value="${productAll.getId()}"
-                                            th:text="${productAll.getName() + ' -- ' + productAll.getReference() + ' -- ' + productAll.getCategory().getName()}"
-                                            th:selected="${productAll.getId()} == ${productLine.getProduct().getId()}"
-                                    >
-                                    </option>
-                                </select>
+                        <tr id="product_item" th:each="productLine: *{purchaseLines}">
+                            <td class="product_detail" id="product_name"
+                                th:text="${productLine.getProduct().getName() + ' -- ' + productLine.getProduct().getReference() + ' -- ' + productLine.getProduct().getCategory().getName()}">
                             </td>
-                            <td class="product_detail">
-                                <input th:field="*{purchaseLines[__${productLineStat.index}__].quantity}" th:value="${productLine.getQuantity()}"
-                                       class="input-info_product_list" type="number" min="0" step="1"/>
-                            </td>
+                            <td class="product_detail" th:text="${productLine.getQuantity()}"></td>
                             <td class="delete_button">
                                 <button id="delete_product_in_commande" class="delete-btn"><i
                                         class="fas fa-trash fa-lg"></i></button>
@@ -173,7 +160,12 @@
                     <div class="separator-bar"></div>
 
                     <div class="row">
-                        <button id="add_products" class="art-btn" type="button">Ajouter un produit</button>
+                        <button id="add_products"
+                                class="art-btn"
+                                type="button"
+                                th:onclick="'window.location.href=\'' + @{/detailsCommande/{id}/ajouterProduit(id=${purchase.getId()})} + '\''">
+                            Ajouter un produit
+                        </button>
                     </div>
 
                     <div class="separator-bar"></div>
@@ -229,18 +221,6 @@
             }
             open = !open;
         });
-
-        let item_id = 0;
-        $("#add_products").click(function () {
-            let cloneItem = $("#product_item").clone().prop("id", "product_item" + item_id)
-            cloneItem.appendTo("#products_list");
-            cloneItem.find("button").click(function () {
-                cloneItem.remove()
-            });
-
-            item_id += 1
-        });
-
     });
 
 
