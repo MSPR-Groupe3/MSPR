@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/style.css}">
-    <link rel="icon" type="image/png" th:href="@{icons/fav.png}" />
+    <link rel="icon" type="image/png" th:href="@{/icons/fav.png}" />
     <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Cinzel|Crimson+Text|Lora|Montserrat&display=swap"
           rel="stylesheet">
@@ -24,7 +24,7 @@
             <div class="profile_info">
                 <a href="/">
                     <div class="profile_img">
-                        <img th:src="@{logos/acme_corp.png}" alt="logo pic">
+                        <img th:src="@{/logos/acme_corp.png}" alt="logo pic">
                     </div>
                 </a>
             </div>
@@ -33,35 +33,35 @@
             <ul class="sidebar_menu active">
                 <li>
                     <a href="/listerClients" class="active">
-                        <img th:src="@{icons/customer.png}" alt="icone clients">
+                        <img th:src="@{/icons/customer.png}" alt="icone clients">
                         <div class="title">Clients</div>
                     </a>
                 </li>
 
                 <li>
                     <a href="/listerOrganisations" class="active">
-                        <img th:src="@{icons/organisation.png}" alt="icone clients">
+                        <img th:src="@{/icons/organisation.png}" alt="icone clients">
                         <div class="title">Organisations</div>
                     </a>
                 </li>
 
                 <li>
                     <a href="/listerProduits" class="active">
-                        <img th:src="@{icons/product.png}" alt="icone clients">
+                        <img th:src="@{/icons/product.png}" alt="icone clients">
                         <div class="title">Produits</div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="/listerCommandes" class="active">
-                        <img th:src="@{icons/cube.png}" alt="icone clients">
+                    <a href="/listerCommandes/organisation?id=0" class="active">
+                        <img th:src="@{/icons/cube.png}" alt="icone clients">
                         <div class="title">Commandes</div>
                     </a>
                 </li>
 
                 <li>
                     <a href="stats.html" class="active">
-                        <img th:src="@{icons/statistics.png}" alt="icone clients">
+                        <img th:src="@{/icons/statistics.png}" alt="icone clients">
                         <div class="title">Statistiques</div>
                     </a>
                 </li>
@@ -106,7 +106,7 @@
             <div class="row">
                 <button class="art-btn">
                     <strong>
-                        <a href="commandes_info.html">Ajouter une commande</a>
+                        <a href="/creerCommande">Ajouter une commande</a>
                     </strong>
                 </button>
             </div>
@@ -116,14 +116,14 @@
 
 
             <div class="row">
-                <input class="search-bar" type="text" placeholder="Rechercher une commande">
+                <input class="search-bar" type="text" placeholder="Rechercher une commande" id="txtSearch">
                 <div class="separator-bar"></div>
-                <select
-                        class="search-dropdown" id="organisations"
-                        th:onchange="window.location.href='/listerCommandes/category?id=' + this.value"
+                <select class="search-dropdown" id="organisations"
                 >
-                    <option value="Tout">Tout</option>
-                    <option th:each="organization: ${organizations}" th:value="${organization.getId()}" th:text="${organization.getCompanyName()}"></option>
+                    <option th:value=0 th:text="Tout"></option>
+                    <option th:each="organization: ${organizations}"
+                            th:value="${organization.getId()}"
+                            th:text="${organization.getCompanyName()}"></option>
                 </select>
             </div>
 
@@ -140,9 +140,9 @@
                         <th>Date</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id = purchases_list>
                         <tr th:each="purchase: ${purchases}"
-                            th:onclick="'javascript:rowClicked(${commande.getId()});'"
+                            th:onclick="'window.location.href=\'/detailsCommande/' + ${purchase.getId()} + '\''"
                         >
                             <td th:text="${purchase.getReference()}" />
                             <td th:text="${purchase.getContact().getFullName()}" />
@@ -196,16 +196,69 @@
     });
 </script>
 
-<script>
-    function rowClicked(value) {
-        location.href = "/commandes_info?param=" + value;
-    }
+<script th:inline="javascript">
+    $(document).ready(function (){
+        let organisationId = [[${organisation_selected}]];
+        console.log("organisationId = " + organisationId)
+        $("organisations").val(organisationId);
+        $("organisations option[value=" + organisationId + "]").prop("selected",true);
 
+        $("#organisations").change(function (){
+            if($(this).val() === "Tout"){
+                location.href = "/listerCommandes"
+            } else {
+                location.href = "/listerCommandes/organisation?id=" + $(this).val();
+            }
+        })
 
-    function commandeCategory()
+        // If use thymeleaf :  th:onchange="window.location.href='/listerCommandes/organisation?id=' + this.value"
+    })
 </script>
 
+<script th:inline="javascript">
 
+    $("#txtSearch").on("input", function() {
+
+        let purchases = [[${purchases}]];
+
+        let text = $(this).val();
+
+        //get filtered data
+        let dataFilterd = filterText(text, purchases)
+        console.log(dataFilterd)
+        //clear tables and fill it with filtered data
+        fillTableWithData(dataFilterd)
+    });
+
+    function filterText(text, purchases){
+        let dataFilterd = [];
+        for(let item in purchases){
+            text = text.toLowerCase();
+            let firstname = purchases[item].contact.firstName.toLowerCase();
+            let lastname = purchases[item].contact.lastName.toLowerCase();
+            let reference = purchases[item].reference.toLowerCase();
+            if (firstname.includes(text) || lastname.includes(text) || reference.includes(text)){
+                dataFilterd.push(purchases[item])
+            }
+        }
+        return dataFilterd;
+    }
+
+    function fillTableWithData(dataFilterd){
+        let tbody = document.getElementById("purchases_list")
+        tbody.innerHTML="";
+        for(let item in dataFilterd){
+            let tr = `<tr>
+                <td>${dataFilterd[item].reference}</td>
+                <td>${dataFilterd[item].contact.firstName + " " + dataFilterd[item].contact.firstName}</td>
+                <td>${dataFilterd[item].contact.organization.companyName}</td>
+                <td>${dataFilterd[item].dateOfOrder}</td>
+            </tr>
+            `
+            tbody.innerHTML += tr
+        }
+    }
+</script>
 
 </body>
 </html>
