@@ -25,8 +25,8 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        User user = userService.findUserByUserName(userName);
+    public UserDetails loadUserByUsername(String loginEmail) throws UsernameNotFoundException {
+        User user = userService.findByLoginEmail(loginEmail);
         List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
         return buildUserForAuthentication(user, authorities);
     }
