@@ -95,114 +95,50 @@
         <div class="container">
 
             <div class="row">
-                <h4>Info de la commande</h4>
+                <h4>Produit dans la commande</h4>
             </div>
 
             <hr>
 
             <div class="row">
 
-                <form th:object="${purchase}" id="purchase_submit" method="post">
+                <form id="edit_purchase_product" th:object="${purchaseLine}">
+
                     <table class="table-input">
                         <tr>
-                            <td align="left" class="text-left">Référence :</td>
+                            <td class="text-left">Produit :</td>
+                            <td align="left" th:text="${purchaseLine.getProduct().getName() + ' -- ' + purchaseLine.getProduct().getReference() + ' -- ' + purchaseLine.getProduct().getCategory().getName()}"></td>
+                        </tr>
+                            <td class="text-left">Prix</td>
+                            <td align="left" th:text="*{price}"></td>
+                        <tr>
+                            <td class="text-left">Quantité :</td>
                             <td align="left">
-                                <input th:field="*{reference}" class="input-info" id="reference" type="text" path="reference"/>
+                                <input th:field="*{quantity}" id="quantity" class="input-info" type="number" step="1" min="0" th:max="*{quantity} + *{product.quantityAvailable}"/>
                             </td>
                         </tr>
                         <tr>
-                            <td align="left" class="text-left">Date :</td>
-                            <td align="left">
-                                <input th:field="*{dateOfOrder}" class="input-info" id="dateOfOrder" type="datetime-local" path="dateOfOrder"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="left" class="text-left">Client :</td>
-                            <td align="left">
-                                <select class="dropdown" th:field="*{contact}">
-                                    <option
-                                            th:each="contactAll: ${contactsAll}"
-                                            th:value="${contactAll.getId()}"
-                                            th:text="${contactAll.getFullName()}"
-                                            th:selected="${contactAll.getId()} == ${purchase.getContact().getId()}"
-                                    >
-                                    </option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="left" class="text-left">Valeur totale: </td>
-                            <td align="left" th:text="${totalValue} + ' €'"></td>
+                            <td class="text-left">Quantité en stock</td>
+                            <td id="quantity_stock" th:text="*{product.quantityAvailable}"></td>
                         </tr>
 
-                        <tr>
-                            <td align="left"  class="text-left">lister des produits :</td>
-                        </tr>
                     </table>
 
-                    <table class="table_order_product">
-                        <thead>
-                        <tr>
-                            <th>Produit</th>
-                            <th>Quantité</th>
-                        </tr>
-                        </thead>
-                        <tbody id="products_list">
-                        <tr id="product_item"
-                            th:each="productLine: *{purchaseLines}"
+                    <div class="row">
+                        <button class="art-btn" type="button"
+                                th:onclick="'window.location.href=\'' + @{/detailsCommande/{id}(id=${idPurchase})} + '\''"
                         >
-                            <td class="product_detail" id="product_name"
-                                th:text="${productLine.getProduct().getName() + ' -- ' + productLine.getProduct().getReference() + ' -- ' + productLine.getProduct().getCategory().getName()}">
-                            </td>
-                            <td class="product_detail" th:text="${productLine.getQuantity()}"></td>
-                            <td class="delete_button">
-                                <form method="post">
-                                    <button th:id="'delete_product_in_commande_' + ${productLine.getProduct().getId()}"
-                                            class="delete-btn"
-                                            th:type="submit"
-                                            th:formaction="@{/detailsCommande/{id}/supprimerProduit/{idProd}(id=${purchase.getId()}, idProd=${productLine.getProduct().getId()})}"
-                                    >
-                                        <i class="fas fa-trash fa-lg"></i>
-                                    </button>
-                                </form>
-                            </td>
-
-                            <td class="delete_button">
-                                    <button th:id="'edit_product_in_commande_' + ${productLine.getProduct().getId()}"
-                                            class="delete-btn"
-                                            th:type="button"
-                                            th:onclick="'window.location.href=\'' + @{/detailsCommande/{id}/editerProduit/{idProd}(id=${purchase.getId()}, idProd=${productLine.getProduct().getId()})} + '\''"
-                                    >
-                                        <i class="fas fa-edit fa-lg"></i>
-                                    </button>
-                            </td>
-
-                        </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="separator-bar"></div>
-                    <div class="separator-bar"></div>
-
-                    <div class="row">
-                        <button id="add_products"
-                                class="art-btn"
-                                type="button"
-                                th:onclick="'window.location.href=\'' + @{/detailsCommande/{id}/ajouterProduit(id=${purchase.getId()})} + '\''">
-                            Ajouter un produit
+                            Annuler
                         </button>
-                    </div>
-
-                    <div class="separator-bar"></div>
-                    <div class="separator-bar"></div>
-
-
-                    <div class="row">
-                        <button class="art-btn" type="submit" formaction="">Supprimer</button>
 
                         <div class="separator-bar"></div>
 
-                        <button class="art-btn" type="submit" th:formaction="@{/sauverCommande/{id}(id=${purchase.getId()})}">Sauvegarder</button>
+                        <button class="art-btn" type="submit" form="edit_purchase_product"
+                                formmethod="post"
+                                th:formaction="@{/detailsCommande/{id}/editerProduit/{idProd}(id=${idPurchase}, idProd=${idProduct})}"
+                        >
+                            Sauvegarder
+                        </button>
                     </div>
 
                 </form>
@@ -234,7 +170,7 @@
     </div>
 </div>
 
-<script>
+<script th:inline="javascript">
     $(document).ready(function () {
         let open = true
 
@@ -246,6 +182,7 @@
             }
             open = !open;
         });
+
     });
 
 

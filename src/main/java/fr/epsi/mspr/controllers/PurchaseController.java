@@ -8,10 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class PurchaseController {
@@ -123,6 +121,9 @@ public class PurchaseController {
         // all contacts
         model.addAttribute("contactsAll", contactRepo.findAll());
 
+        // total value of the order(money money money)
+        model.addAttribute("totalValue", productInPurchaseRepo.getTotalValue(id));
+
         return "commandes_info.html";
     }
 
@@ -137,10 +138,25 @@ public class PurchaseController {
         // add id (as commande id) as model attribute
         model.addAttribute("idPurchase", id);
 
-        // get all products in DB
-        model.addAttribute("productsAll", productRepo.findAll());
+        // get all products in DB except the products already in purchase
+        List<Product> productsAll = productRepo.findAll();
+        List<Product> productsAllFiltered = new ArrayList<>(productsAll);
 
-        return "commandes_product";
+        Purchase purchase = purchaseRepo.getOne(id);
+        List<ProductInPurchase> productInPurchases = purchase.getPurchaseLines();
+
+        for(Product p : productsAll){
+            for(ProductInPurchase pip : productInPurchases){
+                if(p.getId() == pip.getProduct().getId()){
+                    productsAllFiltered.remove(p);
+                }
+            }
+        }
+
+
+        model.addAttribute("productsAllFiltered", productsAllFiltered);
+
+        return "commandes_product_add";
     }
 
     @PostMapping("/detailsCommande/{id}/ajouterProduit")
@@ -150,13 +166,92 @@ public class PurchaseController {
             BindingResult result,
             Model model){
 
-        Purchase purchase = purchaseRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid purchase Id:" + id));
-        purchaseLine.setPurchase(purchase);
+        if (result.hasErrors()) {
+            return "redirect:/detailsCommande/{id}/ajouterProduit";
+        }
 
-        productInPurchaseRepo.saveAndFlush(purchaseLine);
+        // Insert a row in product_in_purchase table
+        Purchase purchase = purchaseRepo.getOne(id);
+        purchaseLine.setPurchase(purchase);
+        productInPurchaseRepo.save(purchaseLine);
+
+        // Update the value of quantity in stock
+        Product product = productRepo.getOne(purchaseLine.getProduct().getId());
+        int newQuantityAvailable = product.getQuantityAvailable() - purchaseLine.getQuantity();
+        product.setQuantityAvailable(newQuantityAvailable);
+        productRepo.save(product);
 
         return "redirect:/detailsCommande/" + id;
     }
 
+
+    //DELETE product by id in a purchase
+    @PostMapping("/detailsCommande/{id}/supprimerProduit/{idProd}")
+    public String removeProductFromPurchase(
+            @PathVariable("id") long id,
+            @PathVariable("idProd") long idProd,
+            Model model){
+
+        // delete the product in purchase
+        ProductInPurchaseKey key = new ProductInPurchaseKey(idProd, id);
+        int quantityAdded = productInPurchaseRepo.getOne(key).getQuantity();
+        System.out.println(" ---------- " + quantityAdded);
+        productInPurchaseRepo.deleteById(key);
+
+        // update the quantity of the stock in product table
+        Product product = productRepo.getOne(idProd);
+        int newQuantityAvailable = product.getQuantityAvailable() + quantityAdded;
+        product.setQuantityAvailable(newQuantityAvailable);
+        productRepo.save(product);
+
+        return "redirect:/detailsCommande/" + id;
+    }
+
+
+    // EDITER PRODUIT DANS LA COMMANDE
+    @GetMapping("/detailsCommande/{id}/editerProduit/{idProd}")
+    public String editProductFromPurchase(
+            @PathVariable("id") long id,
+            @PathVariable("idProd") long idProd,
+            Model model
+    ){
+
+        // get purchaseLine pour binding
+        ProductInPurchase purchaseLine = productInPurchaseRepo.getOne(new ProductInPurchaseKey(idProd, id));
+        model.addAttribute("purchaseLine", purchaseLine);
+
+        // add id (as commande id) and idProd as (product id) as model attribute
+        model.addAttribute("idPurchase", id);
+        model.addAttribute("idProduct", idProd);
+
+        return "commandes_product_edit";
+    }
+
+    @PostMapping("/detailsCommande/{id}/editerProduit/{idProd}")
+    public String editProductFromPurchase(
+            @PathVariable("id") long id,
+            @PathVariable("idProd") long idProd,
+            @ModelAttribute("purchaseLine") ProductInPurchase purchaseLine,
+            BindingResult result,
+            Model model){
+
+
+        // get purchaseLine pour binding
+        ProductInPurchase purchaseLineToUpdate = productInPurchaseRepo.getOne(new ProductInPurchaseKey(idProd, id));
+        int oldQuantity = purchaseLineToUpdate.getQuantity();
+        int newQuantity = purchaseLine.getQuantity();
+        purchaseLineToUpdate.setQuantity(purchaseLine.getQuantity());
+        productInPurchaseRepo.save(purchaseLineToUpdate);
+
+        // update the quantity of the stock in product table
+        Product product = productRepo.getOne(idProd);
+        int newQuantityAvailable = product.getQuantityAvailable() + oldQuantity - newQuantity;
+        product.setQuantityAvailable(newQuantityAvailable);
+        productRepo.save(product);
+
+
+
+        return "redirect:/detailsCommande/" + id;
+    }
 
 }
