@@ -143,13 +143,15 @@
                     </thead>
 
                     <tbody>
-                        <tr th:onclick="'javascript:rowClicked(${produit.getId()});'"
+                        <tr th:onclick="'javascript:rowClicked(${product.getId()});'"
                             th:each="product: ${products}"
                         >
                             <td th:text="${product.getName()}" />
                             <td th:text="${product.getUnitPriceBeforeTax()}" />
                             <td th:text="${product.getQuantityAvailable()}" />
                             <td th:text="${product.getCategory().getName()}" />
+                            <td><a th:href="@{/modifierProduit/{id}(id=${product.id})}">Modifier</a></td>
+                            <td><a th:href="@{/supprimerProduit/{id}(id=${product.id})}">Supprimer</a></td>
                         </tr>
                     </tbody>
                 </table>

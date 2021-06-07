@@ -25,22 +25,14 @@ public class ProductController {
     // SHOW ALL PRODUCTS
     @GetMapping("/listerProduits")
     public String showProductList(Model model){
-        model.addAttribute("products", productRepo.findAll());
+        // list all sellable products
+        model.addAttribute("products", productRepo.findByIsSellableTrue());
 
         // get categories list
         List<Category> categories = categoryRepo.findAll();
         model.addAttribute("categories", categories);
 
         return "produits";
-    }
-
-    @GetMapping("/creerProduit")
-    public String createProduct(Model model) {
-
-        Product product = this.productRepo.findById(1L).get();
-        model.addAttribute("product", product);
-        model.addAttribute("categories", categoryRepo.findAll());
-        return "produits_info";
     }
 
     // LIST PRODUCTS BY CATEGORY
@@ -57,7 +49,21 @@ public class ProductController {
         return "produits";
     }
 
-    // CREATE
+    // CREATE NEW
+    @GetMapping("/creerProduit")
+    public String createProduct(Model model) {
+
+        Product product = this.productRepo.findById(1L).get();
+        boolean myboolean = false;
+        //Product product = new Product();
+        model.addAttribute("product", product);
+        model.addAttribute("myboolean", myboolean);
+        model.addAttribute("categories", categoryRepo.findAll());
+        product.setSellable(myboolean);
+        return "produits_info";
+    }
+
+    // SAVE NEW
     @PostMapping("/sauverProduit")
     public String addProduct(@Valid Product product, BindingResult result, Model model) {
         if (result.hasErrors()) {
@@ -65,17 +71,30 @@ public class ProductController {
         }
 
         productRepo.save(product);
-        return "produits";
+        return "redirect:/listerProduits";
     }
 
     // UPDATE
-    @GetMapping("/modifierProduit")
+    @GetMapping("/modifierProduit/{id}")
     public String updateProduct(@PathVariable("id") long id, Model model) {
         Product product= productRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + id));
 
         model.addAttribute("product", product);
-        return "produits_info";
+        return "produits_modif";
+    }
+
+    // SAVE UPDATE
+    @PostMapping("/majProduit/{id}")
+    public String updateProduct(@PathVariable("id") long id, @Valid Product product,
+                             BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            product.setId(id);
+            return "produits_modif";
+        }
+
+        productRepo.save(product);
+        return "redirect:/listerProduits";
     }
 
     // DELETE
@@ -83,7 +102,9 @@ public class ProductController {
     public String deleteProduct(@PathVariable("id") long id, Model model) {
         Product product = productRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-        productRepo.delete(product);
+        // to keep product information in DB, it is only disabled for sale
+        product.setSellable(false);
+        productRepo.save(product);
         return "produits";
     }
 

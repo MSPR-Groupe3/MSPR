@@ -33,4 +33,8 @@ public class User {
     @OneToMany(mappedBy = "seller")
     private Set<Purchase> purchases;
 
+    public String getFullName(){
+        return this.getFirstName() + " " + this.getLastName();
+    }
+
 }

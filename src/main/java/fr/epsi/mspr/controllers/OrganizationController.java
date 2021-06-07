@@ -3,12 +3,14 @@ package fr.epsi.mspr.controllers;
 import fr.epsi.mspr.entities.Organization;
 import fr.epsi.mspr.repositories.OrganizationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+@Controller
 public class OrganizationController {
 
     @Autowired
@@ -32,7 +34,7 @@ public class OrganizationController {
     // SHOW ALL ORGANIZATIONS
     @GetMapping("/listerOrganisations")
     public String showOrganizationList(Model model){
-        model.addAttribute("organization", repoOrga.findAll());
+        model.addAttribute("organizations", repoOrga.findAll());
         return "organisations";
     }
 

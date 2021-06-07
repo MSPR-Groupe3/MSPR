@@ -10,4 +10,5 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findByCategoryId(Long category_id);
+    List<Product> findByIsSellableTrue();
 }

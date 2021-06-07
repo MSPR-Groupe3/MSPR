@@ -102,7 +102,7 @@
 
       <div class="row">
 
-        <form th:object="${product}" id="client_submit" method="post" action="/sauverProduit">
+        <form th:object="${product}" id="product_submit" method="post" action="/sauverProduit">
           <table class="table-input">
             <tr>
               <td class="text-left">Nom : </td>
@@ -136,49 +136,33 @@
               <td>
             </tr>
 
-            <!--
-            <tr th:object="${categories}" >
-
-              <td class="text-left">Catégorie : </td>
-              <td class="text-right">
-                <select field="Catégories">
-                  <option
-                          th:each="category : ${categories}"
-                          th:value="${category.getId()}"
-                          th:text="${category.getName()}"
-                  >
-                  </option>
-                </select>
-
-
-
-                <input type="text" class="input-info" list="drop-down-items" id="categories"/>
-                <datalist id="drop-down-items">
-                  <option th:each="category : ${categories}" th:value="*{category.getName()}">
-                </datalist>
-
-              </td>
-            </tr>
-            -->
           </table>
 
           <div>
-            <input class="art-btn" type="submit" value="Save" />
-            <input class="art-btn" type="submit" value="Delete" />
+            <input class="art-btn" type="submit" value="Sauvegarder" />
+            <!--
+            <input class="art-btn" type="submit" value="Supprimer" />
+            -->
           </div>
 
         </form>
 
       </div>
 
+      <!--
       <hr>
-
+      -->
+      <!--
       <div class="row">
-        <button class="art-btn" type="submit" form="product_submit" formaction="">Supprimer</button>
+
+        <button class="art-btn" type="submit" form="product_delete" formaction="">Supprimer</button>
         <div class="separator-bar"></div>
+
         <div class="separator-bar"></div>
         <button class="art-btn" type="submit" form="product_submit" formaction="">Sauvegarder</button>
       </div>
+      -->
+
 
     </div>
 
@@ -219,24 +203,27 @@
       open = !open;
     });
 
-    $("#first_name").change(function(){
-      $("#first_name").addClass("input-info-changed");
+    $("#name").change(function(){
+      $("#name").addClass("input-info-changed");
     });
 
-    $("#last_name").change(function(){
-      $("#last_name").addClass("input-info-changed");
+    $("#description").change(function(){
+      $("#description").addClass("input-info-changed");
     });
 
-    $("#phone").change(function(){
-      $("#phone").addClass("input-info-changed");
+    $("#unitPriceBeforeTax").change(function(){
+      $("#unitPriceBeforeTax").addClass("input-info-changed");
     });
 
-    $("#email").change(function(){
-      $("#email").addClass("input-info-changed");
+    $("#taxRate").change(function(){
+      $("#taxRate").addClass("input-info-changed");
     });
 
-    $("#company").change(function(){
-      $("#company").addClass("input-info-changed");
+    $("#quantityAvailable").change(function(){
+      $("#quantityAvailable").addClass("input-info-changed");
+
+      $("#isSellable").change(function(){
+        $("#isSellable").addClass("input-info-changed");
     });
   });
 </script>
