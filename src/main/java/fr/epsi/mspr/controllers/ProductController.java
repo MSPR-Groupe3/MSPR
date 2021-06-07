@@ -1,18 +1,17 @@
 package fr.epsi.mspr.controllers;
 
-import fr.epsi.mspr.entities.Contact;
-import fr.epsi.mspr.entities.Product;
+import fr.epsi.mspr.entities.*;
 import fr.epsi.mspr.repositories.CategoryRepository;
 import fr.epsi.mspr.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class ProductController {
@@ -27,13 +26,11 @@ public class ProductController {
     @GetMapping("/listerProduits")
     public String showProductList(Model model){
         model.addAttribute("products", productRepo.findAll());
-        return "produits";
-    }
 
-    // SHOW PRODUCTS BY CATEGORY
-    @GetMapping("/categorieProduits")
-    public String showCategoryProductsList(Model model, int category_id){
-        model.addAttribute("productsByCategory", productRepo.findByCategoryId(category_id));
+        // get categories list
+        List<Category> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+
         return "produits";
     }
 
@@ -44,6 +41,20 @@ public class ProductController {
         model.addAttribute("product", product);
         model.addAttribute("categories", categoryRepo.findAll());
         return "produits_info";
+    }
+
+    // LIST PRODUCTS BY CATEGORY
+    @RequestMapping(value="/listerProduits/category", method = RequestMethod.GET)
+    public String showProductListByCategory(Model model, @RequestParam("id") Long id) {
+        // get products
+        List<Product> products =  productRepo.findByCategoryId(id);
+        model.addAttribute("products", products);
+
+        // get categories list
+        List<Category> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+
+        return "produits";
     }
 
     // CREATE

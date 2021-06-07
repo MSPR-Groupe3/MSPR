@@ -2,10 +2,8 @@ package fr.epsi.mspr.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
 import java.util.Set;
