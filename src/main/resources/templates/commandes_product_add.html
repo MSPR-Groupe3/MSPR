@@ -108,22 +108,30 @@
                         <tr>
                             <td class="text-left">Produit :</td>
                             <td class="text-right">
-                                <select class="dropdown" th:field="*{product}">
+                                <select class="dropdown" th:field="*{product}" id="product_selected">
                                     </option>
                                     <option
-                                            th:each="productAll : ${productsAll}"
-                                            th:value="${productAll.getId()}"
-                                            th:text="${productAll.getName() + ' -- ' + productAll.getReference() + ' -- ' + productAll.getCategory().getName()}"
+                                            th:each="productAllFiltered : ${productsAllFiltered}"
+                                            th:value="${productAllFiltered.getId()}"
+                                            th:text="${productAllFiltered.getName() + ' -- ' + productAllFiltered.getReference() + ' -- ' + productAllFiltered.getCategory().getName()}"
                                     >
                                     </option>
                                 </select>
                             </td>
                         </tr>
+                            <td class="text-left">Prix</td>
+                            <td class="text-right">
+                                <input th:field="*{price}" id="price" class="input-info" type="number" step="0.01" min="0"/>
+                            </td>
                         <tr>
                             <td class="text-left">Quantité :</td>
                             <td class="text-right">
-                                <input th:field="*{quantity}" class="input-info" type="number" step="1" min="0"/>
+                                <input th:field="*{quantity}" id="quantity" class="input-info" type="number" step="1" min="0"/>
                             </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Quantité en stock</td>
+                            <td id="quantity_stock"></td>
                         </tr>
 
                     </table>
@@ -174,7 +182,7 @@
     </div>
 </div>
 
-<script>
+<script th:inline="javascript">
     $(document).ready(function () {
         let open = true
 
@@ -186,6 +194,41 @@
             }
             open = !open;
         });
+
+
+        // set value when product change
+        let productsAllFiltered = [[${productsAllFiltered}]];
+
+        let productIdSelected = parseInt($("#product_selected").val());
+        $("#quantity_stock").text(getquantityAvailable(productIdSelected));
+        let quantityMax = parseInt($("#quantity").val()) + getquantityAvailable(productIdSelected);
+        $("#quantity").attr({"max" : quantityMax});
+        $("#price").val(getPrice(productIdSelected));
+
+        // change value in stock and value max when selected product changed
+        $("#product_selected").on("change", function (){
+            productIdSelected = parseInt($("#product_selected").val());
+            quantityMax = parseInt($("#quantity").val()) + getquantityAvailable(productIdSelected);
+            $("#quantity").attr({"max" : quantityMax});
+            $("#quantity_stock").text(getquantityAvailable(productIdSelected));
+            $("#price").val(getPrice(productIdSelected));
+        });
+
+        // helper function getquantityAvailable
+        function getquantityAvailable(id){
+            for (let i = 0; i < productsAllFiltered.length; i++){
+                if(productsAllFiltered[i].id == id){
+                    return productsAllFiltered[i].quantityAvailable;
+                }
+            }
+        }
+        function getPrice(id){
+            for (let i = 0; i < productsAllFiltered.length; i++){
+                if(productsAllFiltered[i].id == id){
+                    return productsAllFiltered[i].unitPriceBeforeTax;
+                }
+            }
+        }
 
     });
 

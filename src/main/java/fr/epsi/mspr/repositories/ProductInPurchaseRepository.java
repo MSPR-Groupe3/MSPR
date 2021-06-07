@@ -18,4 +18,7 @@ public interface ProductInPurchaseRepository extends JpaRepository<ProductInPurc
             nativeQuery = true
     )
     public void insertProductInPurchase(Long purchaseId, Long productId, int quantity, float price);
+
+    @Query(value = "select coalesce(sum (pip.quantity * pip.price), 0) from ProductInPurchase pip where pip.id.purchaseId = ?1")
+    public float getTotalValue(long id);
 }

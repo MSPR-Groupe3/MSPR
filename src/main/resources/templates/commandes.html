@@ -200,8 +200,8 @@
     $(document).ready(function (){
         let organisationId = [[${organisation_selected}]];
         console.log("organisationId = " + organisationId)
-        $("organisations").val(organisationId);
-        $("organisations option[value=" + organisationId + "]").prop("selected",true);
+        $("#organisations").val(organisationId);
+        $("#organisations option[value=" + organisationId + "]").prop("selected",true);
 
         $("#organisations").change(function (){
             if($(this).val() === "Tout"){
@@ -258,6 +258,11 @@
             tbody.innerHTML += tr
         }
     }
+
+
+
+
+
 </script>
 
 </body>

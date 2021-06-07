@@ -3,7 +3,7 @@
     /*
     font-family: 'Cinzel', 'Montserrat', 'Crimson Text', 'Lora', sans-serif;
      */
-    font-family: Georgia, Verdana, sans-serif
+    font-family: Georgia, Verdana, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -483,6 +483,7 @@ a:hover {
 /* TABLE : list of object (customers, companies, products, purchases */
 
 .table-list {
+    width: 600px;
     border-collapse: collapse;
     border: 2px solid rgb(200, 200, 200);
     letter-spacing: 1px;
@@ -531,17 +532,19 @@ a:hover {
 
 .table_order_product .product_detail {
     border: 1px solid rgb(134, 134, 134);
-    padding: 15px 10px;
+    padding: 10px 10px;
     background-color: rgb(231, 231, 231);
 }
 
 .table_order_product .delete_button{
-    padding: 15px 10px;
+    padding: 10px 0px 10px 30px;
     border: none;
     background-color: rgba(0, 0, 0, 0);
+    /*
     display: flex;
     justify-content: center;
     align-items: center;
+    */
 }
 
 .table_order_product .delete_button .delete-btn{
@@ -592,9 +595,6 @@ a:hover {
 }
 
 .text-left{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
     padding: 0 50px 0 0px;
     height: 60px;
 }
