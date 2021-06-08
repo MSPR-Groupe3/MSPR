@@ -11,7 +11,7 @@
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
         crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/118aaba51a.js" crossorigin="anonymous"></script>
-  <title>ACME Corp - Clients</title>
+  <title>ACME Corp - Infos Produit</title>
 </head>
 <body>
 
@@ -110,21 +110,27 @@
             </tr>
             <tr>
               <td class="text-left">Prix (HT) : </td>
-              <td class="text-right"><input class="input-info" id="price" type="number" th:field="*{unitPriceBeforeTax}" /></td>
+              <td class="text-right"><input class="input-info" id="price" type="number" step="0.01" th:field="*{unitPriceBeforeTax}" /></td>
             </tr>
             <tr>
               <td class="text-left">Taxe : </td>
-              <td class="text-right"><input class="input-info" id="tax" type="number" th:field="*{taxRate}" /></td>
+              <td class="text-right"><input class="input-info" id="tax" type="number" step="0.01" max="0.9" min="0.05" th:field="*{taxRate}" /></td>
             </tr>
             <tr>
               <td class="text-left">Quantité en stock : </td>
               <td class="text-right"><input class="input-info" id="stock" type="number" th:field="*{quantityAvailable}" /></td>
             </tr>
+            <tr>
+              <td class="text-left">Description : </td>
+              <td class="text-right"><input class="input-info" id="description" type="text" th:field="*{description}" /></td>
+            </tr>
 
+            <!--
             <tr>
               <td class="text-left">Disponible : </td>
               <td class="text-right"><input class="input-info" id="email" type="checkbox" th:checked="*{isSellable}" /></td>
             </tr>
+            -->
 
             <tr>
               <td class="text-left">Catégorie : </td>

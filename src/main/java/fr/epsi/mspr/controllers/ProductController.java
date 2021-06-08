@@ -54,12 +54,15 @@ public class ProductController {
     public String createProduct(Model model) {
 
         Product product = this.productRepo.findById(1L).get();
-        boolean myboolean = false;
+        // boolean myboolean = false;
         //Product product = new Product();
         model.addAttribute("product", product);
-        model.addAttribute("myboolean", myboolean);
+        // for test
+        // model.addAttribute("myboolean", myboolean);
+
         model.addAttribute("categories", categoryRepo.findAll());
-        product.setSellable(myboolean);
+        // for test
+        // product.setSellable(myboolean);
         return "produits_info";
     }
 
@@ -81,6 +84,8 @@ public class ProductController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + id));
 
         model.addAttribute("product", product);
+        model.addAttribute("categories", categoryRepo.findAll());
+
         return "produits_modif";
     }
 
@@ -90,15 +95,14 @@ public class ProductController {
                              BindingResult result, Model model) {
         if (result.hasErrors()) {
             product.setId(id);
-            return "produits_modif";
+            return "redirect:/modifierProduit/{id}";
         }
-
         productRepo.save(product);
         return "redirect:/listerProduits";
     }
 
     // DELETE
-    @GetMapping("/supprimerProduit")
+    @GetMapping("/supprimerProduit/{id}")
     public String deleteProduct(@PathVariable("id") long id, Model model) {
         Product product = productRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));

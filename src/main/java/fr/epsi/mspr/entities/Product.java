@@ -18,7 +18,7 @@ public class Product {
     private Long id;
 
     @Column(name = "name", nullable = false)
-    @Pattern(regexp = "[A-Za-z',.?!&-]+")
+    @Pattern(regexp = "[A-Za-zçéèàêîô',.?!& -]+")
     private String name;
     @Column(name = "reference", unique = true)
     private String reference;
@@ -31,7 +31,7 @@ public class Product {
     @Column(name = "quantity_available")
     private int quantityAvailable;
     @Column(name = "is_sellable", nullable = false)
-    private boolean isSellable;
+    private boolean isSellable = true;
 
     @ManyToOne
     @JoinColumn(name="category_id", foreignKey = @ForeignKey(name = "fk_category"))
