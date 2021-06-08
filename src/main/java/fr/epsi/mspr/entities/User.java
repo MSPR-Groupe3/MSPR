@@ -18,18 +18,26 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
-    @Column(name = "firstname")
+    @Column(name = "FIRSTNAME")
     private String firstName;
-    @Column(name = "lastname")
+
+    @Column(name = "LASTNAME")
     private String lastName;
-    @Column(name = "loginemail", nullable = false)
+
+    @Column(name = "LOGINEMAIL", nullable = false)
     private String loginEmail;
-    @Column(name = "passwd", nullable = false)
+
+    @Column(name = "PASSWD", nullable = false)
     private String password;
-    @Column(name = "role")
-    private String role;
+
+    @Column(name = "is_active")
+    private Boolean isActive;
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "role_in_user", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
     @OneToMany(mappedBy = "user")
     @JsonBackReference
