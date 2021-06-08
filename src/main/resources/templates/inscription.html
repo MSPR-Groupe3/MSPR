@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="icon" type="image/png" th:href="@{icons/fav.png}" />
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Cinzel|Crimson+Text|Lora|Montserrat&display=swap"
+          rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+          crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/118aaba51a.js" crossorigin="anonymous"></script>
+    <title>ACME Corp - Inscription</title>
+</head>
+
+<!--
+<body>
+
+<div class="wrapper">
+
+    <div class="sidebar">
+
+        <div class="sidebar_inner">
+
+            <div class="profile_info">
+                <a href="/">
+                    <div class="profile_img">
+                        <img th:src="@{logos/acme_corp.png}" alt="logo pic">
+                    </div>
+                </a>
+            </div>
+
+
+            <ul class="sidebar_menu active">
+                <li>
+                    <a href="/listerClients" class="active">
+                        <img th:src="@{icons/customer.png}" alt="icone clients">
+                        <div class="title">Clients</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/listerOrganisations" class="active">
+                        <img th:src="@{icons/organisation.png}" alt="icone clients">
+                        <div class="title">Organisations</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/listerProduits" class="active">
+                        <img th:src="@{icons/product.png}" alt="icone clients">
+                        <div class="title">Produits</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/listerCommandes" class="active">
+                        <img th:src="@{icons/cube.png}" alt="icone clients">
+                        <div class="title">Commandes</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="stats.html" class="active">
+                        <img th:src="@{icons/statistics.png}" alt="icone clients">
+                        <div class="title">Statistiques</div>
+                    </a>
+                </li>
+            </ul>
+            !--end of sidebar content--
+        </div>
+    </div>
+
+
+    !--Main container--
+    <div class="main-container">
+
+        <!-- TOP NAVBAR --
+        <div class="top_navbar">
+
+            <div class="hamburger">
+                <div class="hamburger_inner">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <!--div class="close"><i class="fas fa-times"></i></div--
+            </div>
+
+            <h4 class="subtitle"><a href="/">l'Atypique Comptoir du Meurtre et de l'Espionnage</a></h4>
+
+
+            <!-- RIGHT SIDE sign up/in--
+
+            <ul class="right_bar">
+                <li><i class="fas fa-search"></i></li>
+
+            </ul>
+        </div>
+
+        <div class="container">
+
+            <div class="row first-row">
+                <div class="cat-header">
+                    <h4><strong>Connectez-vous !</strong></h4>
+                    <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet
+                        consectetur
+                        adipisicing elit. Soluta quisquam, voluptatem accusantium vel eius sapiente, fuga quo
+                        doloremque,
+                        assumenda voluptas natus ea voluptatibus voluptatum quaerat placeat quis adipisci error in?<br>
+                    </p>
+                </div>
+            </div>
+            <hr>
+
+            <div class="row second-row">
+                <div class="sub-cat-card">
+                    <h5><strong>Je créé mon compte</strong></h5>
+
+                    <form method="POST" autocomplete="off" action="#" th:action="@{/registration}" th:object="${user}" role="form" >
+
+                        <label for="loginemail">Mail</label>
+                        <br>
+                        <input type="email" class="input-form" placeholder="Votre mail" id="loginemail" name="loginemail">
+                        <br>
+
+                        <label for="loginemail2">Confirmation mail</label>
+                        <br>
+                        <input type="email" class="input-form" placeholder="Confirmez votre mail" id="loginemail2" name="mail2">
+                        <br>
+
+                        <label for="mdp">Mot de passe</label>
+                        <br>
+                        <input type="password" class="input-form" placeholder="Votre mot de passe" id="mdp" name="mdp">
+                        <br>
+
+                        <label for="mdp2">Confirmation mot de passe</label>
+                        <br>
+                        <input type="password" class="input-form" placeholder="Confirmez votre mot de passe" id="mdp2"
+                               name="mdp2">
+                        <br>
+
+
+                        <br>
+                        <input type="submit" name="forminscription" value="Je m'inscris" class="art-btn"></strong>
+                        <br>
+
+                        <button class="art-btn"><strong><a href="connexion.html">J'ai déjà un compte</a></strong>
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12 segment-one md-mb-30 sm-mb-30">
+                            <h3 class="foot-h3">l'Atypique Comptoir du Meurtre et de l'Espionnage</h3>
+                            <p class="foot-p">Nos solutions à tous vos problèmes</p>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6 col-xs-12 segment-two md-mb-30 sm-mb-30">
+                            <h2 class="foot-h2">Liens utiles</h2>
+                            <ul>
+                                <li><a href="#">Documentation</a></li>
+                                <li><a href="documents/cgv_cgu.pdf" target="_blank">CGU</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <p class=" foot-p footer-bottom-text">Copyright Micka Green 2021 &copy;. All rights reserved.</p>
+        </footer>
+
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        let open = true
+
+        $(".hamburger .fas").click(function () {
+            if (open) {
+                $(".wrapper").addClass("active");
+            } else {
+                $(".wrapper").removeClass("active");
+            }
+            open = !open;
+        });
+    });
+</script>
+</body>
+-->
+
+<body>
+<form th:action="@{/}" method="get">
+    <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Login Page</button>
+</form>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form autocomplete="off" action="#" th:action="@{/registration}"
+                  th:object="${user}" method="post" class="form-horizontal"
+                  role="form">
+
+                <h2>Registration Form</h2>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('firstName')}" th:errors="*{name}"
+                               class="validation-message"></label>
+                        <input type="text" th:field="*{firstName}" placeholder="firstName"
+                               class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                               class="validation-message"></label>
+                        <input type="text" th:field="*{lastName}"
+                               placeholder="Last Name" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <input type="text" th:field="*{loginEmail}" placeholder="loginEmail"
+                               class="form-control"/> <label
+                            th:if="${#fields.hasErrors('loginEmail')}" th:errors="*{loginEmail}"
+                            class="validation-message"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <input type="password" th:field="*{passwd}"
+                               placeholder="Password" class="form-control"/> <label
+                            th:if="${#fields.hasErrors('passwd')}" th:errors="*{passwd}"
+                            class="validation-message"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <button type="submit" class="btn btn-primary btn-block">Register User</button>
+                    </div>
+                </div>
+
+                <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

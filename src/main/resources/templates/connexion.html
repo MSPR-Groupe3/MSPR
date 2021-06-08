@@ -110,19 +110,22 @@
                 <div class="sub-cat-card">
                     <h5><strong>J'accède à mon compte</strong></h5>
 
-                    <form method="POST" th:object="${user}">
+                    <form method="POST" th:action="@{/login}" >
 
-                        <label for="mail">Courriel</label>
+                        <label for="loginemail">Courriel</label>
                         <br>
-                        <input type="email" class="input-form" placeholder="Votre mail" id="mail" name="username" th:field="*{loginEmail}" >
-                        <br>
-
-
-                        <label for="mdp">Mot de passe</label>
-                        <br>
-                        <input type="password" class="input-form" placeholder="Votre mot de passe" id="mdp" name="password" th:field="*{password}" >
+                        <input type="email" class="input-form" placeholder="Votre mail" id="loginemail" name="username" >
                         <br>
 
+
+                        <label for="passwd">Mot de passe</label>
+                        <br>
+                        <input type="password" class="input-form" placeholder="Votre mot de passe" id="passwd" name="passwd" >
+                        <br>
+
+                        <div align="center" th:if="${param.error}">
+                            <p style="font-size: 20px; color: #FF1C19;" >User Name or Password invalid, please verify</p>
+                        </div>
 
 
                         <br>
