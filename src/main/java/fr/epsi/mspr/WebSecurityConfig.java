@@ -30,34 +30,47 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(bCryptPasswordEncoder);
+            .userDetailsService(userDetailsService)
+            .passwordEncoder(bCryptPasswordEncoder);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                //.antMatchers("/").permitAll()
-                .antMatchers("/connexion").permitAll()
-                .antMatchers("/inscription").permitAll()
-                .antMatchers("/**").hasAuthority("seller").anyRequest()
-                .authenticated().and().csrf().disable().formLogin()
+                    .antMatchers("/connexion").permitAll()
+                    .antMatchers("/inscription").permitAll()
+                    .antMatchers("/**").hasAuthority("seller")
+                    .anyRequest().authenticated()
+                .and().csrf().disable().formLogin()
                 .loginPage("/connexion").failureUrl("/connexion?error=true")
-                .defaultSuccessUrl("/index")
-                .usernameParameter("loginemail")
-                .passwordParameter("passwd")
-                .and().logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/connexion").and().exceptionHandling()
-                .accessDeniedPage("/access-denied");
+                    .defaultSuccessUrl("/index")
+                    .usernameParameter("loginemail")
+                    .passwordParameter("passwd")
+                .and()
+                .logout()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .logoutSuccessUrl("/connexion")
+                 .and()
+                 .exceptionHandling()
+                     .accessDeniedPage("/access-denied");
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/resources/**", "/static/**","/css/**", "/js/**","/images/**", "/icons/**", "/logos/**", "/SQL_scripts/**", "/app.js", "/style.css");
+                .antMatchers(
+                    "/resources/**",
+                    "/static/**",
+                    "/css/**",
+                    "/js/**",
+                    "/images/**",
+                    "/icons/**",
+                    "/logos/**",
+                    "/SQL_scripts/**",
+                    "/app.js",
+                    "/style.css");
     }
 
     @Bean

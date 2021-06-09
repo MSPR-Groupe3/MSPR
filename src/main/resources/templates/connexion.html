@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -110,11 +112,11 @@
                 <div class="sub-cat-card">
                     <h5><strong>J'accède à mon compte</strong></h5>
 
-                    <form method="POST" th:action="@{/login}" >
+                    <form name=f th:action="@{/connexion}" method="POST" >
 
                         <label for="loginemail">Courriel</label>
                         <br>
-                        <input type="email" class="input-form" placeholder="Votre mail" id="loginemail" name="username" >
+                        <input type="email" class="input-form" placeholder="Votre mail" id="loginemail" name="loginemail" >
                         <br>
 
 
@@ -129,7 +131,7 @@
 
 
                         <br>
-                        <input type="submit" name="login" value="Se connecter" class="art-btn"></strong>
+                        <button type="Submit" class="art-btn">Se connecter</button>
                         <br>
 
                     </form>

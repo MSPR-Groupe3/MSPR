@@ -65,7 +65,7 @@ public class ConnectionController {
         User user = userService.findByLoginEmail(auth.getName());
         modelAndView.addObject("userName", "Welcome " + user.getFirstName() + " " + user.getLastName() + "/" + user.getLoginEmail() );
         modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
-        modelAndView.setViewName("inscription");
+        modelAndView.setViewName("index");
         return modelAndView;
     }
 

@@ -204,7 +204,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <form autocomplete="off" action="#" th:action="@{/registration}"
+            <form autocomplete="off" action="#" th:action="@{/inscription}"
                   th:object="${user}" method="post" class="form-horizontal"
                   role="form">
 
@@ -239,9 +239,9 @@
 
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <input type="password" th:field="*{passwd}"
+                        <input type="password" th:field="*{password}"
                                placeholder="Password" class="form-control"/> <label
-                            th:if="${#fields.hasErrors('passwd')}" th:errors="*{passwd}"
+                            th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
                             class="validation-message"></label>
                     </div>
                 </div>
