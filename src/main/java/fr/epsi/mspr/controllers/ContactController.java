@@ -27,7 +27,7 @@ public class ContactController {
     @GetMapping("/creerClient")
     public String createContact(Model model) {
 
-        Contact contact = this.contactRepo.findById(1L).get();
+        Contact contact = new Contact();
         model.addAttribute("contact", contact);
         model.addAttribute("organizations", orgaRepo.findAll());
         return "clients_info"; }

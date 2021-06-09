@@ -53,16 +53,10 @@ public class ProductController {
     @GetMapping("/creerProduit")
     public String createProduct(Model model) {
 
-        Product product = this.productRepo.findById(1L).get();
-        // boolean myboolean = false;
-        //Product product = new Product();
+        Product product = new Product();
         model.addAttribute("product", product);
-        // for test
-        // model.addAttribute("myboolean", myboolean);
 
         model.addAttribute("categories", categoryRepo.findAll());
-        // for test
-        // product.setSellable(myboolean);
         return "produits_info";
     }
 

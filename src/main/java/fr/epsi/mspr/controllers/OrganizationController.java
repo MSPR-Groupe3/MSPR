@@ -19,7 +19,7 @@ public class OrganizationController {
     @GetMapping("/creerOrganisation")
     public String createOrganization(Model model) {
 
-        Organization organization = this.repoOrga.findById(1L).get();
+        Organization organization = new Organization();
         model.addAttribute("organization", organization);
         return "organisations_info"; }
 
