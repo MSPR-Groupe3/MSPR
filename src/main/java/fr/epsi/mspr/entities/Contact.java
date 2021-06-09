@@ -30,6 +30,9 @@ public class Contact {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "isReachable")
+    private boolean isReachable = true;
+
     @ManyToOne
     @JoinColumn(name = "organization_id")
     @JsonManagedReference

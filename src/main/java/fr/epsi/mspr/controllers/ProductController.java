@@ -108,7 +108,7 @@ public class ProductController {
     @GetMapping("/supprimerProduit/{id}")
     public String deleteProduct(@PathVariable("id") long id, Model model) {
         Product product = productRepo.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+                .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + id));
         // to keep product information in DB, it is only disabled for sale
         product.setSellable(false);
         productRepo.save(product);

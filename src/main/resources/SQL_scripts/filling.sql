@@ -27,13 +27,13 @@ INSERT INTO `organization` (`company_name`, `street_address1`, `street_address2`
 ('Team Rocket', 'Casino', 'entrée derrière le poster' , 'sous-sol' , 'Céladopole', '211-0205', 'Kanto', '+265 1 23 55 76 90', 'info@team-rocket.net', 2),
 ('Umbrella Corporation', 'Le manoir', null , null , 'Raccoon City', '55131', 'USA', '1-651-435-265', 'contact@umbrellacorp.com', 3);
 
-INSERT INTO `contact` (`firstname`, `lastname`, `phone_number`, `email`, `organization_id`) VALUES
-('Ernst','Stavro Blofeld','01-01-01-76-50','blofeld_ernst@spectre.com', 1),
-('Julius','No','01-01-02-67-54','no_julius@spectre.com', 1),
-('Giovanni','Sakaki','+265 6 87 55 76 99','g.sakaki@team-rocket.net', 2),
-('Jessie','Musashi','+265 6 87 44 76 88','j.musashi@team-rocket.net', 2),
-('Ozwell','Spencer','1-651-435-265','ozwellspencer@umbrellacorp.com', 3),
-('Edward','Ashford','1-651-435-265','edwardashford@umbrellacorp.com', 3);
+INSERT INTO `contact` (`firstname`, `lastname`, `phone_number`, `email`, `organization_id`, `is_reachable`) VALUES
+('Ernst','Stavro Blofeld','01-01-01-76-50','blofeld_ernst@spectre.com', 1, true),
+('Julius','No','01-01-02-67-54','no_julius@spectre.com', 1, true),
+('Giovanni','Sakaki','+265 6 87 55 76 99','g.sakaki@team-rocket.net', 2, true),
+('Jessie','Musashi','+265 6 87 44 76 88','j.musashi@team-rocket.net', 2, true),
+('Ozwell','Spencer','1-651-435-265','ozwellspencer@umbrellacorp.com', 3, true),
+('Edward','Ashford','1-651-435-265','edwardashford@umbrellacorp.com', 3, true);
 
 INSERT INTO `category` (`name`) VALUES
 ('Nettoyage'),

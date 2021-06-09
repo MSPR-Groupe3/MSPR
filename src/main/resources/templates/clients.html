@@ -137,7 +137,7 @@
                             <td th:text="${contact.getLastName()}" />
                             <td th:text="${contact.getOrganization().getCompanyName()}" />
                             <td><a th:href="@{/modifierClient/{id}(id=${contact.id})}">Modifier</a></td>
-                            <!-- <td><a th:href="@{/supprimerClient/{id}(id=${contact.id})}">Supprimer</a></td> -->
+                            <td><a th:href="@{/supprimerClient/{id}(id=${contact.id})}">Supprimer</a></td>
                         </tr>
 
                     </tbody>

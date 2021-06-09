@@ -43,7 +43,7 @@ public class ContactController {
     // SHOW ALL CLIENTS
     @GetMapping("/listerClients")
     public String showContactList(Model model){
-        model.addAttribute("contacts", contactRepo.findAll());
+        model.addAttribute("contacts", contactRepo.findByIsReachableTrue());
         return "clients";
     }
 
@@ -81,19 +81,14 @@ public class ContactController {
         return "redirect:/listerClients";
     }
 
-
-    // EDIT A CLIENT
-    @PostMapping("/modifierClient")
-    public String updateContact(@ModelAttribute Contact contact, Model model){
-        this.contactRepo.save(contact);
-        model.addAttribute("contact", contact);
-    return "clients_create";
-    }
-
     // DELETE A CLIENT
-    @PostMapping("/supprimerClient")
-    public String deleteContact(@PathVariable("id") int id, Model model) {
-
-        return "clients_create";
+    @GetMapping("/supprimerClient/{id}")
+    public String deleteContact(@PathVariable("id") long id, Model model) {
+        Contact contact = contactRepo.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid contact Id:" + id));
+        // to keep contact information in DB, it is only disabled for contact
+        contact.setReachable(false);
+        contactRepo.save(contact);
+        return "clients";
     }
 }

@@ -55,6 +55,7 @@ CREATE TABLE IF NOT EXISTS `contact` (
     `phone_number` varchar(255),
     `email` varchar(255),
     `organization_id` bigint(20),
+	`is_reachable` boolean,
     CONSTRAINT fk_organization FOREIGN KEY (`organization_id`)
     REFERENCES `organization`(`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
