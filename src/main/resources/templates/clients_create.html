@@ -11,7 +11,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
           crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/118aaba51a.js" crossorigin="anonymous"></script>
-    <title>ACME Corp - Clients</title>
+    <title>ACME Corp - Créer Client</title>
 </head>
 <body>
 
@@ -105,15 +105,15 @@
                 <form th:object="${contact}" id="client_submit" method="post" action="/sauverClient">
                         <table class="table-input">
                             <tr>
-                                <td class="text-left">Firstname : </td>
+                                <td class="text-left">Prénom : </td>
                                 <td class="text-right"> <input class="input-info" id="first_name" type="text" th:field="*{firstName}"/> </td>
                             </tr>
                             <tr>
-                                <td class="text-left">Last name : </td>
+                                <td class="text-left">Nom : </td>
                                 <td class="text-right"> <input class="input-info" id="last_name" type="text" th:field="*{lastName}"/> </td>
                             </tr>
                             <tr>
-                                <td class="text-left">Phone : </td>
+                                <td class="text-left">Téléphone : </td>
                                 <td class="text-right"> <input class="input-info" id="phone" type="tel" th:field="*{phoneNumber}"/> </td>
                             </tr>
                             <tr>
@@ -131,8 +131,7 @@
                             </tr>
                         </table>
                     <div>
-                        <input class="art-btn" type="submit" value="Save" />
-                        <input class="art-btn" type="submit" value="Delete" />
+                        <input class="art-btn" type="submit" value="Sauvegarder" />
                     </div>
                 </form>
             </div>
