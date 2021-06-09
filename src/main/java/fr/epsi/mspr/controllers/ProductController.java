@@ -10,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -39,7 +38,7 @@ public class ProductController {
     @RequestMapping(value="/listerProduits/category", method = RequestMethod.GET)
     public String showProductListByCategory(Model model, @RequestParam("id") Long id) {
         // get products
-        List<Product> products =  productRepo.findByCategoryId(id);
+        List<Product> products =  productRepo.findByCategoryIdAndIsSellableTrue(id);
         model.addAttribute("products", products);
 
         // get categories list
@@ -47,6 +46,16 @@ public class ProductController {
         model.addAttribute("categories", categories);
 
         return "produits";
+    }
+
+    // READ ONE
+    @GetMapping("/detailsProduit/{id}")
+    public String showProduct(@PathVariable("id") long id, Model model){
+        Product product = productRepo.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid product id:" + id));
+        model.addAttribute("product", product);
+
+        return "produits_info";
     }
 
     // CREATE NEW
@@ -57,7 +66,7 @@ public class ProductController {
         model.addAttribute("product", product);
 
         model.addAttribute("categories", categoryRepo.findAll());
-        return "produits_info";
+        return "produits_create";
     }
 
     // SAVE NEW

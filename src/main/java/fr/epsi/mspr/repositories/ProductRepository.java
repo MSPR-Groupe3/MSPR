@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    List<Product> findByCategoryId(Long category_id);
+    List<Product> findByCategoryIdAndIsSellableTrue(Long category_id);
     List<Product> findByIsSellableTrue();
 
     //Update the quantity of product

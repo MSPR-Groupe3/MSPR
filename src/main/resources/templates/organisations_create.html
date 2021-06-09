@@ -103,48 +103,57 @@
 
             <div class="row">
 
-                <form th:object="${organization}" id="organization_submit" method="post" action="#">
+                <form th:object="${organization}" id="organization_submit" method="post" action="/sauverOrganisation">
                     <table class="table-input">
                         <tr>
                             <td class="text-left">Nom : </td>
-                            <td class="text-right" th:text="${organization.getCompanyName()}"/></td>
+                            <td class="text-right"><input class="input-info" id="companyName" type="text" th:field="*{companyName}"/></td>
                         </tr>
                         <tr>
                             <td class="text-left">Adresse : </td>
-                            <td class="text-right" th:text="${organization.getStreetName1()}"/></td>
+                            <td class="text-right"><input class="input-info" id="streetAddress1" type="text" th:field="*{streetName1}"/></td>
                         </tr>
                         <tr>
                             <td class="text-left">Complément d'adresse : <br>(Bâtiment, Entrée, ...) </td>
-                            <td class="text-right" th:text="${organization.getStreetName2()}"/></td>
+                            <td class="text-right"><input class="input-info" id="streetAddress2" type="text" th:field="*{streetName2}"/></td>
                         </tr>
                         <tr>
                             <td class="text-left">Complément d'adresse : <br>(Appartement, Etage, ...) </td>
-                            <td class="text-right" th:text="${organization.getStreetName3()}"/></td>
+                            <td class="text-right"><input class="input-info" id="streetAddress3" type="text" th:field="*{streetName3}"/></td>
                         </tr>
                         <tr>
                             <td class="text-left">Ville : </td>
-                            <td class="text-right" th:text="${organization.getCityName()}"/></td>
+                            <td class="text-right"><input class="input-info" id="cityName" type="text" th:field="*{cityName}"/></td>
                         </tr>
                         <tr>
                             <td class="text-left">Code postal : </td>
-                            <td class="text-right" th:text="${organization.getPostalCode()}"/></td>
+                            <td class="text-right"><input class="input-info" id="postalCode" type="text" th:field="*{postalCode}"/></td>
                         </tr>
                         <tr>
                             <td class="text-left">Pays : </td>
-                            <td class="text-right" th:text="${organization.getCountry()}"/></td>
+                            <td class="text-right"><input class="input-info" id="country" type="text" th:field="*{country}"/></td>
                         </tr>
                         <tr>
                             <td class="text-left">Phone : </td>
-                            <td class="text-right" th:text="${organization.getPhoneNumber()}"/></td>
+                            <td class="text-right"><input class="input-info" id="phoneNumber" type="tel" th:field="*{phoneNumber}"/></td>
                         </tr>
                         <tr>
                             <td class="text-left">Email : </td>
-                            <td class="text-right" th:text="${organization.getEmail()}"/></td>
+                            <td class="text-right"><input class="input-info" id="email" type="email" th:field="*{email}"/></td>
                         </tr>
 
                     </table>
                 </form>
 
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <button class="art-btn" type="submit" form="organization_delete" formaction="">Supprimer</button>
+                <div class="separator-bar"></div>
+                <div class="separator-bar"></div>
+                <button class="art-btn" type="submit" form="organization_submit" formaction="">Sauvegarder</button>
             </div>
 
         </div>

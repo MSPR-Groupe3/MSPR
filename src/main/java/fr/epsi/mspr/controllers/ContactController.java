@@ -30,7 +30,7 @@ public class ContactController {
         Contact contact = new Contact();
         model.addAttribute("contact", contact);
         model.addAttribute("organizations", orgaRepo.findAll());
-        return "clients_info"; }
+        return "clients_create"; }
 
 
     // CREATE A CLIENT
@@ -45,6 +45,16 @@ public class ContactController {
     public String showContactList(Model model){
         model.addAttribute("contacts", contactRepo.findAll());
         return "clients";
+    }
+
+    // SHOW ONE
+    @GetMapping("/detailsClient/{id}")
+    public String showContact(@PathVariable("id") long id, Model model){
+        Contact contact = contactRepo.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid contact id:" + id));
+        model.addAttribute("contact", contact);
+
+        return "clients_info";
     }
 
     // UPDATE
@@ -77,13 +87,13 @@ public class ContactController {
     public String updateContact(@ModelAttribute Contact contact, Model model){
         this.contactRepo.save(contact);
         model.addAttribute("contact", contact);
-    return "clients_info";
+    return "clients_create";
     }
 
     // DELETE A CLIENT
     @PostMapping("/supprimerClient")
     public String deleteContact(@PathVariable("id") int id, Model model) {
 
-        return "clients_info";
+        return "clients_create";
     }
 }

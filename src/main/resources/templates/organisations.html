@@ -132,7 +132,7 @@
                     </thead>
 
                     <tbody>
-                        <tr th:onclick="'javascript:rowClicked(${organization.getId()});'"
+                        <tr th:onclick="'window.location.href=\'/detailsOrganisation/' + ${organization.getId()} + '\''"
                             th:each="organization: ${organizations}"
                         >
                             <td th:text="${organization.getCompanyName()}" />
@@ -157,7 +157,7 @@
                     </p>
                     <button class="art-btn">
                         <strong>
-                            <a href="clients_info.html">Ajouter un client</a>
+                            <a href="clients_create.html">Ajouter un client</a>
                         </strong>
                     </button>
                 </div>

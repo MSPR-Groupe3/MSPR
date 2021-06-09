@@ -96,56 +96,48 @@
         <div class="container">
 
             <div class="row">
-                <h4>Info de l'organisation</h4>
+                <h4>Info du contact</h4>
             </div>
 
             <hr>
 
             <div class="row">
-
-                <form th:object="${organization}" id="organization_submit" method="post" action="#">
-                    <table class="table-input">
-                        <tr>
-                            <td class="text-left">Nom : </td>
-                            <td class="text-right" th:text="${organization.getCompanyName()}"/></td>
-                        </tr>
-                        <tr>
-                            <td class="text-left">Adresse : </td>
-                            <td class="text-right" th:text="${organization.getStreetName1()}"/></td>
-                        </tr>
-                        <tr>
-                            <td class="text-left">Complément d'adresse : <br>(Bâtiment, Entrée, ...) </td>
-                            <td class="text-right" th:text="${organization.getStreetName2()}"/></td>
-                        </tr>
-                        <tr>
-                            <td class="text-left">Complément d'adresse : <br>(Appartement, Etage, ...) </td>
-                            <td class="text-right" th:text="${organization.getStreetName3()}"/></td>
-                        </tr>
-                        <tr>
-                            <td class="text-left">Ville : </td>
-                            <td class="text-right" th:text="${organization.getCityName()}"/></td>
-                        </tr>
-                        <tr>
-                            <td class="text-left">Code postal : </td>
-                            <td class="text-right" th:text="${organization.getPostalCode()}"/></td>
-                        </tr>
-                        <tr>
-                            <td class="text-left">Pays : </td>
-                            <td class="text-right" th:text="${organization.getCountry()}"/></td>
-                        </tr>
-                        <tr>
-                            <td class="text-left">Phone : </td>
-                            <td class="text-right" th:text="${organization.getPhoneNumber()}"/></td>
-                        </tr>
-                        <tr>
-                            <td class="text-left">Email : </td>
-                            <td class="text-right" th:text="${organization.getEmail()}"/></td>
-                        </tr>
-
-                    </table>
+                <form th:object="${contact}" id="client_submit" method="post" action="/sauverClient">
+                        <table class="table-input">
+                            <tr>
+                                <td class="text-left">Firstname : </td>
+                                <td class="text-right"> <input class="input-info" id="first_name" type="text" th:field="*{firstName}"/> </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Last name : </td>
+                                <td class="text-right"> <input class="input-info" id="last_name" type="text" th:field="*{lastName}"/> </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Phone : </td>
+                                <td class="text-right"> <input class="input-info" id="phone" type="tel" th:field="*{phoneNumber}"/> </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Email : </td>
+                                <td class="text-right"> <input class="input-info" id="email" type="email" th:field="*{email}"/> </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Organisation : </td>
+                                <td class="text-right">
+                                    <select th:field="${contact.organization.id}">
+                                        <option th:each="organization : ${organizations}" th:value="${organization.getId()}" th:text="${organization.getCompanyName()}" >
+                                        </option>
+                                    </select>
+                                <td>
+                            </tr>
+                        </table>
+                    <div>
+                        <input class="art-btn" type="submit" value="Save" />
+                        <input class="art-btn" type="submit" value="Delete" />
+                    </div>
                 </form>
-
             </div>
+
+            <hr>
 
         </div>
 

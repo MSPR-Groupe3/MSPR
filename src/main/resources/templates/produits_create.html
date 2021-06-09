@@ -11,7 +11,7 @@
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
         crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/118aaba51a.js" crossorigin="anonymous"></script>
-  <title>ACME Corp - Clients</title>
+  <title>ACME Corp - Infos Produit</title>
 </head>
 <body>
 
@@ -81,7 +81,6 @@
         <div class="hamburger_inner">
           <i class="fas fa-bars"></i>
         </div>
-        <!--div class="close"><i class="fas fa-times"></i></div-->
       </div>
 
       <h4 class="subtitle"><a href="/">l'Atypique Comptoir du Meurtre et de l'Espionnage</a></h4>
@@ -96,40 +95,80 @@
     <div class="container">
 
       <div class="row">
-        <h4>Info du contact</h4>
+        <h4>Info du produit</h4>
       </div>
 
       <hr>
 
       <div class="row">
-        <form th:object="${contact}" id="client_submit" method="post" action="#">
+
+        <form th:object="${product}" id="product_submit" method="post" action="/sauverProduit">
           <table class="table-input">
             <tr>
-              <td class="text-left">Prénom : </td>
-              <td class="text-right" th:text="${contact.getFirstName()}"/> </td>
-            </tr>
-            <tr>
               <td class="text-left">Nom : </td>
-              <td class="text-right" th:text="${contact.getLastName()}"/> </td>
+              <td class="text-right"><input class="input-info" id="name" type="text" th:field="*{name}" /></td>
             </tr>
             <tr>
-              <td class="text-left">Téléphone : </td>
-              <td class="text-right" th:text="${contact.getPhoneNumber()}"/> </td>
+              <td class="text-left">Prix (HT) : </td>
+              <td class="text-right"><input class="input-info" id="price" type="number" step="0.01" th:field="*{unitPriceBeforeTax}" /></td>
             </tr>
             <tr>
-              <td class="text-left">Email : </td>
-              <td class="text-right" th:text="${contact.getEmail()}"/> </td>
+              <td class="text-left">Taxe : </td>
+              <td class="text-right"><input class="input-info" id="tax" type="number" step="0.01" max="0.9" min="0.05" th:field="*{taxRate}" /></td>
             </tr>
             <tr>
-              <td class="text-left">Organisation : </td>
-              <td class="text-right" th:text="${contact.getOrganization().getCompanyName()}"/> </td>
+              <td class="text-left">Quantité en stock : </td>
+              <td class="text-right"><input class="input-info" id="stock" type="number" th:field="*{quantityAvailable}" /></td>
+            </tr>
+            <tr>
+              <td class="text-left">Description : </td>
+              <td class="text-right"><input class="input-info" id="description" type="text" th:field="*{description}" /></td>
+            </tr>
 
+            <!--
+            <tr>
+              <td class="text-left">Disponible : </td>
+              <td class="text-right"><input class="input-info" id="email" type="checkbox" th:checked="*{isSellable}" /></td>
             </tr>
+            -->
+
+            <tr>
+              <td class="text-left">Catégorie : </td>
+              <td class="text-right">
+                <select th:field="${product.category.id}">
+                  <option th:each="category : ${categories}" th:value="${category.getId()}" th:text="${category.getName()}" >
+                  </option>
+                </select>
+              <td>
+            </tr>
+
           </table>
+
+          <div>
+            <input class="art-btn" type="submit" value="Sauvegarder" />
+            <!--
+            <input class="art-btn" type="submit" value="Supprimer" />
+            -->
+          </div>
+
         </form>
+
       </div>
 
+      <!--
       <hr>
+      -->
+      <!--
+      <div class="row">
+
+        <button class="art-btn" type="submit" form="product_delete" formaction="">Supprimer</button>
+        <div class="separator-bar"></div>
+
+        <div class="separator-bar"></div>
+        <button class="art-btn" type="submit" form="product_submit" formaction="">Sauvegarder</button>
+      </div>
+      -->
+
 
     </div>
 
@@ -170,24 +209,27 @@
       open = !open;
     });
 
-    $("#first_name").change(function(){
-      $("#first_name").addClass("input-info-changed");
+    $("#name").change(function(){
+      $("#name").addClass("input-info-changed");
     });
 
-    $("#last_name").change(function(){
-      $("#last_name").addClass("input-info-changed");
+    $("#description").change(function(){
+      $("#description").addClass("input-info-changed");
     });
 
-    $("#phone").change(function(){
-      $("#phone").addClass("input-info-changed");
+    $("#unitPriceBeforeTax").change(function(){
+      $("#unitPriceBeforeTax").addClass("input-info-changed");
     });
 
-    $("#email").change(function(){
-      $("#email").addClass("input-info-changed");
+    $("#taxRate").change(function(){
+      $("#taxRate").addClass("input-info-changed");
     });
 
-    $("#company").change(function(){
-      $("#company").addClass("input-info-changed");
+    $("#quantityAvailable").change(function(){
+      $("#quantityAvailable").addClass("input-info-changed");
+
+      $("#isSellable").change(function(){
+        $("#isSellable").addClass("input-info-changed");
     });
   });
 </script>

@@ -21,14 +21,14 @@ public class OrganizationController {
 
         Organization organization = new Organization();
         model.addAttribute("organization", organization);
-        return "organisations_info"; }
+        return "organisations_create"; }
 
     // CREATE AN ORGANIZATION
     @PostMapping("/sauverOrganisation")
     public String saveOrganization(@ModelAttribute Organization organization, Model model) {
         this.repoOrga.save(organization);
         model.addAttribute("organization", organization);
-        return "organisations_info";
+        return "organisations_create";
     }
 
     // SHOW ALL ORGANIZATIONS
@@ -38,18 +38,28 @@ public class OrganizationController {
         return "organisations";
     }
 
+    // SHOW ONE
+    @GetMapping("/detailsOrganisation/{id}")
+    public String showOrganization(@PathVariable("id") long id, Model model){
+        Organization organization = repoOrga.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid organization id:" + id));
+        model.addAttribute("organization", organization);
+
+        return "organisations_info";
+    }
+
     // EDIT AN ORGANIZATION
     @PostMapping("/modifierOrganisation")
     public String updateOrganization(@ModelAttribute Organization organization, Model model){
         this.repoOrga.save(organization);
         model.addAttribute("organization", organization);
-        return "organisations_info";
+        return "organisations_create";
     }
 
     // DELETE AN ORGANIZATION
     @PostMapping("/supprimerOrganisation")
     public String deleteOrganization(@PathVariable("id") int id, Model model) {
 
-        return "organisations_info";
+        return "organisations_create";
     }
 }

@@ -142,7 +142,7 @@
                     </thead>
 
                     <tbody>
-                        <tr th:onclick="'javascript:rowClicked(${product.getId()});'"
+                        <tr th:onclick="'window.location.href=\'/detailsProduit/' + ${product.getId()} + '\''"
                             th:each="product: ${products}"
                         >
                             <td th:text="${product.getName()}" />
