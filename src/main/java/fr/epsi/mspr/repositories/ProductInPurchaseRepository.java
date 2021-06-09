@@ -2,6 +2,7 @@ package fr.epsi.mspr.repositories;
 import fr.epsi.mspr.entities.Product;
 import fr.epsi.mspr.entities.ProductInPurchase;
 import fr.epsi.mspr.entities.ProductInPurchaseKey;
+import fr.epsi.mspr.entities.Purchase;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -25,4 +26,5 @@ public interface ProductInPurchaseRepository extends JpaRepository<ProductInPurc
 
     @Query(value = "select coalesce(sum (pip.quantity * pip.price), 0) from ProductInPurchase pip where pip.id.purchaseId = ?1")
     public float getTotalValue(long id);
+
 }
