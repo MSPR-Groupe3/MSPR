@@ -1,11 +1,13 @@
 USE mspr;
 
+
+
 INSERT INTO `user` (`firstname`, `lastname`, `loginemail`, `passwd`, `is_active`) VALUES
-('Maud','Becam','maudus@aol.fr', '$2y$10$aZ4dOMDeVBZdMEEtbrE1UeB.uGgNbVMOgkF4blMaFssdUm5zPgTBS', true ),
-('Mickaëlle','Green','mi-k@skyblog.fr','$2y$10$PlfSGdi0KNPTd56.C2Mkk.Am4dLDdtrE0MFyt/Pm8ZE9ANQRsqJgm', true ),
-('Phi','Tran','filoo@msn.com','$2y$10$BfMtK5f53pEBLk7h0qTDe.MY.tjijMFB4ZWLMv0MdUsv.x3SNwhny', true ),
-('Corentin','Villiermet','coco@wanadoo.fr','$2y$10$ZPbU3HJ5gQ3/HFh1xWXBYuybb6ZEXulAzm9Cww/5cK88WdNiBFdom', true ),
-('Mickaël','Gaillard','micky@lycoos.com','$2y$10$7UILhfy1byfq8rSdnnXkuOxfB.29Y/yKtHgc5DH9D4M3iy5Ccr41K', true);
+('Maud','Becam','maudus@aol.fr', '$2a$10$L0USrJZRb5V4AOheTfO2ze3FqdBHaK5S0jKOoZ3uF/onjIrFsUxXC', true ),
+('Mickaëlle','Green','mi-k@skyblog.fr','$2a$10$DbFTzNCRPUvAYxpWuwoGWemX40DQ.lL5xINfonh5QR5FkQBitgbKe', true ),
+('Phi','Tran','filoo@msn.com','$2a$10$.cJ1cTbW2FgUpVEWkGkLO.tMseDXx4LoJJipTGUKrI0vwGZlWLhBu', true ),
+('Corentin','Villiermet','coco@wanadoo.fr','$2a$10$6/UzOwWG4ws6AmFnq/2gOuI1PRcNMnTxZ4gbcBrQy.HKZaCchzJBG', true ),
+('Mickaël','Gaillard','micky@lycoos.com','$2a$10$adLks4jKcQBE05Lh1xV0dOkfkx9KtaQ4fQRl9cSr5se5ZF86iJX3y', true);
 
 INSERT INTO `roles` (`role`) VALUES
 ('seller'),
@@ -17,7 +19,6 @@ INSERT INTO `role_in_user` (`user_id`, `role_id`) VALUES
 (3, 1),
 (4, 1),
 (5, 2);
-
 
 
 
