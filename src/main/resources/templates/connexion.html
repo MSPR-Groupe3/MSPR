@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +24,7 @@
         <div class="sidebar_inner">
 
             <div class="profile_info">
-                <a href="/">
+                <a href="index.html">
                     <div class="profile_img">
                         <img th:src="@{/logos/acme_corp.png}" alt="logo pic">
                     </div>
@@ -90,10 +92,8 @@
 
             <!-- RIGHT SIDE sign up/in and search-->
 
-            <ul class="right_bar">
-                <li><a href="connexion.html"><i class="fas fa-user fa-2x"></i></a></li>
-                <!--li><a href="connexion.html"><img src="../static/icons/user.png" alt="user icon"></a></li-->
-            </ul>
+            <!-- no logout icon here -->
+
         </div>
 
 
@@ -101,14 +101,7 @@
 
             <div class="row first-row">
                 <div class="cat-header">
-                    <h4><strong>Accédez à votre compte</strong></h4>
-                    <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet
-                        consectetur
-                        adipisicing elit. Soluta quisquam, voluptatem accusantium vel eius sapiente, fuga quo
-                        doloremque,
-                        assumenda voluptas natus ea voluptatibus voluptatum quaerat placeat quis adipisci error in?<br>
-                    </p>
-
+                    <h4><strong>Connectez-vous !</strong></h4>
                 </div>
             </div>
             <hr>
@@ -116,20 +109,29 @@
             <div class="row second-row">
                 <div class="sub-cat-card">
                     <h5><strong>J'accède à mon compte</strong></h5>
-                    <form action="" method="POST">
 
-                        <h5>Adresse Email</h5>
-                        <input type="email" name="mailconnect" placeholder="Mail">
+                    <form name=f th:action="@{/connexion}" method="POST" >
 
-                        <h5>Mot de passe</h5>
-                        <input type="password" name="mdpconnect" placeholder="Mot de passe">
-
+                        <label for="loginemail">Courriel</label>
                         <br>
-                        <input type="submit" name="formconnexion" class="art-btn" value="Se connecter">
+                        <input type="email" class="input-form" placeholder="Votre mail" id="loginemail" name="loginemail" >
                         <br>
 
-                        <button class="art-btn"><strong><a href="inscription.html">Je créé mon compte</a> </strong>
-                        </button>
+
+                        <label for="passwd">Mot de passe</label>
+                        <br>
+                        <input type="password" class="input-form" placeholder="Votre mot de passe" id="passwd" name="passwd" >
+                        <br>
+
+                        <div align="center" th:if="${param.error}">
+                            <p style="font-size: 20px; color: #FF1C19;" >User Name or Password invalid, please verify</p>
+                        </div>
+
+
+                        <br>
+                        <button type="Submit" class="art-btn">Se connecter</button>
+                        <br>
+
                     </form>
                 </div>
 
@@ -137,7 +139,6 @@
         </div>
 
         <footer>
-
             <div class="footer-top">
                 <div class="container">
                     <div class="row">

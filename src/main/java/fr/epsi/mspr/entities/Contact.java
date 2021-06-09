@@ -1,13 +1,18 @@
 package fr.epsi.mspr.entities;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;
 
-@Data @AllArgsConstructor @RequiredArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor @RequiredArgsConstructor
 @Entity
 @Table
 public class Contact {
@@ -27,9 +32,11 @@ public class Contact {
 
     @ManyToOne
     @JoinColumn(name = "organization_id")
+    @JsonManagedReference
     private Organization organization;
 
     @OneToMany(mappedBy = "contact")
+    @JsonBackReference
     private Set<Purchase> purchases;
 
     // Methode pour recuperer le nom+prenom + organisation d'un contazvt

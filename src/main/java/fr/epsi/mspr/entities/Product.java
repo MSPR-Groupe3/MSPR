@@ -1,5 +1,7 @@
 package fr.epsi.mspr.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.springframework.stereotype.Repository;
 
@@ -7,8 +9,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.util.Set;
 
+@Getter
+@Setter
 @AllArgsConstructor @RequiredArgsConstructor
-@Getter @Setter
 @Entity
 @Table
 public class Product {
@@ -40,9 +43,11 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name="category_id", foreignKey = @ForeignKey(name = "fk_category"))
+    @JsonManagedReference
     private Category category;
 
     @OneToMany(mappedBy = "product")
+    @JsonBackReference
     private Set<ProductInPurchase> purchaseLines;
 
 }

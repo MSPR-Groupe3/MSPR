@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/style.css}">
-    <link rel="icon" type="image/png" th:href="@{/icons/fav.png}" />
+    <link rel="icon" type="image/png" th:href="@{icons/fav.png}"/>
     <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Cinzel|Crimson+Text|Lora|Montserrat&display=swap"
           rel="stylesheet">
@@ -81,10 +81,9 @@
                 <div class="hamburger_inner">
                     <i class="fas fa-bars"></i>
                 </div>
-                <!--div class="close"><i class="fas fa-times"></i></div-->
             </div>
 
-            <h4 class="subtitle"><a href="/">l'Atypique Comptoir du Meurtre et de l'Espionnage</a></h4>
+            <h4 class="subtitle"><a href="index.html">l'Atypique Comptoir du Meurtre et de l'Espionnage</a></h4>
 
 
             <!-- RIGHT SIDE sign out logo-->
@@ -94,75 +93,68 @@
         </div>
 
         <div class="container">
+
             <div class="row">
-                <div class="cat-header">
-                    <h4><strong>lister des organisations</strong></h4>
-                </div>
+                <h4>Produit dans la commande</h4>
             </div>
 
-            <div class="separator-bar"></div>
+            <hr>
 
             <div class="row">
-                <button class="art-btn">
-                    <strong>
-                        <a href="/creerOrganisation">Ajouter une organisation</a>
-                    </strong>
-                </button>
-            </div>
 
-            <div class="separator-bar"></div>
-            <div class="separator-bar"></div>
+                <form id="add_purchase_product" th:object="${purchaseLine}">
 
-            <div class="row">
-                <input class="search-bar" type="text" placeholder="Rechercher une organisation">
-            </div>
-
-            <div class="separator-bar"></div>
-            <div class="separator-bar"></div>
-
-            <div class="row">
-                <table class="table-list">
-                    <thead>
+                    <table class="table-input">
                         <tr>
-                            <th>Nom</th>
-                            <th>Ville</th>
-                            <th>Pays</th>
-                            <th>Référent</th>
+                            <td class="text-left">Produit :</td>
+                            <td class="text-right">
+                                <select class="dropdown" th:field="*{product}" id="product_selected">
+                                    </option>
+                                    <option
+                                            th:each="productAllFiltered : ${productsAllFiltered}"
+                                            th:value="${productAllFiltered.getId()}"
+                                            th:text="${productAllFiltered.getName() + ' -- ' + productAllFiltered.getReference() + ' -- ' + productAllFiltered.getCategory().getName()}"
+                                    >
+                                    </option>
+                                </select>
+                            </td>
                         </tr>
-                    </thead>
+                            <td class="text-left">Prix</td>
+                            <td class="text-right">
+                                <input th:field="*{price}" id="price" class="input-info" type="number" step="0.01" min="0"/>
+                            </td>
+                        <tr>
+                            <td class="text-left">Quantité :</td>
+                            <td class="text-right">
+                                <input th:field="*{quantity}" id="quantity" class="input-info" type="number" step="1" min="0"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Quantité en stock</td>
+                            <td id="quantity_stock"></td>
+                        </tr>
 
-                    <tbody>
-                        <tr th:onclick="'javascript:rowClicked(${organization.getId()});'"
-                            th:each="organization: ${organizations}"
+                    </table>
+
+                    <div class="row" th:object="${idPurchase}">
+                        <button class="art-btn" type="button"
+                                th:onclick="'window.location.href=\'' + @{/detailsCommande/{id}(id=${idPurchase})} + '\''"
                         >
-                            <td th:text="${organization.getCompanyName()}" />
-                            <td th:text="${organization.getCityName()}" />
-                            <td th:text="${organization.getCountry()}" />
-                            <td th:text="${organization.getUser().getFullName()}" />
-                        </tr>
-                    </tbody>
+                            Annuler
+                        </button>
 
-                </table>
+                        <div class="separator-bar"></div>
+
+                        <button class="art-btn" type="submit" form="add_purchase_product"
+                                formmethod="post"
+                                th:formaction="@{/detailsCommande/{id}/ajouterProduit(id=${idPurchase})}"
+                        >
+                            Sauvegarder
+                        </button>
+                    </div>
+
+                </form>
             </div>
-
-            <br>
-
-            <!--
-            <div class="row">
-                <div class="item">
-                    <h4><strong>Ajouter un client</strong></h4>
-                    <p>
-                        Cliquer sur le bouton pour ajouter un client
-                        <br>
-                    </p>
-                    <button class="art-btn">
-                        <strong>
-                            <a href="clients_info.html">Ajouter un client</a>
-                        </strong>
-                    </button>
-                </div>
-            </div>
-            -->
 
         </div>
 
@@ -190,7 +182,7 @@
     </div>
 </div>
 
-<script>
+<script th:inline="javascript">
     $(document).ready(function () {
         let open = true
 
@@ -202,14 +194,45 @@
             }
             open = !open;
         });
+
+
+        // set value when product change
+        let productsAllFiltered = [[${productsAllFiltered}]];
+
+        let productIdSelected = parseInt($("#product_selected").val());
+        $("#quantity_stock").text(getquantityAvailable(productIdSelected));
+        let quantityMax = parseInt($("#quantity").val()) + getquantityAvailable(productIdSelected);
+        $("#quantity").attr({"max" : quantityMax});
+        $("#price").val(getPrice(productIdSelected));
+
+        // change value in stock and value max when selected product changed
+        $("#product_selected").on("change", function (){
+            productIdSelected = parseInt($("#product_selected").val());
+            quantityMax = parseInt($("#quantity").val()) + getquantityAvailable(productIdSelected);
+            $("#quantity").attr({"max" : quantityMax});
+            $("#quantity_stock").text(getquantityAvailable(productIdSelected));
+            $("#price").val(getPrice(productIdSelected));
+        });
+
+        // helper function getquantityAvailable
+        function getquantityAvailable(id){
+            for (let i = 0; i < productsAllFiltered.length; i++){
+                if(productsAllFiltered[i].id == id){
+                    return productsAllFiltered[i].quantityAvailable;
+                }
+            }
+        }
+        function getPrice(id){
+            for (let i = 0; i < productsAllFiltered.length; i++){
+                if(productsAllFiltered[i].id == id){
+                    return productsAllFiltered[i].unitPriceBeforeTax;
+                }
+            }
+        }
+
     });
-</script>
 
-<script>
-    function rowClicked(value) {
-        location.href = "/organizations_info?param=" + value;
-    }
-</script>
 
+</script>
 </body>
 </html>
