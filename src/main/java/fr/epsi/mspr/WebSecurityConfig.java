@@ -1,4 +1,4 @@
-package fr.epsi.mspr.security;
+package fr.epsi.mspr;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import fr.epsi.mspr.services.MyUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -51,26 +53,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedPage("/access-denied");
     }
 
-    /**
-    @Bean
-    @Override
-    public UserDetailsService userDetailsService() {
-        UserDetails user =
-                User.withDefaultPasswordEncoder()
-                        .username("user")
-                        .password("password")
-                        .roles("USER")
-                        .build();
-
-        return new InMemoryUserDetailsManager(user);
-    }
-     */
-
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/resources/**", "/static/**","/css/**", "/js/**","/images/**", "/SQL_scripts/**");
+                .antMatchers("/resources/**", "/static/**","/css/**", "/js/**","/images/**", "/icons/**", "/logos/**", "/SQL_scripts/**", "/app.js", "/style.css");
     }
 
     @Bean

@@ -1,6 +1,7 @@
-package fr.epsi.mspr.security;
+package fr.epsi.mspr.controllers;
 
 import fr.epsi.mspr.entities.User;
+import fr.epsi.mspr.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;

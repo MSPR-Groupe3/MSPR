@@ -1,4 +1,4 @@
-package fr.epsi.mspr.security;
+package fr.epsi.mspr.services;
 
 import fr.epsi.mspr.entities.Role;
 import fr.epsi.mspr.entities.User;
