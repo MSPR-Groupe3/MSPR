@@ -5,14 +5,32 @@ USE mspr;
 SET SQL_MODE = 'NO_AUTO_VALUE_ON_ZERO';
 SET time_zone = '+00:00';
 
+
+
 CREATE TABLE IF NOT EXISTS `user` (
     `id` bigint(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `firstname` varchar(255),
     `lastname` varchar(255),
     `loginemail` varchar(255) UNIQUE,
     `passwd` varchar(255),
+    `is_active` boolean
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `roles` (
+    `id` bigint(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `role` varchar(255)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `role_in_user` (
+    `user_id` bigint(20),
+    `role_id` bigint(20),
+    PRIMARY KEY (`user_id`, `role_id`),
+    CONSTRAINT fk_role FOREIGN KEY (`role_id`)
+    REFERENCES `roles`(`id`),
+    CONSTRAINT fk_user_role FOREIGN KEY (`user_id`)
+    REFERENCES `user`(`id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 CREATE TABLE IF NOT EXISTS `organization` (
     `id` bigint(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -40,6 +58,8 @@ CREATE TABLE IF NOT EXISTS `contact` (
     CONSTRAINT fk_organization FOREIGN KEY (`organization_id`)
     REFERENCES `organization`(`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 
 CREATE TABLE IF NOT EXISTS `purchase` (
     `id` bigint(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -78,6 +98,7 @@ CREATE TABLE IF NOT EXISTS `product_in_purchase` (
     `product_id` bigint(20),
     `quantity` int(20) NOT NULL,
     `price` float NOT NULL,
+    PRIMARY KEY (`purchase_id`, `product_id`),
     CONSTRAINT fk_purchase FOREIGN KEY (`purchase_id`)
     REFERENCES `purchase`(`id`),
     CONSTRAINT fk_product FOREIGN KEY (`product_id`)
