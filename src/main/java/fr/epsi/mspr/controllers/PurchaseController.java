@@ -166,9 +166,11 @@ public class PurchaseController {
             BindingResult result,
             Model model){
 
+        /*
         if (result.hasErrors()) {
             return "redirect:/detailsCommande/{id}/ajouterProduit";
         }
+        */
 
         // Insert a row in product_in_purchase table
         Purchase purchase = purchaseRepo.getOne(id);
