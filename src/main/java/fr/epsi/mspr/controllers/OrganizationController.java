@@ -5,10 +5,13 @@ import fr.epsi.mspr.repositories.OrganizationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
 
 @Controller
 public class OrganizationController {
@@ -16,6 +19,7 @@ public class OrganizationController {
     @Autowired
     private OrganizationRepository repoOrga;
 
+    // CREATE NEW ORGANIZATION
     @GetMapping("/creerOrganisation")
     public String createOrganization(Model model) {
 
@@ -23,12 +27,14 @@ public class OrganizationController {
         model.addAttribute("organization", organization);
         return "organisations_create"; }
 
-    // CREATE AN ORGANIZATION
+    // SAVE NEW
     @PostMapping("/sauverOrganisation")
-    public String saveOrganization(@ModelAttribute Organization organization, Model model) {
-        this.repoOrga.save(organization);
-        model.addAttribute("organization", organization);
-        return "organisations_create";
+    public String addOrganization(@Valid Organization organization, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "redirect:/creerOrganisation";
+        }
+        repoOrga.save(organization);
+        return "redirect:/listerOrganisations";
     }
 
     // SHOW ALL ORGANIZATIONS

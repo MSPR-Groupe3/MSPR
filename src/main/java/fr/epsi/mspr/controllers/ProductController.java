@@ -75,7 +75,7 @@ public class ProductController {
         if (result.hasErrors()) {
             return "redirect:/creerProduit";
         }
-
+        product.setSellable(true);
         productRepo.save(product);
         return "redirect:/listerProduits";
     }

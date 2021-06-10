@@ -23,17 +23,17 @@ public class Organization {
 
     @Column(name = "company_name", nullable = false)
     private String companyName;
-    @Column(name = "street_address1", nullable = false)
+    @Column(name = "street_address1")
     private String streetName1;
     @Column(name = "street_address2")
     private String streetName2;
     @Column(name = "street_address3")
     private String streetName3;
-    @Column(name = "city_name", nullable = false)
+    @Column(name = "city_name")
     private String cityName;
-    @Column(name = "postal_code", nullable = false)
+    @Column(name = "postal_code")
     private String postalCode;
-    @Column(name = "country", nullable = false)
+    @Column(name = "country")
     private String country;
     @Column(name = "phone_number")
     private String phoneNumber;
