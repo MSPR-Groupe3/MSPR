@@ -28,7 +28,7 @@ public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
             "FROM purchase\n" +
             "LEFT JOIN contact ON contact.id = purchase.contact_id\n" +
             "LEFT JOIN organization ON organization.id = contact.organization_id\n" +
-            "GROUP BY organization.id\n" +
+            "GROUP BY organization.company_name\n" +
             "HAVING COUNT(purchase.id) > 0\n" +
             "ORDER BY nb_purchase DESC;" ,
 
