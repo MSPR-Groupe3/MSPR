@@ -197,7 +197,6 @@ public class PurchaseController {
         // delete the product in purchase
         ProductInPurchaseKey key = new ProductInPurchaseKey(idProd, id);
         int quantityAdded = productInPurchaseRepo.getOne(key).getQuantity();
-        System.out.println(" ---------- " + quantityAdded);
         productInPurchaseRepo.deleteById(key);
 
         // update the quantity of the stock in product table

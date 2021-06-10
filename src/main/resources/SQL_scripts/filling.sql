@@ -41,9 +41,9 @@ INSERT INTO `category` (`name`) VALUES
 ('Matériel');
 
 INSERT INTO `product` (`name`, `reference`, `description`, `unit_price_before_tax`, `tax_rate`, `quantity_available`, `is_sellable`, `category_id`) VALUES
-('Magali', 'MAG-NET-001', 'Spécialisations : Journalistes, Politiques Techniques : armes à feu, poison, &#34accidents&#34 Localisation : France & International', 20000.00, 0.20, 1, true, 1),
-('Mike', 'MIK-NET-002', 'Spécialisations : Particuliers Techniques : armes à feu, poison, &#34accidents&#34 Localisation : France & International', 10000.00, 0.15, 1, true, 1),
-('Linda', 'LIN-NET-003', 'Spécialisations : Journalistes, Politiques Techniques : armes à feu, poison, &#34accidents&#34 Localisation : France & International', 10000.00, 0.10, 1, true, 1),
+('Magali', 'MAG-NET-001', 'Spécialisations : Journalistes, Politiques | Techniques : armes à feu, poison, accidents | Localisation : France & International', 20000.00, 0.20, 1, true, 1),
+('Mike', 'MIK-NET-002', 'Spécialisations : Particuliers | Techniques : armes à feu, poison, accidents | Localisation : France & International', 10000.00, 0.15, 1, true, 1),
+('Linda', 'LIN-NET-003', 'Spécialisations : Journalistes, Politiques | Techniques : armes à feu, poison, accidents | Localisation : France & International', 10000.00, 0.10, 1, true, 1),
 ('Keylogger', 'KEY-LOG-004', 'Envie de savoir ce que votre belle-mère tape sur ses appareils ?', 50.76, 0.18, 6, true, 2),
 ('Spyware', 'SPY-LOG-005', 'Lancez-vous dans la collecte d''informations des institutions les plus prestigieuses de votre pays', 87.31, 0.15, 23, true, 2),
 ('Botnet software', 'LIN-LOG-006', 'Transformez des ordinateurs et serveurs peu sécurisés en une armée prête à se lancer à l''assaut de votre concurrence !', 99.99, 0.10, 46, true, 2),

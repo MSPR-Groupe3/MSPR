@@ -21,7 +21,7 @@ public class Product {
     private Long id;
 
     @Column(name = "name", nullable = false)
-    @Pattern(regexp = "[A-Za-zçéèàêîô',.?!& -]+")
+    @Pattern(regexp = "[A-Za-zçéèàêîô',.?!& -|]+")
     private String name;
     @Column(name = "reference", unique = true)
     @Pattern(regexp = "[A-Z]{3}-[A-Z]{3}-[0-9]{3}")
