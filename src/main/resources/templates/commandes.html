@@ -247,9 +247,10 @@
         let tbody = document.getElementById("purchases_list")
         tbody.innerHTML="";
         for(let item in dataFilterd){
-            let tr = `<tr>
+            let url = "window.location.href='/detailsCommande/" + dataFilterd[item].id + "'";
+            let tr = `<tr onclick="${url}">
                 <td>${dataFilterd[item].reference}</td>
-                <td>${dataFilterd[item].contact.firstName + " " + dataFilterd[item].contact.firstName}</td>
+                <td>${dataFilterd[item].contact.firstName + " " + dataFilterd[item].contact.lastName}</td>
                 <td>${dataFilterd[item].contact.organization.companyName}</td>
                 <td>${dataFilterd[item].dateOfOrder}</td>
             </tr>
