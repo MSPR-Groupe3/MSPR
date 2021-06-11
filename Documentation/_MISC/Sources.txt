@@ -1,0 +1,7 @@
+Tuto sur l'utilisation de Spring
+https://www.baeldung.com/spring-boot-bean-validation
+https://www.baeldung.com/spring-boot-change-port
+https://www.baeldung.com/spring-boot-crud-thymeleaf
+
+Documentation sur Thymeleaf
+https://www.thymeleaf.org/doc/articles/layouts.html
